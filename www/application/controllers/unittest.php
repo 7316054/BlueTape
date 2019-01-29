@@ -1,11 +1,26 @@
 <?php
-    $this->load->library('unit_testing');
+    defined('BASEPATH') OR exit('No direct script access allowed');
+    class unittest extends CI_Controller{
 
-    $test = 1 + 1;
+       public function __construct(){
+            parent::__construct();
+            $this->load->library('unit_test');
+       }
 
-    $expected_result = 2;
+       private function division($a,$b){
+            return $a/$b;
+       }
 
-    $test_name = 'Adds one plus one';
+       public function index(){
+           echo "COBA COBA TEST? ";
 
-    $this->unit->run($test, $expected_result, $test_name);
+           $test=$this->division(6,2);
+           $expected_result=3;
+           $test_name="Divison 6: 3";
+
+           echo $this->unit->run($test, $expected_result, $test_name);
+       }
+
+    }
+
 ?>
