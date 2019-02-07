@@ -2,25 +2,46 @@
     defined('BASEPATH') OR exit('No direct script access allowed');
     class unittest extends CI_Controller{
 
-       public function __construct(){
+        public function __construct(){
             parent::__construct();
             $this->load->library('unit_test');
-       }
-
-       private function division($a,$b){
+            $this->load->library('BlueTape');
+            $this->load->model('JadwalDosen_model');
+            $this->load->database();
+        }
+        private function division($a,$b){
             return $a/$b;
-       }
+        }
 
-       public function index(){
-           echo "COBA COBA TEST? ";
+        public function index(){
+            $this->testBlueTapeLibraryGetNPM();
+            $this->testBlueTapeLibraryGetNPM_2017();
+            $this->cek();
+        }
+        public function cek(){
+            $myemail="7316053@student.unpat.ac.id";
+            $models=$this->JadwalDosen_model->getJadwalByUsername('Samuel');
+            $row=$models[1];
+            //echo $row;
+            print_r($row->user);
 
-           $test=$this->division(6,2);
-           $expected_result=3;
-           $test_name="Divison 6: 3";
-
-           echo $this->unit->run($test, $expected_result, $test_name);
-       }
+        }
+        public function testBlueTapeLibraryGetNPM() {
+            echo $this->unit->run(
+                $this->bluetape->getNPM('7313013@student.unpar.ac.id'),
+                '2013730013',
+                __FUNCTION__,
+                'Ensure e-mail to NPM conversion works, for angkatan < 2017'
+            );
+        }
+        public function testBlueTapeLibraryGetNPM_2017() {
+            echo $this->unit->run(
+                $this->bluetape->getNPM('2017730013@student.unpar.ac.id'),
+                '2017730013',
+                __FUNCTION__,
+                'Ensure e-mail to NPM conversion works, for angkatan >= 2017'
+            );
+        }
 
     }
-
 ?>
