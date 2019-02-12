@@ -17,6 +17,8 @@
             $this->testBlueTapeLibraryGetNPM();
             $this->testBlueTapeLibraryGetNPM_2017();
             $this->cek();
+            $this->getHari();
+            $this->getAllJadwal();
         }
         public function cek(){
             $myemail="7316053@student.unpat.ac.id";
@@ -24,7 +26,20 @@
             $row=$models[1];
             //echo $row;
             print_r($row->user);
+        }
+        
+        public function getAllJadwal(){
+            $models=$this->JadwalDosen_model->getAllJadwal();
+            for($i=0;$i<sizeof($models);$i++){
+                $row=$models[0];
+                print_r($row);
+                print_r(" \n");
+            }
+        }
 
+        public function getHari(){
+            $day=$this->JadwalDosen_model->getNamaHari();
+            print_r($day);
         }
         public function testBlueTapeLibraryGetNPM() {
             echo $this->unit->run(
