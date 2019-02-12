@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\www",
+    "\\www\\application",
+    "\\www\\application\\controllers",
+    "\\www\\application\\libraries",
+    "\\www\\application\\models",
+    "\\www\\application\\views\\TranskripRequest"
+  ],
+  "SelectedNode": "\\www\\application\\models\\Transkrip_model.php",
+  "PreviewInSolutionExplorer": false
+}
