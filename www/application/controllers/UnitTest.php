@@ -15,6 +15,8 @@ class UnitTest extends CI_Controller{
 
 	public function index(){
 		$this->requestByDosen('Samuel');
+		$this->getName('GABRIEL PANJI LAZUARDI');
+		$this->dbDateTimeToReadableDate();
 		print_r($this->unit->result());
 	}
 
@@ -31,20 +33,51 @@ class UnitTest extends CI_Controller{
 		$test_name = 'Memeriksa method requestBy dari JadwalDosen_model';
 
 		$this->unit->run($test, $expected_result, $test_name);
-
-		
 	}   
 
-	public function runTest(){
-		$userInfo = $this->Auth_model->getUserInfo();
-		$arr = $this->Transkrip_model->requestsBy('7316068@student.unpar.ac.id');
-	    for($i=0; $i<sizeof($arr);$i++){ 
-					$row=$arr[$i]; 
-					print_r($row->requestByEmail." "); 
-					$this->checkNPMandEMAIL($row->requestByEmail);
-		};
+	/**
+	 * Method untuk memeriksa method getName pada libraries/BlueTape
+	 * @var adalaha nama dari user BlueTape
+	 * Expected result merupakan  hasil query
+	**/
+	public function getName($var){
+		$test = $this->bluetape->getName($var);
+		
+		$expected_result = $this->expectedResGetName($var);
+		$test_name = 'Memeriksa method getName dari BlueTape';
+
+		$this->unit->run($test, $expected_result, $test_name);
+	}
+
+	/**
+	 * Method untuk memeriksa method dbDateTimeToReadableDate pada libraries/BlueTape
+	 * Expected result merupakan  hasil konversi DateTime dari database ke dalam string yang dapat dibaca
+	**/
+	public function dbDateTimeToReadableDate(){
+		
+		$this->db->select('requestDateTime');
+		$this->db->from('transkrip');
+		$query = $this->db->get();
+		$dateTime = $query->row;
+
+		setlocale(LC_TIME, 'ind');
+		$expected_result = strftime('%A, %B, %Y',(new DateTime($dateTime->requestDateTime))->getTimestamp());
+		$test = $this->bluetape->dbDateTimeToReadableDate($dateTime->requestDateTime);
+		$test_name = 'Memeriksa method dbDateTimeToReadableDate dari BlueTape';
+
+		$this->unit->run($test, $expected_result, $test_name);
 
 	}
+
+
+
+
+
+
+
+
+
+	//--------------EXPECTED RESULTS-----------------------------------------------------------------------------------------------------------------------------------
 
 	/**
 	 * Method untuk mendapatkan expected result dari test requestByDosen
@@ -64,6 +97,22 @@ class UnitTest extends CI_Controller{
 		$res = $query1->result();
 		//print_r($res);
 		return $res;
+	}
+
+	/**
+	 * Method untuk mendapatkan expected result dari test getName
+	 * @var adalaha nama dari user BlueTape
+	 * Expected result merupakan hasil query
+	**/
+	public function expectedResGetName($var){
+		$this->db->where('name',$var);
+		$this->db->from('bluetape_userinfo');
+
+		$query = $this->db->get();
+
+		$row = $query->row;
+
+		return $row->name;
 	}
 }
 	

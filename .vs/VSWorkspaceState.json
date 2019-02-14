@@ -3,11 +3,9 @@
     "",
     "\\www",
     "\\www\\application",
-    "\\www\\application\\controllers",
-    "\\www\\application\\libraries",
-    "\\www\\application\\models",
-    "\\www\\application\\views\\TranskripRequest"
+    "\\www\\system",
+    "\\www\\system\\libraries"
   ],
-  "SelectedNode": "\\www\\application\\models\\Transkrip_model.php",
+  "SelectedNode": "\\www\\system\\libraries\\Unit_test.php",
   "PreviewInSolutionExplorer": false
 }
