@@ -22,8 +22,8 @@ $config['modules'] = array(
 );
 
 $config['roles'] = array(
-    'root' => array('pascal@unpar.ac.id', 'shao.wei@unpar.ac.id'),
-    'tu.ftis' => array('shao.wei@unpar.ac.id', 'pranyoto@unpar.ac.id', 'walip@unpar.ac.id', 'dwina@unpar.ac.id'),
+    'root' => array('pascal@unpar.ac.id', 'shao.wei@unpar.ac.id','rootbluetape@gmail.com'),
+    'tu.ftis' => array('shao.wei@unpar.ac.id', 'pranyoto@unpar.ac.id', 'walip@unpar.ac.id', 'dwina@unpar.ac.id','gabriel.lazuardi@gmail.com'),
     'mahasiswa.ftis' => '(7[123]\\d{5})|(20[1-9][0-9]7[123][0-9]{4})@student\\.unpar\\.ac\\.id',
     'staf.unpar' => '.+@unpar\\.ac\\.id',
 
