@@ -3,9 +3,10 @@
     "",
     "\\www",
     "\\www\\application",
-    "\\www\\system",
-    "\\www\\system\\libraries"
+    "\\www\\application\\controllers",
+    "\\www\\application\\libraries",
+    "\\www\\system"
   ],
-  "SelectedNode": "\\www\\system\\libraries\\Unit_test.php",
+  "SelectedNode": "\\www\\application\\controllers\\CodeCover.php",
   "PreviewInSolutionExplorer": false
 }
