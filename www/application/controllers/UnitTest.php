@@ -10,6 +10,7 @@ class UnitTest extends CI_Controller{
 		$this->load->database();
 		$this->load->model('JadwalDosen_model');
 		$this->load->library('BlueTape');
+		$this->load->library('../controller/CodeCover');
 		
 	}
 
@@ -17,7 +18,8 @@ class UnitTest extends CI_Controller{
 		$this->requestByDosen('Samuel');
 		$this->getName('GABRIEL PANJI LAZUARDI');
 		$this->dbDateTimeToReadableDate();
-		print_r($this->unit->result());
+		$this->unit->result();
+		$this->CodeCover->report();
 	}
 
 	/**
