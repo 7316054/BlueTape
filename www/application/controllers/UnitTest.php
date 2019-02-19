@@ -10,7 +10,6 @@ class UnitTest extends CI_Controller{
 		$this->load->database();
 		$this->load->model('JadwalDosen_model');
 		$this->load->library('BlueTape');
-		$this->load->library('../controller/CodeCover');
 		
 	}
 
@@ -18,8 +17,8 @@ class UnitTest extends CI_Controller{
 		$this->requestByDosen('Samuel');
 		$this->getName('GABRIEL PANJI LAZUARDI');
 		$this->dbDateTimeToReadableDate();
-		$this->unit->result();
-		$this->CodeCover->report();
+		
+		print_r($this->unit->result());
 	}
 
 	/**
@@ -60,10 +59,11 @@ class UnitTest extends CI_Controller{
 		$this->db->select('requestDateTime');
 		$this->db->from('transkrip');
 		$query = $this->db->get();
-		$dateTime = $query->row;
+		$dateTime = $query->row();
+		$fixed = $dateTime->requestDateTime;
 
 		setlocale(LC_TIME, 'ind');
-		$expected_result = strftime('%A, %B, %Y',(new DateTime($dateTime->requestDateTime))->getTimestamp());
+		$expected_result = strftime('%A, %B, %Y',(new DateTime($fixed))->getTimestamp());
 		$test = $this->bluetape->dbDateTimeToReadableDate($dateTime->requestDateTime);
 		$test_name = 'Memeriksa method dbDateTimeToReadableDate dari BlueTape';
 
@@ -112,7 +112,7 @@ class UnitTest extends CI_Controller{
 
 		$query = $this->db->get();
 
-		$row = $query->row;
+		$row = $query->row();
 
 		return $row->name;
 	}
