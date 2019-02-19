@@ -18,6 +18,8 @@ class UnitTest extends CI_Controller {
             $this->coverage->start('UnitTests');
         }
         $this->load->library('BlueTape');
+        $this->load->model('JadwalDosen_model');
+        $this->load->database();
     }
     private function report() {
         if (self::ENABLE_COVERAGE) {
@@ -57,8 +59,13 @@ class UnitTest extends CI_Controller {
      * Run all tests
      */
     public function index() {
-        $this->testBlueTapeLibraryGetNPM();
-        $this->testBlueTapeLibraryGetNPM_2017();
+        //$this->testBlueTapeLibraryGetNPM();
+        //$this->testBlueTapeLibraryGetNPM_2017();
+        $this->getEmail();
+
+        $this->cekGetAllJadwal();
+        $this->cekJadwalByJamMulai(7,1,'samuel');
+
         $this->report();
     }
     public function testBlueTapeLibraryGetNPM() {
@@ -77,4 +84,45 @@ class UnitTest extends CI_Controller {
             'Ensure e-mail to NPM conversion works, for angkatan >= 2017'
         );
     }
+
+    //library
+    public function getEmail(){
+        //testcase1 <= 2017
+        $npm='2016730053';
+        $exceptedRes='7316053@student.unpar.ac.id';
+        $this->unit->run($this->bluetape->getEmail($npm),$exceptedRes,__FUNCTION__,"NPM angkatan sebelum 2017");
+
+        //testcase2 > 2017
+        $npm='6181801025';
+        $exceptedRes='6181801025@student.unpar.ac.id';
+        $this->unit->run($this->bluetape->getNPM($npm),$exceptedRes,__FUNCTION__,"NPM angkatan sesudah 2017");
+    }
+
+    public function cekGetAllJadwal(){
+        $result=$this->JadwalDosen_model->getAllJadwal();
+        $expetecRes=$this->getAllJadwal();
+
+        $this->unit->run($result,$expetecRes,__FUNCTION__,'Jadwal sama');
+        //echo $this->unit->report();
+    }
+
+
+    public function cekJadwalByJamMulai($jamMulai,$hari,$user){
+        $result=$this->JadwalDosen_model->cekJadwalByJamMulai($jamMulai,$hari,$user);
+        $size=sizeof($result);
+        $expetecRes=1;
+        $this->unit->run($size,$expetecRes,__FUNCTION__,'Jadwal Dosen pada hari dan jam yang sama hanya boleh ada 1');
+        //echo $this->unit->report();
+    }
+    
+    /**
+     * User = email
+     */
+    public function getAllJadwal(){
+        $query = $this->db->query('SELECT jadwal_dosen.*, bluetape_userinfo.name
+            FROM jadwal_dosen
+            INNER JOIN bluetape_userinfo ON jadwal_dosen.user=bluetape_userinfo.email');
+        return $query->result();
+    }
+
 }
