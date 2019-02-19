@@ -5,8 +5,9 @@
     "\\www\\application",
     "\\www\\application\\controllers",
     "\\www\\application\\libraries",
-    "\\www\\system"
+    "\\www\\application\\views\\templates",
+    "\\www\\application\\views\\TranskripRequest"
   ],
-  "SelectedNode": "\\www\\application\\controllers\\CodeCover.php",
+  "SelectedNode": "\\www\\application\\libraries\\BlueTape.php",
   "PreviewInSolutionExplorer": false
 }
