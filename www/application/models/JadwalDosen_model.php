@@ -36,7 +36,6 @@ class JadwalDosen_model extends CI_Model {
         $this->db->insert('jadwal_dosen', $this);
     }
 
-
     public function getAllJadwal() {
         $query = $this->db->query('SELECT jadwal_dosen.*, bluetape_userinfo.name
 			FROM jadwal_dosen
