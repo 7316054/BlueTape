@@ -1,3 +1,4 @@
+
 <?php
 use SebastianBergmann\CodeCoverage\CodeCoverage;
 defined('BASEPATH') OR exit('No direct script access allowed');
