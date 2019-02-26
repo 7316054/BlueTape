@@ -68,7 +68,7 @@ class UnitTest extends CI_Controller {
         $this->getEmail();
 
         $this->cekGetAllJadwal();
-        $this->cekJadwalByJamMulai(7,1,'samuel');
+        $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
 
         $this->report();
     }
@@ -97,9 +97,9 @@ class UnitTest extends CI_Controller {
         $this->unit->run($this->bluetape->getEmail($npm),$exceptedRes,__FUNCTION__,"NPM angkatan sebelum 2017");
 
         //testcase2 > 2017
-        $npm='6181801025';
-        $exceptedRes='6181801025@student.unpar.ac.id';
-        $this->unit->run($this->bluetape->getNPM($npm),$exceptedRes,__FUNCTION__,"NPM angkatan sesudah 2017");
+        $npm1='6181801025';
+        $exceptedRes1='6181801025@student.unpar.ac.id';
+        $this->unit->run($this->bluetape->getNPM($npm1),$exceptedRes1,__FUNCTION__,"NPM angkatan sesudah 2017");
     }
 
     public function cekGetAllJadwal(){
