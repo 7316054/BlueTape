@@ -19,9 +19,9 @@
         */
        public function index(){
          $this->testBlueTapeGetNPM();
-         $this->cekJadwalByUsername('Dipo');
-         $this->cekYearMonthToSemesterCode();
-         $this->cekSemesterCodeToString();
+         $this->cekJadwalByUsername('Dipo');//
+         $this->cekYearMonthToSemesterCode();//
+         $this->cekSemesterCodeToString();//
 		 $this->requestByDosen('Samuel');
 		$this->getName('GABRIEL PANJI LAZUARDI');
 		$this->dbDateTimeToReadableDate();
