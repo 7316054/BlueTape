@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 
 <?php
@@ -25,6 +24,13 @@
 		 $this->requestByDosen('Samuel');
 		$this->getName('GABRIEL PANJI LAZUARDI');
 		$this->dbDateTimeToReadableDate();
+
+		$this->cekAddjadwal();
+		$this->cekGetNpm();
+		$this->cekYearMonthToSemesterCodeSimplified();
+		$this->report();
+		$this->unit->result();
+
          print_r($this->unit->result());
        }
        /**
@@ -152,6 +158,69 @@
 	}
 
 
+	//sam
+	 //Model -addJadwal
+	 public function cekAddjadwal(){
+		$jenis='Praktek';
+		$data=array("user"=>"gemini2911f665@gmail.com", "hari"=>"0", "jam_mulai"=>"7","durasi"=>"1","jenis_jadwal"=>"konsultasi","label_jadwal"=>"");
+		$query=$this->db->query("SELECT * from jadwal_dosen");
+		$res=$query->result();
+		$jumlahAwal=sizeof($res);
+	 
+
+		$this->JadwalDosen_model->addJadwal($data);
+
+		$query2=$this->db->query("SELECT * from jadwal_dosen");
+		$res2=$query2->result();
+		$jumlahAkhir=sizeof($res2);
+ 
+
+			 $this->unit->run(
+				$jumlahAkhir,
+				$jumlahAwal+1,
+				 __FUNCTION__,
+				 'Test ini mengecek apakah data masuk atau tidak'
+			);
+ }
+ //Libraries-BlueTape
+ public function cekGetNpm(){
+	 //test case 1
+	 $result= $this->bluetape->getNPM('7316054@student.unpar.ac.id');
+	 $expected='2016730054';
+	 $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek apakah NPM valid atau tidak");
+
+	 //test case 2
+		$result= $this->bluetape->getNPM('7317004@student.unpar.ac.id');
+	 $expected='2017730004';
+	 $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek apakah NPM valid atau tidak");
+
+
+	 //test case 3 
+		$result= $this->bluetape->getNPM('6181801025@student.unpar.ac.id');
+	 $expected='6181801025';
+	 $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek apakah NPM valid atau tidak");
+ }
+
+ //libraries-yearMonthToSemesterCodeSimplifeid
+ public function cekYearMonthToSemesterCodeSimplified(){
+
+	 //test case 1
+	 $year=2019;
+	 $month=12;
+		$result= $this->bluetape->yearMonthToSemesterCodeSimplified($year,$month);
+	 $expected='191';
+	$this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek Konversi tahun dan bulan ke kode semester, disederhanakan menjadi dua semester");
+
+
+	 //test case 2
+	 $year2=2080;
+	 $month2=7;
+		$result= $this->bluetape->yearMonthToSemesterCodeSimplified($year2,$month2);
+	 $expected='801';
+		$this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek Konversi tahun dan bulan ke kode semester, disederhanakan menjadi dua semester");
+
+ }
+
 
 
 
@@ -206,129 +275,8 @@
 
     //    }
 
-    }
-
-
-=======
-<?php 
-
-defined('BASEPATH') OR exit('No direct script access allowed');
-
-class UnitTest extends CI_Controller{
-	
-	public function __construct(){
-		parent::__construct();
-		$this->load->library("unit_test");
-		$this->load->database();
-		$this->load->model('JadwalDosen_model');
-		$this->load->library('BlueTape');
+		}
 		
-	}
 
-	public function index(){
-		$this->requestByDosen('Samuel');
-		$this->getName('GABRIEL PANJI LAZUARDI');
-		$this->dbDateTimeToReadableDate();
-		
-		print_r($this->unit->result());
-	}
-
-	/**
-	 * Method untuk memeriksa method requestBy pada model jadwal_dosen
-	 * @var adalaha nama dari dosen
-	 * Expected result merupakan Array dari hasil query
-	**/
-	public function requestByDosen($var){
-		
-	    $test = $this->JadwalDosen_model->requestsBy($var);
-		//print_r($test);
-		$expected_result = $this->expectedResDosen($var);
-		$test_name = 'Memeriksa method requestBy dari JadwalDosen_model';
-
-		$this->unit->run($test, $expected_result, $test_name);
-	}   
-
-	/**
-	 * Method untuk memeriksa method getName pada libraries/BlueTape
-	 * @var adalaha nama dari user BlueTape
-	 * Expected result merupakan  hasil query
-	**/
-	public function getName($var){
-		$test = $this->bluetape->getName($var);
-		
-		$expected_result = $this->expectedResGetName($var);
-		$test_name = 'Memeriksa method getName dari BlueTape';
-
-		$this->unit->run($test, $expected_result, $test_name);
-	}
-
-	/**
-	 * Method untuk memeriksa method dbDateTimeToReadableDate pada libraries/BlueTape
-	 * Expected result merupakan  hasil konversi DateTime dari database ke dalam string yang dapat dibaca
-	**/
-	public function dbDateTimeToReadableDate(){
-		
-		$this->db->select('requestDateTime');
-		$this->db->from('transkrip');
-		$query = $this->db->get();
-		$dateTime = $query->row();
-		$fixed = $dateTime->requestDateTime;
-
-		setlocale(LC_TIME, 'ind');
-		$expected_result = strftime('%A, %B, %Y',(new DateTime($fixed))->getTimestamp());
-		$test = $this->bluetape->dbDateTimeToReadableDate($dateTime->requestDateTime);
-		$test_name = 'Memeriksa method dbDateTimeToReadableDate dari BlueTape';
-
-		$this->unit->run($test, $expected_result, $test_name);
-
-	}
-
-
-
-
-
-
-
-
-
-	//--------------EXPECTED RESULTS-----------------------------------------------------------------------------------------------------------------------------------
-
-	/**
-	 * Method untuk mendapatkan expected result dari test requestByDosen
-	 * @var adalaha nama dari dosen
-	 * Expected result merupakan Array dari hasil query
-	**/
-	public function expectedResDosen($var){
-		// cara 1
-		$query1 = $this->db->query("SELECT * FROM jadwal_dosen WHERE user = '$var' ORDER BY durasi DESC");
-		//cara 2
-		$this->db->where('user', $var);
-		$this->db->from('jadwal_dosen');
-		$this->db->order_by('durasi', 'DESC');
-		$query2 = $this->db->get();
-
-		//ubah $query menjadi  $query1 atau  $query2 untuk memilih cara query yang digunakan
-		$res = $query1->result();
-		//print_r($res);
-		return $res;
-	}
-
-	/**
-	 * Method untuk mendapatkan expected result dari test getName
-	 * @var adalaha nama dari user BlueTape
-	 * Expected result merupakan hasil query
-	**/
-	public function expectedResGetName($var){
-		$this->db->where('name',$var);
-		$this->db->from('bluetape_userinfo');
-
-		$query = $this->db->get();
-
-		$row = $query->row();
-
-		return $row->name;
-	}
-}
 	
 
->>>>>>> perbaikan error
