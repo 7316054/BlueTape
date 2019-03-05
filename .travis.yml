@@ -3,15 +3,5 @@ php : -'7.2'
 services: mysql
 cache: bundler
 
-before script:
-- cp www/application/config/auth-dev.php www/application/config/auth.php
-- cp www/application/config/database-dev.php www/application/config/database.php
-- mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
-
-- mysql -e "CREATE TABLE 'bluetape_userinfo'( 'email'varchar(128) NOT NULL, 'name'varchar(256) NOT NULL,'lastUpdate'datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;"
-- mysql -e "INSERT INTO 'bluetape_userinfo'('email', 'name', 'lastUpdate') VALUES('7316054@student.unpar.ac.id', 'SAMUEL PANGIHUTAN SIHOMBING', '2019-01-31 06:45:36'),('gemini2911f665@gmail.com', 'Samuel P', '2019-02-14 06:25:38');"
-- mysql -e "CREATE TABLE 'jadwal_dosen'('id'int(11) NOT NULL,'user'varchar(256) NOT NULL,'hari'int(11) NOT NULL,'jam_mulai'int(11) NOT NULL,'durasi'int(11) NOT NULL, 'jenis'varchar(256) NOT NULL, 'label'varchar(100) NOT NULL, 'lastUpdate'datetime DEFAULT '2019-01-29 03:40:03') ENGINE=InnoDB DEFAULT CHARSET=utf8;"
-- mysql -e "INSERT INTO 'jadwal_dosen'('id', 'user', 'hari', 'jam_mulai', 'durasi', 'jenis', 'label', 'lastUpdate') VALUES (102, 'gemini2911f665@gmail.com', 0, 7, 1, 'konsultasi', '', '2019-02-26 01:55:57');"
 script :
 -php  www/index.php UnitTest
