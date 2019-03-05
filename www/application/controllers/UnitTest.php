@@ -38,6 +38,7 @@
             $this->getName('GABRIEL PANJI LAZUARDI');
             $this->dbDateTimeToReadableDate();
             $this->getEmail();
+            $this->cekGetNpm();
             $this->cekGetAllJadwal();
             $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
             $this->report();
@@ -234,18 +235,12 @@
             $result= $this->bluetape->getNPM('7316054@student.unpar.ac.id');
             $expected='2016730054';
             $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek apakah NPM valid atau tidak");
-
-            //test case 2
-                $result= $this->bluetape->getNPM('7317004@student.unpar.ac.id');
-            $expected='2017730004';
-            $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek apakah NPM valid atau tidak");
-
-
-            //test case 3 
-                $result= $this->bluetape->getNPM('6181801025@student.unpar.ac.id');
+            //test case2 
+            $result= $this->bluetape->getNPM('6181801025@student.unpar.ac.id');
             $expected='6181801025';
             $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek apakah NPM valid atau tidak");
         }
+   
 
         //libraries-yearMonthToSemesterCodeSimplifeid
         public function cekYearMonthToSemesterCodeSimplified(){
