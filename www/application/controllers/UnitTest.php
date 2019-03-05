@@ -246,6 +246,10 @@
             $result= $this->bluetape->getNPM('6181801025@student.unpar.ac.id');
             $expected='6181801025';
             $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek apakah NPM valid atau tidak");
+            //test case3
+            $result= $this->bluetape->getNPM('6181801025@goole.com');
+            $expected='null';
+            $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek apakah NPM valid atau tidak");
         }
    
 
@@ -333,7 +337,7 @@
             //testcase2 > 2017
             $npm1='6181801025';
             $exceptedRes1='6181801025@student.unpar.ac.id';
-            $this->unit->run($this->bluetape->getNPM($npm1),$exceptedRes1,__FUNCTION__,"NPM angkatan sesudah 2017");
+            $this->unit->run($this->bluetape->getEmail($npm1),$exceptedRes1,__FUNCTION__,"NPM angkatan sesudah 2017");
         }
 
         public function cekGetAllJadwal(){
