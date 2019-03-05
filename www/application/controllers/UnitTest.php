@@ -147,6 +147,12 @@
             $expected_result3="Padat 2017/2018";
             $test_name3="Memeriksa hasil dari translasi code semester ke string";
             $this->unit->run($test3,$expected_result3,__FUNCTION__,$test_name3);
+
+            //testcase semester false
+             $test4=$this->bluetape->semesterCodeToString(185);
+             $expected_result3=FALSE;
+             $test_name4="Memeriksa hasil dari translasi code semester ke string";
+             $this->unit->run($test3,$expected_result3,__FUNCTION__,$test_name3);
        }
 
        public function testBlueTapeGetNPM(){
