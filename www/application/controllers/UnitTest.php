@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 4a45595afb0c66c6901b074284a0e207190099f5
 <?php
     use SebastianBergmann\CodeCoverage\CodeCoverage; 
     defined('BASEPATH') OR exit('No direct script access allowed');
@@ -35,7 +30,6 @@
         * Method untuk menjalankan Test case
         */
        public function index(){
-<<<<<<< HEAD
             $this->testBlueTapeGetNPM();
             $this->cekJadwalByUsername('Dipo');
             $this->cekYearMonthToSemesterCode();
@@ -85,24 +79,6 @@
             }        
         }
 
-=======
-         $this->testBlueTapeGetNPM();
-         $this->cekJadwalByUsername('Dipo');
-         $this->cekYearMonthToSemesterCode();
-         $this->cekSemesterCodeToString();
-		 $this->requestByDosen('Samuel');
-		$this->getName('GABRIEL PANJI LAZUARDI');
-		$this->dbDateTimeToReadableDate();
-
-		$this->cekAddjadwal();
-		$this->cekGetNpm();
-		$this->cekYearMonthToSemesterCodeSimplified();
-		$this->report();
-		$this->unit->result();
-
-         print_r($this->unit->result());
-       }
->>>>>>> 4a45595afb0c66c6901b074284a0e207190099f5
        /**
         * Method yang di gunakan untuk melakukan testing terhadap
         * jadwal menggunakan username yang di lakukan cek pada databasenya
@@ -172,7 +148,6 @@
        }
 
        public function testBlueTapeGetNPM(){
-<<<<<<< HEAD
             $this->unit->run(
                 $this->bluetape->getNPM('7316054@student.unpar.ac.id'),
                 '2016730054',
@@ -291,133 +266,6 @@
                 $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek Konversi tahun dan bulan ke kode semester, disederhanakan menjadi dua semester");
 
         }
-=======
-         $this->unit->run(
-            $this->bluetape->getNPM('7316054@student.unpar.ac.id'),
-            '2016730054',
-            __FUNCTION__,
-            'angkatan 2016'
-        );
-		/**
-	 * Method untuk memeriksa method requestBy pada model jadwal_dosen
-	 * @var adalaha nama dari dosen
-	 * Expected result merupakan Array dari hasil query
-	**/
-	public function requestByDosen($var){
-		
-	    $test = $this->JadwalDosen_model->requestsBy($var);
-		//print_r($test);
-		$expected_result = $this->expectedResDosen($var);
-		$test_name = 'Memeriksa method requestBy dari JadwalDosen_model';
-
-		$this->unit->run($test, $expected_result, $test_name);
-	}   
-
-	/**
-	 * Method untuk memeriksa method getName pada libraries/BlueTape
-	 * @var adalaha nama dari user BlueTape
-	 * Expected result merupakan  hasil query
-	**/
-	public function getName($var){
-		$test = $this->bluetape->getName($var);
-		
-		$expected_result = $this->expectedResGetName($var);
-		$test_name = 'Memeriksa method getName dari BlueTape';
-
-		$this->unit->run($test, $expected_result, $test_name);
-	}
-
-	/**
-	 * Method untuk memeriksa method dbDateTimeToReadableDate pada libraries/BlueTape
-	 * Expected result merupakan  hasil konversi DateTime dari database ke dalam string yang dapat dibaca
-	**/
-	public function dbDateTimeToReadableDate(){
-		
-		$this->db->select('requestDateTime');
-		$this->db->from('transkrip');
-		$query = $this->db->get();
-		$dateTime = $query->row;
-
-		setlocale(LC_TIME, 'ind');
-		$expected_result = strftime('%A, %B, %Y',(new DateTime($dateTime->requestDateTime))->getTimestamp());
-		$test = $this->bluetape->dbDateTimeToReadableDate($dateTime->requestDateTime);
-		$test_name = 'Memeriksa method dbDateTimeToReadableDate dari BlueTape';
-
-		$this->unit->run($test, $expected_result, $test_name);
-
-	}
-
-
-	//sam
-	 //Model -addJadwal
-	 public function cekAddjadwal(){
-		$jenis='Praktek';
-		$data=array("user"=>"gemini2911f665@gmail.com", "hari"=>"0", "jam_mulai"=>"7","durasi"=>"1","jenis_jadwal"=>"konsultasi","label_jadwal"=>"");
-		$query=$this->db->query("SELECT * from jadwal_dosen");
-		$res=$query->result();
-		$jumlahAwal=sizeof($res);
-	 
-
-		$this->JadwalDosen_model->addJadwal($data);
-
-		$query2=$this->db->query("SELECT * from jadwal_dosen");
-		$res2=$query2->result();
-		$jumlahAkhir=sizeof($res2);
- 
-
-			 $this->unit->run(
-				$jumlahAkhir,
-				$jumlahAwal+1,
-				 __FUNCTION__,
-				 'Test ini mengecek apakah data masuk atau tidak'
-			);
- }
- //Libraries-BlueTape
- public function cekGetNpm(){
-	 //test case 1
-	 $result= $this->bluetape->getNPM('7316054@student.unpar.ac.id');
-	 $expected='2016730054';
-	 $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek apakah NPM valid atau tidak");
-
-	 //test case 2
-		$result= $this->bluetape->getNPM('7317004@student.unpar.ac.id');
-	 $expected='2017730004';
-	 $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek apakah NPM valid atau tidak");
-
-
-	 //test case 3 
-		$result= $this->bluetape->getNPM('6181801025@student.unpar.ac.id');
-	 $expected='6181801025';
-	 $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek apakah NPM valid atau tidak");
- }
-
- //libraries-yearMonthToSemesterCodeSimplifeid
- public function cekYearMonthToSemesterCodeSimplified(){
-
-	 //test case 1
-	 $year=2019;
-	 $month=12;
-		$result= $this->bluetape->yearMonthToSemesterCodeSimplified($year,$month);
-	 $expected='191';
-	$this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek Konversi tahun dan bulan ke kode semester, disederhanakan menjadi dua semester");
-
-
-	 //test case 2
-	 $year2=2080;
-	 $month2=7;
-		$result= $this->bluetape->yearMonthToSemesterCodeSimplified($year2,$month2);
-	 $expected='801';
-		$this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek Konversi tahun dan bulan ke kode semester, disederhanakan menjadi dua semester");
-
- }
-
-
-
-
-
-
-
->>>>>>> 4a45595afb0c66c6901b074284a0e207190099f5
 
 	//--------------EXPECTED RESULTS-----------------------------------------------------------------------------------------------------------------------------------
 
@@ -457,7 +305,6 @@
             return $row->name;
         }
 	
-<<<<<<< HEAD
         public function testBlueTapeLibraryGetNPM() {
             $this->unit->run(
                 $this->bluetape->getNPM('7313013@student.unpar.ac.id'),
@@ -514,19 +361,3 @@
             return $query->result();
         }
     }
-=======
-	}
-
-       
-
-    //    public function testDb(){
-
-
-    //    }
-
-		}
-		
-
-	
-
->>>>>>> 4a45595afb0c66c6901b074284a0e207190099f5
