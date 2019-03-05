@@ -34,6 +34,7 @@
             $this->cekJadwalByUsername('Dipo');
             $this->cekYearMonthToSemesterCode();
             $this->cekSemesterCodeToString();
+            $this->cekYearMonthToSemesterCodeSimplified();
             $this->requestByDosen('Samuel');
             $this->getName('GABRIEL PANJI LAZUARDI');
             $this->dbDateTimeToReadableDate();
@@ -255,7 +256,7 @@
 
             //test case 2
             $year2=2080;
-            $month2=7;
+            $month2=3;
                 $result= $this->bluetape->yearMonthToSemesterCodeSimplified($year2,$month2);
             $expected='801';
                 $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek Konversi tahun dan bulan ke kode semester, disederhanakan menjadi dua semester");
