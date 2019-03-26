@@ -69,6 +69,9 @@ class UnitTest extends CI_Controller {
 
         $this->cekGetAllJadwal();
         $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
+        $this->requestBy('7316053@student.unpar.ac.id');
+        $this->requestBy('7316053@student.unpar.ac.id',2,1);
+
 
         $this->report();
     }
@@ -117,6 +120,25 @@ class UnitTest extends CI_Controller {
         $expetecRes=1;
         $this->unit->run($size,$expetecRes,__FUNCTION__,'Jadwal Dosen pada hari dan jam yang sama hanya boleh ada 1');
         //echo $this->unit->report();
+    }
+
+    public function requestBy($email){
+        $result=$this->JadwalDosen_model->requestsBy($email);
+
+        if ($email !== NULL) {
+            $this->db->where('requestByEmail', $email);
+        }
+        if ($start !== NULL && $rows !== NULL) {
+            $this->db->limit($rows, $start);
+        }
+        $this->db->from('transkrip');//jadwal_dosen
+        $this->db->order_by('requestDateTime', 'DESC');
+        $query = $this->db->get();
+        $exceptedRes=$query->result();
+
+        print_r($exceptedRes);
+
+        $this->unit->run($result,$exceptedRes,__FUNCTION__,'seluruh request dari email '+$email);
     }
     
     /**
