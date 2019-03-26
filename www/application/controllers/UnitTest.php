@@ -178,6 +178,7 @@
 
             $this->unit->run($test, $expected_result, $test_name);
         }   
+
         if ($statistics['Fail'] > 0) {
             exit(1);
         }        
