@@ -42,9 +42,9 @@
             $this->cekGetNpm();
             $this->cekGetAllJadwal();
             $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
+            $this->cekAddjadwal();
             $this->report();
-			$this->requestBy('7316053@student.unpar.ac.id')
-            print_r($this->unit->result());
+			$this->requestBy('7316053@student.unpar.ac.id');
         }
 
        private function report() {
@@ -178,11 +178,8 @@
 
             $this->unit->run($test, $expected_result, $test_name);
         }   
+            
 
-        if ($statistics['Fail'] > 0) {
-            exit(1);
-        }        
-    }
   
     public function testBlueTapeLibraryGetNPM() {
         $this->unit->run(
@@ -250,18 +247,20 @@
         //sam
         //Model -addJadwal
         public function cekAddjadwal(){
-            $jenis='Praktek';
-            $data=array("user"=>"gemini2911f665@gmail.com", "hari"=>"0", "jam_mulai"=>"7","durasi"=>"1","jenis_jadwal"=>"konsultasi","label_jadwal"=>"");
-            $query=$this->db->query("SELECT * from jadwal_dosen");
-            $res=$query->result();
-            $jumlahAwal=sizeof($res);
-        
-
+            $data=array("user"=>"gemini2911f665@gmail.com", "hari"=>"0", "jam_mulai"=>"7","durasi"=>"1","jenis_jadwal"=>"konsultasi","label_jadwal"=>"aa");
             $this->JadwalDosen_model->addJadwal($data);
-
-            $query2=$this->db->query("SELECT * from jadwal_dosen");
-            $res2=$query2->result();
-            $jumlahAkhir=sizeof($res2);
+            $query=$this->db->query("SELECT *from jadwal_dosen where user='gemini2911f665@gmail.com' And hari=0  
+            And jam_mulai=7 And durasi=1 And jenis='konsultasi'");
+            $row=$query->result();
+            $obj=$row[sizeof($row)-1];
+            if (is_object($obj)) {
+                $res = get_object_vars($obj);
+            }
+            $data2=array("user"=>$res['user'], "hari"=>$res['hari'], "jam_mulai"=>$res['jam_mulai'],"durasi"=>$res['durasi'],"jenis_jadwal"=>$res['jenis'],"label_jadwal"=>"aa");
+            $this->unit->run($data,$data2,__FUNCTION__,"Test ini mengecek apakah data sudah masuk atau tidak");
+        }
+        
+         
     public function cekJadwalByJamMulai($jamMulai,$hari,$user){
         $result=$this->JadwalDosen_model->cekJadwalByJamMulai($jamMulai,$hari,$user);
         $size=sizeof($result);
