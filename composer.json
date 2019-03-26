@@ -1,9 +1,13 @@
 {
     "require": {
         "google/apiclient": "^1.0",
+<<<<<<< HEAD
+        "phpoffice/phpexcel": "^1.8",
+=======
         "phpoffice/phpexcel": "^1.8"
     },
     "require-dev": {
+>>>>>>> 9f98f83bed459d3ea89871c6ecfa118636543192
         "phpunit/php-code-coverage": "^7.0"
     }
 }
