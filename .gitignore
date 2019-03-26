@@ -2,5 +2,5 @@
 /www/application/config/auth.php
 /www/application/config/database.php
 
-/reports
-/vendor
+/reports/
+/vendor/
