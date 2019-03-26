@@ -180,23 +180,6 @@
         }   
             
 
-  
-    public function testBlueTapeLibraryGetNPM() {
-        $this->unit->run(
-            $this->bluetape->getNPM('7313013@student.unpar.ac.id'),
-            '2013730013',
-            __FUNCTION__,
-            'Ensure e-mail to NPM conversion works, for angkatan < 2017'
-        );
-    }
-    public function testBlueTapeLibraryGetNPM_2017() {
-        $this->unit->run(
-            $this->bluetape->getNPM('2017730013@student.unpar.ac.id'),
-            '2017730013',
-            __FUNCTION__,
-            'Ensure e-mail to NPM conversion works, for angkatan >= 2017'
-        );
-    }
 
     //library
     public function getEmail(){
@@ -366,34 +349,7 @@
             return $row->name;
         }
 	
-        public function testBlueTapeLibraryGetNPM() {
-            $this->unit->run(
-                $this->bluetape->getNPM('7313013@student.unpar.ac.id'),
-                '2013730013',
-                __FUNCTION__,
-                'Ensure e-mail to NPM conversion works, for angkatan < 2017'
-            );
-        }
-        public function testBlueTapeLibraryGetNPM_2017() {
-            $this->unit->run(
-                $this->bluetape->getNPM('2017730013@student.unpar.ac.id'),
-                '2017730013',
-                __FUNCTION__,
-                'Ensure e-mail to NPM conversion works, for angkatan >= 2017'
-            );
-        }
 
-        public function getEmail(){
-            //testcase1 <= 2017
-            $npm='2016730053';
-            $exceptedRes='7316053@student.unpar.ac.id';
-            $this->unit->run($this->bluetape->getEmail($npm),$exceptedRes,__FUNCTION__,"NPM angkatan sebelum 2017");
-
-            //testcase2 > 2017
-            $npm1='6181801025';
-            $exceptedRes1='6181801025@student.unpar.ac.id';
-            $this->unit->run($this->bluetape->getEmail($npm1),$exceptedRes1,__FUNCTION__,"NPM angkatan sesudah 2017");
-        }
 
         public function cekGetAllJadwal(){
             $result=$this->JadwalDosen_model->getAllJadwal();
@@ -403,14 +359,6 @@
             //echo $this->unit->report();
         }
 
-
-        public function cekJadwalByJamMulai($jamMulai,$hari,$user){
-            $result=$this->JadwalDosen_model->cekJadwalByJamMulai($jamMulai,$hari,$user);
-            $size=sizeof($result);
-            $expetecRes=1;
-            $this->unit->run($size,$expetecRes,__FUNCTION__,'Jadwal Dosen pada hari dan jam yang sama hanya boleh ada 1');
-            //echo $this->unit->report();
-        }
         
         /**
          * User = email
