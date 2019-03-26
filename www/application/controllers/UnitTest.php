@@ -43,6 +43,7 @@
             $this->cekGetAllJadwal();
             $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
             $this->report();
+			$this->requestBy('7316053@student.unpar.ac.id')
             print_r($this->unit->result());
         }
 
@@ -163,7 +164,6 @@
                 'angkatan 2016'
             );
         }
-<<<<<<< HEAD
         /**
         * Method untuk memeriksa method requestBy pada model jadwal_dosen
         * @var adalaha nama dari dosen
@@ -178,27 +178,11 @@
 
             $this->unit->run($test, $expected_result, $test_name);
         }   
-=======
         if ($statistics['Fail'] > 0) {
             exit(1);
         }        
     }
-    /**
-     * Run all tests
-     */
-    public function index() {
-        //$this->testBlueTapeLibraryGetNPM();
-        //$this->testBlueTapeLibraryGetNPM_2017();
-        $this->getEmail();
-
-        $this->cekGetAllJadwal();
-        $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
-        $this->requestBy('7316053@student.unpar.ac.id');
-        $this->requestBy('7316053@student.unpar.ac.id',2,1);
-
-
-        $this->report();
-    }
+  
     public function testBlueTapeLibraryGetNPM() {
         $this->unit->run(
             $this->bluetape->getNPM('7313013@student.unpar.ac.id'),
@@ -228,7 +212,6 @@
         $exceptedRes1='6181801025@student.unpar.ac.id';
         $this->unit->run($this->bluetape->getEmail($npm1),$exceptedRes1,__FUNCTION__,"NPM angkatan sesudah 2017");
     }
->>>>>>> jaya
 
         /**
          * Method untuk memeriksa method getName pada libraries/BlueTape
@@ -254,8 +237,6 @@
             $this->db->from('transkrip');
             $query = $this->db->get();
             $dateTime = $query->row;
-
-<<<<<<< HEAD
             setlocale(LC_TIME, 'ind');
             $expected_result = strftime('%A, %B, %Y',(new DateTime($dateTime->requestDateTime))->getTimestamp());
             $test = $this->bluetape->dbDateTimeToReadableDate($dateTime->requestDateTime);
@@ -280,7 +261,6 @@
             $query2=$this->db->query("SELECT * from jadwal_dosen");
             $res2=$query2->result();
             $jumlahAkhir=sizeof($res2);
-=======
     public function cekJadwalByJamMulai($jamMulai,$hari,$user){
         $result=$this->JadwalDosen_model->cekJadwalByJamMulai($jamMulai,$hari,$user);
         $size=sizeof($result);
@@ -306,17 +286,11 @@
         print_r($exceptedRes);
 
         $this->unit->run($result,$exceptedRes,__FUNCTION__,'seluruh request dari email '+$email);
-    }
->>>>>>> jaya
     
 
-                $this->unit->run(
-                    $jumlahAkhir,
-                    $jumlahAwal+1,
-                    __FUNCTION__,
-                    'Test ini mengecek apakah data masuk atau tidak'
-                );
+               
         }
+
         //Libraries-BlueTape
         public function cekGetNpm(){
             //test case 1
