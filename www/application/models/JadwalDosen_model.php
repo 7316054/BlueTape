@@ -11,15 +11,16 @@ class JadwalDosen_model extends CI_Model {
      * @param type $email email yang melakukan request atau NULL untuk semua
      * @return array hasil dari $query->result()
      */
-    public function requestsBy($email, $rows = NULL, $start = NULL) {
-        if ($email !== NULL) {
-            $this->db->where('requestByEmail', $email);
+    public function requestsBy($user, $rows = NULL, $start = NULL) {
+        if ($user !== NULL) {
+            $this->db->where('user', $user);
         }
         if ($start !== NULL && $rows !== NULL) {
             $this->db->limit($rows, $start);
         }
-        $this->db->from('transkrip');//jadwal_dosen
-        $this->db->order_by('requestDateTime', 'DESC');
+        $this->db->from('jadwal_dosen');
+        $this->db->order_by('durasi', 'DESC');
+
         $query = $this->db->get();
         return $query->result();
     }
