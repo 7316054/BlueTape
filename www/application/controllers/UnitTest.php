@@ -33,6 +33,8 @@
          $this->cekYearMonthToSemesterCode();
          $this->cekSemesterCodeToString();
          $this->cekUpdateJadwal();
+         $this->cekGetNamaHari();
+         $this->cekGetNamaBulan();
          //$this->report();
          print_r($this->unit->result());
        }
@@ -139,32 +141,26 @@
        }
       
        public function cekUpdateJadwal(){
-         $data=array("user"=>"Dipo1","hari"=>"4","jam_mulai"=>"13","durasi"=>"5","jenis"=>"Kelas","label"=>"Update");
+         $data=array("user"=>"Dipo2","hari"=>"4","jam_mulai"=>"13","durasi"=>"5","jenis"=>"Kelas","label"=>"Update");
          $id=4;
-         //$this->JadwalDosen_model->updateJadwal($id,$data);
+         $this->JadwalDosen_model->updateJadwal($id,$data);
          $query=$this->db->query("SELECT user,hari,jam_mulai,durasi,jenis,label
                                   FROM jadwal_dosen
                                   WHERE id='$id'");
          $expected_result=$query->result();
+         $this->unit->run($data,(array)$expected_result[0],__FUNCTION__,"Memeriksa apakah data yang di insert benar");
          
-           $this->unit->run($data,(array)$expected_result[0],__FUNCTION__,"Memeriksa apakah data yang di insert benar");
-         //   print_r((array)$expected_result[0]);
-         //   print_r($data);
        }
-
-      //  public function testBlueTapeGetNPM(){
-      //    $this->unit->run(
-      //       $this->bluetape->getNPM('7316054@student.unpar.ac.id'),
-      //       '2016730054',
-      //       __FUNCTION__,
-      //       'angkatan 2016'
-      //   );
-      //  }
-
-       
-
-    
-
+       public function cekGetNamaHari(){
+         $test=$this->JadwalDosen_model->getNamaHari();
+         $expected_result=array("Senin","Selasa","Rabu","Kamis","Jumat");
+         $this->unit->run($test,$expected_result,__FUNCTION__,"Memeriksa apakah nama hari-hari nya benar");
+       }
+       public function cekGetNamaBulan(){
+        $test=$this->JadwalDosen_model->getNamaBulan();
+        $expected_result=array('Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
+        $this->unit->run($test,$expected_result,__FUNCTION__,"Memeriksa apakah nama bulan-bulan nya benar");
+       }
     }
 ?>
   
