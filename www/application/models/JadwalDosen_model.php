@@ -11,16 +11,15 @@ class JadwalDosen_model extends CI_Model {
      * @param type $email email yang melakukan request atau NULL untuk semua
      * @return array hasil dari $query->result()
      */
-    public function requestsBy($user, $rows = NULL, $start = NULL) {
-        if ($user !== NULL) {
-            $this->db->where('user', $user);
+    public function requestsBy($email, $rows = NULL, $start = NULL) {
+        if ($email !== NULL) {
+            $this->db->where('requestByEmail', $email);
         }
         if ($start !== NULL && $rows !== NULL) {
             $this->db->limit($rows, $start);
         }
         $this->db->from('jadwal_dosen');
-        $this->db->order_by('durasi', 'DESC');
-
+        $this->db->order_by('requestDateTime', 'DESC');
         $query = $this->db->get();
         return $query->result();
     }
@@ -36,6 +35,7 @@ class JadwalDosen_model extends CI_Model {
 		$this->lastUpdate=date('Y-m-d H:i:s');
         $this->db->insert('jadwal_dosen', $this);
     }
+
 
     public function getAllJadwal() {
         $query = $this->db->query('SELECT jadwal_dosen.*, bluetape_userinfo.name
@@ -78,8 +78,10 @@ class JadwalDosen_model extends CI_Model {
 	}
 	
 	public function cekJadwalByJamMulai($jam_mulai,$hari,$user){
-         $query = $this->db->get_where('jadwal_dosen', array('jam_mulai' => $jam_mulai, 'hari' =>$hari, 'user' =>$user ));
-         
+		 $query = $this->db->get_where('jadwal_dosen', array('jam_mulai' => $jam_mulai, 'hari' =>$hari, 'user' =>$user ));
 		 return $query->result();
+		 
 	}
 }
+
+

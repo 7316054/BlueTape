@@ -4,11 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
     "content-hash": "ebcae095e0f329a6b6413fd8c3b17353",
-=======
-    "content-hash": "79afa1c45e1e787bc91f58eb8865b7a8",
->>>>>>> 9f98f83bed459d3ea89871c6ecfa118636543192
     "packages": [
         {
             "name": "google/apiclient",
