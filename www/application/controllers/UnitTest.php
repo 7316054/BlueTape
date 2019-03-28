@@ -379,4 +379,5 @@
             
               $this->unit->run($data,(array)$expected_result[0],__FUNCTION__,"Memeriksa apakah data yang di insert benar");
           }
+          
     }
