@@ -46,6 +46,7 @@
             
             $this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
             $this->requestBy('anugrahjaya23@gmail.com',1,1);
+            $this->cekUpdateJadwal();
 
             $this->report();
             
@@ -366,4 +367,16 @@
                 INNER JOIN bluetape_userinfo ON jadwal_dosen.user=bluetape_userinfo.email');
             return $query->result();
         }
+
+        public function cekUpdateJadwal(){
+            $data=array("user"=>"Dipo1","hari"=>"4","jam_mulai"=>"13","durasi"=>"5","jenis"=>"Kelas","label"=>"Update");
+            $id=4;
+            $this->JadwalDosen_model->updateJadwal($id,$data);
+            $query=$this->db->query("SELECT user,hari,jam_mulai,durasi,jenis,label
+                                     FROM jadwal_dosen
+                                     WHERE id='$id'");
+            $expected_result=$query->result();
+            
+              $this->unit->run($data,(array)$expected_result[0],__FUNCTION__,"Memeriksa apakah data yang di insert benar");
+          }
     }
