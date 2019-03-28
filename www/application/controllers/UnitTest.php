@@ -56,11 +56,7 @@
 
             
 
-<<<<<<< HEAD
-            $this->deleteByUsername('anugrahjaya23@gmail.com')
-=======
             $this->deleteByUsername('anugrahjaya23@gmail.com');
->>>>>>> e523cdd5ccfa85e76c6bef465c7b04366a3d43df
 
             $this->report();
             
