@@ -34,32 +34,14 @@
             $this->cekJadwalByUsername('Dipo');
             $this->cekYearMonthToSemesterCode();
             $this->cekSemesterCodeToString();
-            $this->cekYearMonthToSemesterCodeSimplified();
             $this->requestByDosen('Samuel');
             $this->getName('GABRIEL PANJI LAZUARDI');
             $this->dbDateTimeToReadableDate();
             $this->getEmail();
-            $this->cekGetNpm();
             $this->cekGetAllJadwal();
             $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
-            $this->cekAddjadwal();
-			$this->checkKolomKeHari();
-            $this->checkHariKeKolom();
-            $this->cekGetNamaHari();
-            $this->cekGetNamaBulan();
-            
-            $this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
-            $this->requestBy('anugrahjaya23@gmail.com',1,1);
-            $this->cekUpdateJadwal();
-            $this->cekGetNamaHari();
-            $this->cekGetNamaBulan();
-
-            
-
-            $this->deleteByUsername('anugrahjaya23@gmail.com');
-
             $this->report();
-            
+            print_r($this->unit->result());
         }
 
        private function report() {
@@ -163,12 +145,6 @@
             $expected_result3="Padat 2017/2018";
             $test_name3="Memeriksa hasil dari translasi code semester ke string";
             $this->unit->run($test3,$expected_result3,__FUNCTION__,$test_name3);
-
-            //testcase semester false
-             $test4=$this->bluetape->semesterCodeToString(185);
-             $expected_result3=FALSE;
-             $test_name4="Memeriksa hasil dari translasi code semester ke string";
-             $this->unit->run($test3,$expected_result3,__FUNCTION__,$test_name3);
        }
 
        public function testBlueTapeGetNPM(){
@@ -193,19 +169,7 @@
 
             $this->unit->run($test, $expected_result, $test_name);
         }   
-       
 
-        public function getEmail(){
-            //testcase1 < 2017
-            $npm='2016730053';
-            $exceptedRes='7316053@student.unpar.ac.id';
-            $this->unit->run($this->bluetape->getEmail($npm),$exceptedRes,__FUNCTION__,"NPM angkatan sebelum 2017");
-
-            //testcase2 >= 2017
-            $npm1='6181801025';
-            $exceptedRes1='6181801025@student.unpar.ac.id';
-            $this->unit->run($this->bluetape->getEmail($npm1),$exceptedRes1,__FUNCTION__,"NPM angkatan sesudah 2017");
-        }
         /**
          * Method untuk memeriksa method getName pada libraries/BlueTape
          * @var adalaha nama dari user BlueTape
@@ -230,6 +194,7 @@
             $this->db->from('transkrip');
             $query = $this->db->get();
             $dateTime = $query->row;
+
             setlocale(LC_TIME, 'ind');
             $expected_result = strftime('%A, %B, %Y',(new DateTime($dateTime->requestDateTime))->getTimestamp());
             $test = $this->bluetape->dbDateTimeToReadableDate($dateTime->requestDateTime);
@@ -242,62 +207,45 @@
         //sam
         //Model -addJadwal
         public function cekAddjadwal(){
-            $data=array("user"=>"gemini2911f665@gmail.com", "hari"=>"0", "jam_mulai"=>"7","durasi"=>"1","jenis_jadwal"=>"konsultasi","label_jadwal"=>"aa");
-            $this->JadwalDosen_model->addJadwal($data);
-            $query=$this->db->query("SELECT *from jadwal_dosen where user='gemini2911f665@gmail.com' And hari=0  
-            And jam_mulai=7 And durasi=1 And jenis='konsultasi'");
-            $row=$query->result();
-            $obj=$row[sizeof($row)-1];
-            if (is_object($obj)) {
-                $res = get_object_vars($obj);
-            }
-            $data2=array("user"=>$res['user'], "hari"=>$res['hari'], "jam_mulai"=>$res['jam_mulai'],"durasi"=>$res['durasi'],"jenis_jadwal"=>$res['jenis'],"label_jadwal"=>"aa");
-            $this->unit->run($data,$data2,__FUNCTION__,"Test ini mengecek apakah data sudah masuk atau tidak");
-        }
+            $jenis='Praktek';
+            $data=array("user"=>"gemini2911f665@gmail.com", "hari"=>"0", "jam_mulai"=>"7","durasi"=>"1","jenis_jadwal"=>"konsultasi","label_jadwal"=>"");
+            $query=$this->db->query("SELECT * from jadwal_dosen");
+            $res=$query->result();
+            $jumlahAwal=sizeof($res);
         
-         
-    public function cekJadwalByJamMulai($jamMulai,$hari,$user){
-        $result=$this->JadwalDosen_model->cekJadwalByJamMulai($jamMulai,$hari,$user);
-        $size=sizeof($result);
-        $expetecRes=1;
-        $this->unit->run($size,$expetecRes,__FUNCTION__,'Jadwal Dosen pada hari dan jam yang sama hanya boleh ada 1');
-        //echo $this->unit->report();
-    }
 
-    public function requestBy($email,$rows,$start){
-        $result=$this->JadwalDosen_model->requestsBy($email,$rows,$start);
+            $this->JadwalDosen_model->addJadwal($data);
 
-        if ($user !== NULL) {
-            $this->db->where('user', $user);
+            $query2=$this->db->query("SELECT * from jadwal_dosen");
+            $res2=$query2->result();
+            $jumlahAkhir=sizeof($res2);
+    
+
+                $this->unit->run(
+                    $jumlahAkhir,
+                    $jumlahAwal+1,
+                    __FUNCTION__,
+                    'Test ini mengecek apakah data masuk atau tidak'
+                );
         }
-        if ($start !== NULL && $rows !== NULL) {
-            $this->db->limit($rows, $start);
-        }
-        $this->db->from('jadwal_dosen');
-        $this->db->order_by('durasi', 'DESC');
-        $query = $this->db->get();
-        $exceptedRes=$query->result();
-
-
-        $this->unit->run($result,$exceptedRes,__FUNCTION__,'seluruh request dari email '+$email);        
-        }
-
         //Libraries-BlueTape
         public function cekGetNpm(){
             //test case 1
             $result= $this->bluetape->getNPM('7316054@student.unpar.ac.id');
             $expected='2016730054';
             $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek apakah NPM valid atau tidak");
-            //test case2 
-            $result= $this->bluetape->getNPM('6181801025@student.unpar.ac.id');
+
+            //test case 2
+                $result= $this->bluetape->getNPM('7317004@student.unpar.ac.id');
+            $expected='2017730004';
+            $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek apakah NPM valid atau tidak");
+
+
+            //test case 3 
+                $result= $this->bluetape->getNPM('6181801025@student.unpar.ac.id');
             $expected='6181801025';
             $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek apakah NPM valid atau tidak");
-            //test case3
-            $result= $this->bluetape->getNPM('6181801025@goole.com');
-            $expected='null';
-            $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek apakah NPM valid atau tidak");
         }
-   
 
         //libraries-yearMonthToSemesterCodeSimplifeid
         public function cekYearMonthToSemesterCodeSimplified(){
@@ -312,7 +260,7 @@
 
             //test case 2
             $year2=2080;
-            $month2=3;
+            $month2=7;
                 $result= $this->bluetape->yearMonthToSemesterCodeSimplified($year2,$month2);
             $expected='801';
                 $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek Konversi tahun dan bulan ke kode semester, disederhanakan menjadi dua semester");
@@ -357,7 +305,34 @@
             return $row->name;
         }
 	
+        public function testBlueTapeLibraryGetNPM() {
+            $this->unit->run(
+                $this->bluetape->getNPM('7313013@student.unpar.ac.id'),
+                '2013730013',
+                __FUNCTION__,
+                'Ensure e-mail to NPM conversion works, for angkatan < 2017'
+            );
+        }
+        public function testBlueTapeLibraryGetNPM_2017() {
+            $this->unit->run(
+                $this->bluetape->getNPM('2017730013@student.unpar.ac.id'),
+                '2017730013',
+                __FUNCTION__,
+                'Ensure e-mail to NPM conversion works, for angkatan >= 2017'
+            );
+        }
 
+        public function getEmail(){
+            //testcase1 <= 2017
+            $npm='2016730053';
+            $exceptedRes='7316053@student.unpar.ac.id';
+            $this->unit->run($this->bluetape->getEmail($npm),$exceptedRes,__FUNCTION__,"NPM angkatan sebelum 2017");
+
+            //testcase2 > 2017
+            $npm1='6181801025';
+            $exceptedRes1='6181801025@student.unpar.ac.id';
+            $this->unit->run($this->bluetape->getNPM($npm1),$exceptedRes1,__FUNCTION__,"NPM angkatan sesudah 2017");
+        }
 
         public function cekGetAllJadwal(){
             $result=$this->JadwalDosen_model->getAllJadwal();
@@ -367,6 +342,14 @@
             //echo $this->unit->report();
         }
 
+
+        public function cekJadwalByJamMulai($jamMulai,$hari,$user){
+            $result=$this->JadwalDosen_model->cekJadwalByJamMulai($jamMulai,$hari,$user);
+            $size=sizeof($result);
+            $expetecRes=1;
+            $this->unit->run($size,$expetecRes,__FUNCTION__,'Jadwal Dosen pada hari dan jam yang sama hanya boleh ada 1');
+            //echo $this->unit->report();
+        }
         
         /**
          * User = email
@@ -377,575 +360,4 @@
                 INNER JOIN bluetape_userinfo ON jadwal_dosen.user=bluetape_userinfo.email');
             return $query->result();
         }
-
-        public function cekUpdateJadwal(){
-            $data=array("user"=>"Dipo1","hari"=>"4","jam_mulai"=>"13","durasi"=>"5","jenis"=>"Kelas","label"=>"Update");
-            $id=4;
-            $this->JadwalDosen_model->updateJadwal($id,$data);
-            $query=$this->db->query("SELECT user,hari,jam_mulai,durasi,jenis,label
-                                     FROM jadwal_dosen
-                                     WHERE id='$id'");
-            $expected_result=$query->result();
-            
-              
-            $this->unit->run($data,(array)$expected_result[0],__FUNCTION__,"Memeriksa apakah data yang di insert benar");
-            }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          public function cekGetNamaHari(){
-            $test=$this->JadwalDosen_model->getNamaHari();
-            $expected_result=array("Senin","Selasa","Rabu","Kamis","Jumat");
-            $this->unit->run($test,$expected_result,__FUNCTION__,"Memeriksa apakah nama hari-hari nya benar");
-          }
-          public function cekGetNamaBulan(){
-           $test=$this->JadwalDosen_model->getNamaBulan();
-           $expected_result=array('Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
-           $this->unit->run($test,$expected_result,__FUNCTION__,"Memeriksa apakah nama bulan-bulan nya benar");
-          }
-     
-	 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public function deleteByUsername($username){
-            $query=$this->db->query('SELECT user from jadwal_dosen');
-            $res=$query->result();
-        
-            $exceptedRes=sizeof($res)-1;
-            $this->JadwalDosen_model->deleteByUsername($username);
-
-            $query=$this->db->query('SELECT user from jadwal_dosen');
-            $res=$query->result();
-            $result=sizeof($res);
-
-            $this->unit->run($result,$exceptedRes,__FUNCTION__,'Menghapus user dengan username ');
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	 public function checkKolomKeHari(){
-	 	 $namaHari = 'Senin';
-
-		 $test = $this->JadwalDosen_model->kolomKeHari($namaHari);
-		 $exceptedRes = 2;
-
-		 $test_name = 'Memerikas method kolom ke hari dari JadwalDosen_model';
-
-		 $this->unit->run($test, $exceptedRes, $test_name);
-	 }
-
-	 public function checkHariKeKolom(){
-		$coloumn = 3;
-		
-		$test = $this->JadwalDosen_model->hariKeKolom($coloumn);
-		$expected_result = 'F';
-
-		$test_name = 'Memeriksa method hari ke kolom dari JadwalDosen_model';
-
-		$this->unit->run($test, $expected_result, $test_name);
-		
-	 }
-
-
-
-	
-
-
-
     }

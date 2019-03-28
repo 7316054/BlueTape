@@ -51,7 +51,7 @@ class BlueTape {
         } else if ($month >= 8 && $month <= 12) {
             $semester = 1;
         } else {
-            $semester = 4;  
+            $semester = 4;
         }
         return substr($year, 2, 2) . $semester;
     }
