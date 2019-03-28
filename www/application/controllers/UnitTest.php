@@ -44,7 +44,9 @@
             $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
             $this->cekAddjadwal();
 			$this->checkKolomKeHari();
-			$this->checkHariKeKolom();
+            $this->checkHariKeKolom();
+            $this->cekGetNamaHari();
+            $this->cekGetNamaBulan();
             
             $this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
             $this->requestBy('anugrahjaya23@gmail.com',1,1);
@@ -697,11 +699,6 @@
            $expected_result=array('Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
            $this->unit->run($test,$expected_result,__FUNCTION__,"Memeriksa apakah nama bulan-bulan nya benar");
           }
-<<<<<<< HEAD
-
-
-    }
-=======
      
 	 
 
@@ -935,4 +932,3 @@
 
 
     }
->>>>>>> c3e5aff3aec990b223685b28e51837ee15fc7450
