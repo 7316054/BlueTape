@@ -25,6 +25,7 @@
             $this->load->library('BlueTape');
             $this->load->model('JadwalDosen_model');
             $this->load->database();
+            $this->load->model('Transkrip_model');
        }
        /**
         * Method untuk menjalankan Test case
@@ -35,7 +36,7 @@
             $this->cekYearMonthToSemesterCode();
             $this->cekSemesterCodeToString();
             $this->cekYearMonthToSemesterCodeSimplified();
-            $this->requestByDosen('Samuel');
+            //$this->requestByDosen('Samuel');
             $this->getName('GABRIEL PANJI LAZUARDI');
             $this->dbDateTimeToReadableDate();
             $this->getEmail();
@@ -44,11 +45,12 @@
             $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
             $this->cekAddjadwal();
             
-            $this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
-            $this->requestBy('anugrahjaya23@gmail.com',1,1);
+           // $this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
+            //$this->requestBy('anugrahjaya23@gmail.com',1,1);
             $this->cekUpdateJadwal();
             $this->cekDeleteJadwal();
-
+            $this->cekRequestById(1,1,1);
+            $this->cekRequestById(1,null,null);
             $this->report();
             
         }
@@ -398,5 +400,16 @@
             $obj2=$row2[sizeof($row)-1];
             $this->unit->run($obj2,null,__FUNCTION__,"Test ini mengecek apakah data sudah terdelete atau tidak");
           }
+
+          //untuk Model/PerbuahanKuliah_model
+          public function cekRequestById($id,$start,$row){
+
+            $query=$this->db->query("SELECT *from transkrip where id=$id");
+            $expected=$query->result()[0];
+            $result=$this->Transkrip_model->requestById($id,$start,$row);
+        
+            $this->unit->run($result,$expected,null,__FUNCTION__,"Test ini adakah request dari id tertentu pada transaksi");
+          }
+
           
     }
