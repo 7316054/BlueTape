@@ -70,7 +70,7 @@ class UnitTest extends CI_Controller {
         $this->cekGetAllJadwal();
         $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
         $this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
-        $this->requestBy('anugrahjaya23@gmail.com',2,1);
+        //$this->requestBy('anugrahjaya23@gmail.com',2,1);
 
 
         $this->report();
@@ -124,6 +124,7 @@ class UnitTest extends CI_Controller {
 
     public function requestBy($email,$rows,$start){
         $result=$this->JadwalDosen_model->requestsBy($email,$rows,$start);
+        print_r($result);
 
         if ($user !== NULL) {
             $this->db->where('user', $user);
