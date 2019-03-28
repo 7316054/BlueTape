@@ -47,7 +47,8 @@
             $this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
             $this->requestBy('anugrahjaya23@gmail.com',1,1);
             $this->cekUpdateJadwal();
-
+            $this->cekGetNamaHari();
+            $this->cekGetNamaBulan();
             $this->report();
             
         }
