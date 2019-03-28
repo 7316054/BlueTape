@@ -377,8 +377,9 @@
                                      WHERE id='$id'");
             $expected_result=$query->result();
             
-              $this->unit->run($data,(array)$expected_result[0],__FUNCTION__,"Memeriksa apakah data yang di insert benar");
-          }
+              
+            $this->unit->run($data,(array)$expected_result[0],__FUNCTION__,"Memeriksa apakah data yang di insert benar");
+            }
 
 
 
