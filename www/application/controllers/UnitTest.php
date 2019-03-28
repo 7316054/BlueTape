@@ -43,6 +43,8 @@
             $this->cekGetAllJadwal();
             $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
             $this->cekAddjadwal();
+			$this->checkKolomKeHari();
+			$this->checkHariKeKolom();
             
             $this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
             $this->requestBy('anugrahjaya23@gmail.com',1,1);
@@ -695,6 +697,242 @@
            $expected_result=array('Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
            $this->unit->run($test,$expected_result,__FUNCTION__,"Memeriksa apakah nama bulan-bulan nya benar");
           }
+<<<<<<< HEAD
 
 
     }
+=======
+     
+	 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	 public function checkKolomKeHari(){
+	 	 $namaHari = 'Senin';
+
+		 $test = $this->JadwalDosen_model->kolomKeHari($namaHari);
+		 $exceptedRes = 2;
+
+		 $test_name = 'Memerikas method kolom ke hari dari JadwalDosen_model';
+
+		 $this->unit->run($test, $exceptedRes, $test_name);
+	 }
+
+	 public function checkHariKeKolom(){
+		$coloumn = 3;
+		
+		$test = $this->JadwalDosen_model->hariKeKolom($coloumn);
+		$expected_result = 'F';
+
+		$test_name = 'Memeriksa method hari ke kolom dari JadwalDosen_model';
+
+		$this->unit->run($test, $expected_result, $test_name);
+		
+	 }
+
+
+
+	
+
+
+
+    }
+>>>>>>> c3e5aff3aec990b223685b28e51837ee15fc7450
