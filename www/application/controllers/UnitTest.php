@@ -47,6 +47,7 @@
             $this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
             $this->requestBy('anugrahjaya23@gmail.com',1,1);
             $this->cekUpdateJadwal();
+            $this->cekDeleteJadwal();
 
             $this->report();
             
@@ -378,6 +379,24 @@
             $expected_result=$query->result();
             
               $this->unit->run($data,(array)$expected_result[0],__FUNCTION__,"Memeriksa apakah data yang di insert benar");
+          }
+
+          public function cekDeleteJadwal(){
+            $data=array("user"=>"sihombing123", "hari"=>"0", "jam_mulai"=>"8","durasi"=>"1","jenis_jadwal"=>"konsultasi","label_jadwal"=>"sasa");
+            $this->JadwalDosen_model->addJadwal($data);
+            $query=$this->db->query("SELECT *from jadwal_dosen");
+            $row=$query->result();
+            $obj=$row[sizeof($row)-1];
+            if (is_object($obj)) {
+                $res = get_object_vars($obj);
+            }
+            //dimaskuin dulue ke database
+            $id=$res['id'];
+            $this->JadwalDosen_model->deleteJadwal($id);
+            $query2=$this->db->query("SELECT *from jadwal_dosen where id=$id");
+            $row2=$query2->result();
+            $obj2=$row2[sizeof($row)-1];
+            $this->unit->run($obj2,null,__FUNCTION__,"Test ini mengecek apakah data sudah terdelete atau tidak");
           }
           
     }
