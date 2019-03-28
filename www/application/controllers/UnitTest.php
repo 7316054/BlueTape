@@ -362,4 +362,23 @@
                 INNER JOIN bluetape_userinfo ON jadwal_dosen.user=bluetape_userinfo.email');
             return $query->result();
         }
-    }
+        
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
