@@ -18,13 +18,9 @@ class JadwalDosen_model extends CI_Model {
         if ($start !== NULL && $rows !== NULL) {
             $this->db->limit($rows, $start);
         }
-<<<<<<< HEAD
         $this->db->from('jadwal_dosen');
         $this->db->order_by('durasi', 'DESC');
-=======
-        $this->db->from('transkrip');//jadwal_dosen
-        $this->db->order_by('requestDateTime', 'DESC');
->>>>>>> jaya
+
         $query = $this->db->get();
         return $query->result();
     }

@@ -42,8 +42,9 @@
             $this->cekGetNpm();
             $this->cekGetAllJadwal();
             $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
+            $this->cekAddjadwal();
             $this->report();
-            print_r($this->unit->result());
+			$this->requestBy('7316053@student.unpar.ac.id');
         }
 
        private function report() {
@@ -178,6 +179,17 @@
             $this->unit->run($test, $expected_result, $test_name);
         }   
 
+        public function getEmail(){
+            //testcase1 < 2017
+            $npm='2016730053';
+            $exceptedRes='7316053@student.unpar.ac.id';
+            $this->unit->run($this->bluetape->getEmail($npm),$exceptedRes,__FUNCTION__,"NPM angkatan sebelum 2017");
+
+            //testcase2 >= 2017
+            $npm1='6181801025';
+            $exceptedRes1='6181801025@student.unpar.ac.id';
+            $this->unit->run($this->bluetape->getEmail($npm1),$exceptedRes1,__FUNCTION__,"NPM angkatan sesudah 2017");
+        }
         /**
          * Method untuk memeriksa method getName pada libraries/BlueTape
          * @var adalaha nama dari user BlueTape
@@ -202,7 +214,6 @@
             $this->db->from('transkrip');
             $query = $this->db->get();
             $dateTime = $query->row;
-
             setlocale(LC_TIME, 'ind');
             $expected_result = strftime('%A, %B, %Y',(new DateTime($dateTime->requestDateTime))->getTimestamp());
             $test = $this->bluetape->dbDateTimeToReadableDate($dateTime->requestDateTime);
@@ -215,27 +226,47 @@
         //sam
         //Model -addJadwal
         public function cekAddjadwal(){
-            $jenis='Praktek';
-            $data=array("user"=>"gemini2911f665@gmail.com", "hari"=>"0", "jam_mulai"=>"7","durasi"=>"1","jenis_jadwal"=>"konsultasi","label_jadwal"=>"");
-            $query=$this->db->query("SELECT * from jadwal_dosen");
-            $res=$query->result();
-            $jumlahAwal=sizeof($res);
-        
-
+            $data=array("user"=>"gemini2911f665@gmail.com", "hari"=>"0", "jam_mulai"=>"7","durasi"=>"1","jenis_jadwal"=>"konsultasi","label_jadwal"=>"aa");
             $this->JadwalDosen_model->addJadwal($data);
-
-            $query2=$this->db->query("SELECT * from jadwal_dosen");
-            $res2=$query2->result();
-            $jumlahAkhir=sizeof($res2);
-    
-
-                $this->unit->run(
-                    $jumlahAkhir,
-                    $jumlahAwal+1,
-                    __FUNCTION__,
-                    'Test ini mengecek apakah data masuk atau tidak'
-                );
+            $query=$this->db->query("SELECT *from jadwal_dosen where user='gemini2911f665@gmail.com' And hari=0  
+            And jam_mulai=7 And durasi=1 And jenis='konsultasi'");
+            $row=$query->result();
+            $obj=$row[sizeof($row)-1];
+            if (is_object($obj)) {
+                $res = get_object_vars($obj);
+            }
+            $data2=array("user"=>$res['user'], "hari"=>$res['hari'], "jam_mulai"=>$res['jam_mulai'],"durasi"=>$res['durasi'],"jenis_jadwal"=>$res['jenis'],"label_jadwal"=>"aa");
+            $this->unit->run($data,$data2,__FUNCTION__,"Test ini mengecek apakah data sudah masuk atau tidak");
         }
+        
+         
+    public function cekJadwalByJamMulai($jamMulai,$hari,$user){
+        $result=$this->JadwalDosen_model->cekJadwalByJamMulai($jamMulai,$hari,$user);
+        $size=sizeof($result);
+        $expetecRes=1;
+        $this->unit->run($size,$expetecRes,__FUNCTION__,'Jadwal Dosen pada hari dan jam yang sama hanya boleh ada 1');
+        //echo $this->unit->report();
+    }
+
+    public function requestBy($email){
+        $result=$this->JadwalDosen_model->requestsBy($email);
+
+        if ($email !== NULL) {
+            $this->db->where('requestByEmail', $email);
+        }
+        if ($start !== NULL && $rows !== NULL) {
+            $this->db->limit($rows, $start);
+        }
+        $this->db->from('transkrip');//jadwal_dosen
+        $this->db->order_by('requestDateTime', 'DESC');
+        $query = $this->db->get();
+        $exceptedRes=$query->result();
+
+        print_r($exceptedRes);
+
+        $this->unit->run($result,$exceptedRes,__FUNCTION__,'seluruh request dari email '+$email);        
+        }
+
         //Libraries-BlueTape
         public function cekGetNpm(){
             //test case 1
@@ -311,34 +342,7 @@
             return $row->name;
         }
 	
-        public function testBlueTapeLibraryGetNPM() {
-            $this->unit->run(
-                $this->bluetape->getNPM('7313013@student.unpar.ac.id'),
-                '2013730013',
-                __FUNCTION__,
-                'Ensure e-mail to NPM conversion works, for angkatan < 2017'
-            );
-        }
-        public function testBlueTapeLibraryGetNPM_2017() {
-            $this->unit->run(
-                $this->bluetape->getNPM('2017730013@student.unpar.ac.id'),
-                '2017730013',
-                __FUNCTION__,
-                'Ensure e-mail to NPM conversion works, for angkatan >= 2017'
-            );
-        }
 
-        public function getEmail(){
-            //testcase1 <= 2017
-            $npm='2016730053';
-            $exceptedRes='7316053@student.unpar.ac.id';
-            $this->unit->run($this->bluetape->getEmail($npm),$exceptedRes,__FUNCTION__,"NPM angkatan sebelum 2017");
-
-            //testcase2 > 2017
-            $npm1='6181801025';
-            $exceptedRes1='6181801025@student.unpar.ac.id';
-            $this->unit->run($this->bluetape->getEmail($npm1),$exceptedRes1,__FUNCTION__,"NPM angkatan sesudah 2017");
-        }
 
         public function cekGetAllJadwal(){
             $result=$this->JadwalDosen_model->getAllJadwal();
@@ -348,14 +352,6 @@
             //echo $this->unit->report();
         }
 
-
-        public function cekJadwalByJamMulai($jamMulai,$hari,$user){
-            $result=$this->JadwalDosen_model->cekJadwalByJamMulai($jamMulai,$hari,$user);
-            $size=sizeof($result);
-            $expetecRes=1;
-            $this->unit->run($size,$expetecRes,__FUNCTION__,'Jadwal Dosen pada hari dan jam yang sama hanya boleh ada 1');
-            //echo $this->unit->report();
-        }
         
         /**
          * User = email
