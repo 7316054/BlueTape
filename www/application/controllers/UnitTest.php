@@ -36,7 +36,7 @@
             $this->cekYearMonthToSemesterCode();
             $this->cekSemesterCodeToString();
             $this->cekYearMonthToSemesterCodeSimplified();
-            //$this->requestByDosen('Samuel');
+            $this->requestByDosen('Samuel');
             $this->getName('GABRIEL PANJI LAZUARDI');
             $this->dbDateTimeToReadableDate();
             $this->getEmail();
@@ -45,8 +45,8 @@
             $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
             $this->cekAddjadwal();
             
-           // $this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
-            //$this->requestBy('anugrahjaya23@gmail.com',1,1);
+            $this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
+            $this->requestBy('anugrahjaya23@gmail.com',1,1);
             $this->cekUpdateJadwal();
             $this->cekDeleteJadwal();
             $this->cekRequestById(1,1,1);
@@ -410,6 +410,6 @@
         
             $this->unit->run($result,$expected,null,__FUNCTION__,"Test ini adakah request dari id tertentu pada transaksi");
           }
-
+          
           
     }
