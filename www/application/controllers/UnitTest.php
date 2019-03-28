@@ -52,7 +52,7 @@
 
             
 
-            $this->
+            $this->deleteByUsername('anugrahjaya23@gmail.com')
 
             $this->report();
             
