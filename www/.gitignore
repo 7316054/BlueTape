@@ -31,4 +31,8 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 *.sublime-project
 
 /reports
+<<<<<<< HEAD
 /vendor
+=======
+/vendor
+>>>>>>> jaya
