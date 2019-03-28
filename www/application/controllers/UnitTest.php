@@ -43,8 +43,13 @@
             $this->cekGetAllJadwal();
             $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
             $this->cekAddjadwal();
+            
+            $this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
+            $this->requestBy('anugrahjaya23@gmail.com',1,1);
+            $this->cekUpdateJadwal();
+
             $this->report();
-			$this->requestBy('7316053@student.unpar.ac.id');
+            
         }
 
        private function report() {
@@ -178,39 +183,18 @@
 
             $this->unit->run($test, $expected_result, $test_name);
         }   
-            
 
-  
-    public function testBlueTapeLibraryGetNPM() {
-        $this->unit->run(
-            $this->bluetape->getNPM('7313013@student.unpar.ac.id'),
-            '2013730013',
-            __FUNCTION__,
-            'Ensure e-mail to NPM conversion works, for angkatan < 2017'
-        );
-    }
-    public function testBlueTapeLibraryGetNPM_2017() {
-        $this->unit->run(
-            $this->bluetape->getNPM('2017730013@student.unpar.ac.id'),
-            '2017730013',
-            __FUNCTION__,
-            'Ensure e-mail to NPM conversion works, for angkatan >= 2017'
-        );
-    }
+        public function getEmail(){
+            //testcase1 < 2017
+            $npm='2016730053';
+            $exceptedRes='7316053@student.unpar.ac.id';
+            $this->unit->run($this->bluetape->getEmail($npm),$exceptedRes,__FUNCTION__,"NPM angkatan sebelum 2017");
 
-    //library
-    public function getEmail(){
-        //testcase1 < 2017
-        $npm='2016730053';
-        $exceptedRes='7316053@student.unpar.ac.id';
-        $this->unit->run($this->bluetape->getEmail($npm),$exceptedRes,__FUNCTION__,"NPM angkatan sebelum 2017");
-
-        //testcase2 >= 2017
-        $npm1='6181801025';
-        $exceptedRes1='6181801025@student.unpar.ac.id';
-        $this->unit->run($this->bluetape->getEmail($npm1),$exceptedRes1,__FUNCTION__,"NPM angkatan sesudah 2017");
-    }
-
+            //testcase2 >= 2017
+            $npm1='6181801025';
+            $exceptedRes1='6181801025@student.unpar.ac.id';
+            $this->unit->run($this->bluetape->getEmail($npm1),$exceptedRes1,__FUNCTION__,"NPM angkatan sesudah 2017");
+        }
         /**
          * Method untuk memeriksa method getName pada libraries/BlueTape
          * @var adalaha nama dari user BlueTape
@@ -269,26 +253,23 @@
         //echo $this->unit->report();
     }
 
-    public function requestBy($email){
-        $result=$this->JadwalDosen_model->requestsBy($email);
+    public function requestBy($email,$rows,$start){
+        $result=$this->JadwalDosen_model->requestsBy($email,$rows,$start);
 
-        if ($email !== NULL) {
-            $this->db->where('requestByEmail', $email);
+        if ($user !== NULL) {
+            $this->db->where('user', $user);
         }
         if ($start !== NULL && $rows !== NULL) {
             $this->db->limit($rows, $start);
         }
-        $this->db->from('transkrip');//jadwal_dosen
-        $this->db->order_by('requestDateTime', 'DESC');
+        $this->db->from('jadwal_dosen');
+        $this->db->order_by('durasi', 'DESC');
         $query = $this->db->get();
         $exceptedRes=$query->result();
 
         print_r($exceptedRes);
 
-        $this->unit->run($result,$exceptedRes,__FUNCTION__,'seluruh request dari email '+$email);
-    
-
-               
+        $this->unit->run($result,$exceptedRes,__FUNCTION__,'seluruh request dari email '+$email);        
         }
 
         //Libraries-BlueTape
@@ -366,34 +347,7 @@
             return $row->name;
         }
 	
-        public function testBlueTapeLibraryGetNPM() {
-            $this->unit->run(
-                $this->bluetape->getNPM('7313013@student.unpar.ac.id'),
-                '2013730013',
-                __FUNCTION__,
-                'Ensure e-mail to NPM conversion works, for angkatan < 2017'
-            );
-        }
-        public function testBlueTapeLibraryGetNPM_2017() {
-            $this->unit->run(
-                $this->bluetape->getNPM('2017730013@student.unpar.ac.id'),
-                '2017730013',
-                __FUNCTION__,
-                'Ensure e-mail to NPM conversion works, for angkatan >= 2017'
-            );
-        }
 
-        public function getEmail(){
-            //testcase1 <= 2017
-            $npm='2016730053';
-            $exceptedRes='7316053@student.unpar.ac.id';
-            $this->unit->run($this->bluetape->getEmail($npm),$exceptedRes,__FUNCTION__,"NPM angkatan sebelum 2017");
-
-            //testcase2 > 2017
-            $npm1='6181801025';
-            $exceptedRes1='6181801025@student.unpar.ac.id';
-            $this->unit->run($this->bluetape->getEmail($npm1),$exceptedRes1,__FUNCTION__,"NPM angkatan sesudah 2017");
-        }
 
         public function cekGetAllJadwal(){
             $result=$this->JadwalDosen_model->getAllJadwal();
@@ -403,14 +357,6 @@
             //echo $this->unit->report();
         }
 
-
-        public function cekJadwalByJamMulai($jamMulai,$hari,$user){
-            $result=$this->JadwalDosen_model->cekJadwalByJamMulai($jamMulai,$hari,$user);
-            $size=sizeof($result);
-            $expetecRes=1;
-            $this->unit->run($size,$expetecRes,__FUNCTION__,'Jadwal Dosen pada hari dan jam yang sama hanya boleh ada 1');
-            //echo $this->unit->report();
-        }
         
         /**
          * User = email
@@ -421,4 +367,17 @@
                 INNER JOIN bluetape_userinfo ON jadwal_dosen.user=bluetape_userinfo.email');
             return $query->result();
         }
+
+        public function cekUpdateJadwal(){
+            $data=array("user"=>"Dipo1","hari"=>"4","jam_mulai"=>"13","durasi"=>"5","jenis"=>"Kelas","label"=>"Update");
+            $id=4;
+            $this->JadwalDosen_model->updateJadwal($id,$data);
+            $query=$this->db->query("SELECT user,hari,jam_mulai,durasi,jenis,label
+                                     FROM jadwal_dosen
+                                     WHERE id='$id'");
+            $expected_result=$query->result();
+            
+              $this->unit->run($data,(array)$expected_result[0],__FUNCTION__,"Memeriksa apakah data yang di insert benar");
+          }
+          
     }
