@@ -65,13 +65,13 @@ class UnitTest extends CI_Controller {
     public function index() {
         //$this->testBlueTapeLibraryGetNPM();
         //$this->testBlueTapeLibraryGetNPM_2017();
-        //$this->getEmail();
+        $this->getEmail();
 
-        //$this->cekGetAllJadwal();
-        //$this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
+        $this->cekGetAllJadwal();
+        $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
         //$this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
-        $this->requestBy('anugrahjaya23@gmail.com',2,1);
-        //$this->deleteByUsername('anugrahjaya23@gmail.com');
+        //$this->requestBy('anugrahjaya23@gmail.com',2,1);
+        $this->deleteByUsername('anugrahjaya23@gmail.com');
 
 
         $this->report();
@@ -108,7 +108,7 @@ class UnitTest extends CI_Controller {
 
     public function cekGetAllJadwal(){
         $result=$this->JadwalDosen_model->getAllJadwal();
-        $expetecRes=$this->getAllJadwal();
+        $expetecRes=$this->JadwalDosen_model->getAllJadwal();
 
         $this->unit->run($result,$expetecRes,__FUNCTION__,'Jadwal sama');
         //echo $this->unit->report();
