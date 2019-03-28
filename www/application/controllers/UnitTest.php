@@ -451,7 +451,7 @@
         $this->JadwalDosen_model->deleteJadwal($id);
         $query2=$this->db->query("SELECT *from jadwal_dosen where id=$id");
         $row2=$query2->result();
-        $obj2=$row2[sizeof($row)-1];
+        $obj2=$row2[sizeof($row2)-1];
         $this->unit->run($obj2,null,__FUNCTION__,"Test ini mengecek apakah data sudah terdelete atau tidak");
       }
 
