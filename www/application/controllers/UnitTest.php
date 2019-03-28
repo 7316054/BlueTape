@@ -43,8 +43,12 @@
             $this->cekGetAllJadwal();
             $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
             $this->cekAddjadwal();
+            
+            $this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
+            $this->requestBy('anugrahjaya23@gmail.com',1,1);
+
             $this->report();
-			$this->requestBy('7316053@student.unpar.ac.id');
+            
         }
 
        private function report() {
@@ -248,17 +252,17 @@
         //echo $this->unit->report();
     }
 
-    public function requestBy($email){
-        $result=$this->JadwalDosen_model->requestsBy($email);
+    public function requestBy($email,$rows,$start){
+        $result=$this->JadwalDosen_model->requestsBy($email,$rows,$start);
 
-        if ($email !== NULL) {
-            $this->db->where('requestByEmail', $email);
+        if ($user !== NULL) {
+            $this->db->where('user', $user);
         }
         if ($start !== NULL && $rows !== NULL) {
             $this->db->limit($rows, $start);
         }
-        $this->db->from('transkrip');//jadwal_dosen
-        $this->db->order_by('requestDateTime', 'DESC');
+        $this->db->from('jadwal_dosen');
+        $this->db->order_by('durasi', 'DESC');
         $query = $this->db->get();
         $exceptedRes=$query->result();
 
