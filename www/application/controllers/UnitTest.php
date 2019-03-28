@@ -53,6 +53,11 @@
             $this->cekUpdateJadwal();
             $this->cekGetNamaHari();
             $this->cekGetNamaBulan();
+
+            
+
+            $this->deleteByUsername('anugrahjaya23@gmail.com');
+
             $this->report();
             
         }
@@ -188,6 +193,7 @@
 
             $this->unit->run($test, $expected_result, $test_name);
         }   
+       
 
         public function getEmail(){
             //testcase1 < 2017
@@ -272,7 +278,6 @@
         $query = $this->db->get();
         $exceptedRes=$query->result();
 
-        print_r($exceptedRes);
 
         $this->unit->run($result,$exceptedRes,__FUNCTION__,'seluruh request dari email '+$email);        
         }
@@ -795,7 +800,19 @@
 
 
 
+        public function deleteByUsername($username){
+            $query=$this->db->query('SELECT user from jadwal_dosen');
+            $res=$query->result();
+        
+            $exceptedRes=sizeof($res)-1;
+            $this->JadwalDosen_model->deleteByUsername($username);
 
+            $query=$this->db->query('SELECT user from jadwal_dosen');
+            $res=$query->result();
+            $result=sizeof($res);
+
+            $this->unit->run($result,$exceptedRes,__FUNCTION__,'Menghapus user dengan username ');
+        }
 
 
 
