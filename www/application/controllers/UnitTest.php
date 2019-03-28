@@ -65,12 +65,13 @@ class UnitTest extends CI_Controller {
     public function index() {
         //$this->testBlueTapeLibraryGetNPM();
         //$this->testBlueTapeLibraryGetNPM_2017();
-        $this->getEmail();
+        //$this->getEmail();
 
-        $this->cekGetAllJadwal();
-        $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
-        $this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
-        //$this->requestBy('anugrahjaya23@gmail.com',2,1);
+        //$this->cekGetAllJadwal();
+        //$this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
+        //$this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
+        $this->requestBy('anugrahjaya23@gmail.com',2,1);
+        //$this->deleteByUsername('anugrahjaya23@gmail.com');
 
 
         $this->report();
@@ -124,7 +125,7 @@ class UnitTest extends CI_Controller {
 
     public function requestBy($email,$rows,$start){
         $result=$this->JadwalDosen_model->requestsBy($email,$rows,$start);
-        print_r($result);
+        //print_r($result);
 
         if ($user !== NULL) {
             $this->db->where('user', $user);
@@ -138,9 +139,8 @@ class UnitTest extends CI_Controller {
         $query = $this->db->get();
         $exceptedRes=$query->result();
 
-        print_r($exceptedRes);
 
-        $this->unit->run($result,$exceptedRes,__FUNCTION__,'seluruh request dari email '+$email);
+        $this->unit->run($result,$exceptedRes,__FUNCTION__,'seluruh request dari email '.$email);
     }
     
     /**
@@ -153,5 +153,110 @@ class UnitTest extends CI_Controller {
         return $query->result();
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function deleteByUsername($username){
+        $query=$this->db->query('SELECT user from jadwal_dosen');
+        $res=$query->result();
+       
+        $exceptedRes=sizeof($res)-1;
+        $this->JadwalDosen_model->deleteByUsername($username);
+
+        $query=$this->db->query('SELECT user from jadwal_dosen');
+        $res=$query->result();
+        $result=sizeof($res);
+
+        $this->unit->run($result,$exceptedRes,__FUNCTION__,'Menghapus user dengan username ');
+    }
 }
 
