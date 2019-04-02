@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for C:\xampp\htdocs\BlueTape\www\application</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="_css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="_css/nv.d3.min.css" rel="stylesheet" type="text/css">
+  <link href="_css/style.css" rel="stylesheet" type="text/css">
+  <link href="_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="index.html">C:\xampp\htdocs\BlueTape\www\application</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="controllers/Auth.php.html#5">Auth</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/EntriJadwalDosen.php.html#5">EntriJadwalDosen</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/LihatJadwalDosen.php.html#5">LihatJadwalDosen</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/Migrate.php.html#5">Migrate</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/PerubahanKuliahManage.php.html#5">PerubahanKuliahManage</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/PerubahanKuliahRequest.php.html#5">PerubahanKuliahRequest</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/TranskripManage.php.html#5">TranskripManage</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/TranskripRequest.php.html#5">TranskripRequest</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Auth_model.php.html#5">Auth_model</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Email_model.php.html#5">Email_model</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/PerubahanKuliah_model.php.html#5">PerubahanKuliah_model</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Transkrip_model.php.html#5">Transkrip_model</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/JadwalDosen_model.php.html#5">JadwalDosen_model</a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="controllers/UnitTest.php.html#5">unittest</a></td><td class="text-right">77%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="controllers/EntriJadwalDosen.php.html#5">EntriJadwalDosen</a></td><td class="text-right">1482</td></tr>
+       <tr><td><a href="controllers/PerubahanKuliahManage.php.html#5">PerubahanKuliahManage</a></td><td class="text-right">380</td></tr>
+       <tr><td><a href="models/Auth_model.php.html#5">Auth_model</a></td><td class="text-right">342</td></tr>
+       <tr><td><a href="controllers/LihatJadwalDosen.php.html#5">LihatJadwalDosen</a></td><td class="text-right">272</td></tr>
+       <tr><td><a href="controllers/PerubahanKuliahRequest.php.html#5">PerubahanKuliahRequest</a></td><td class="text-right">240</td></tr>
+       <tr><td><a href="controllers/TranskripManage.php.html#5">TranskripManage</a></td><td class="text-right">240</td></tr>
+       <tr><td><a href="controllers/TranskripRequest.php.html#5">TranskripRequest</a></td><td class="text-right">210</td></tr>
+       <tr><td><a href="models/Transkrip_model.php.html#5">Transkrip_model</a></td><td class="text-right">210</td></tr>
+       <tr><td><a href="controllers/UnitTest.php.html#5">unittest</a></td><td class="text-right">55</td></tr>
+       <tr><td><a href="controllers/Auth.php.html#5">Auth</a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="models/PerubahanKuliah_model.php.html#5">PerubahanKuliah_model</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="models/JadwalDosen_model.php.html#5">JadwalDosen_model</a></td><td class="text-right">18</td></tr>
+       <tr><td><a href="controllers/Migrate.php.html#5">Migrate</a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="models/Email_model.php.html#5">Email_model</a></td><td class="text-right">12</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="controllers/Auth.php.html#7"><abbr title="Auth::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Auth_model.php.html#9"><abbr title="Auth_model::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/TranskripManage.php.html#72"><abbr title="TranskripManage::answer">answer</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/TranskripManage.php.html#106"><abbr title="TranskripManage::remove">remove</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/TranskripRequest.php.html#7"><abbr title="TranskripRequest::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/TranskripRequest.php.html#20"><abbr title="TranskripRequest::index">index</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/TranskripRequest.php.html#53"><abbr title="TranskripRequest::add">add</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/UnitTest.php.html#183"><abbr title="unittest::requestByDosen">requestByDosen</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/UnitTest.php.html#264"><abbr title="unittest::requestBy">requestBy</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/UnitTest.php.html#326"><abbr title="unittest::expectedResDosen">expectedResDosen</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Auth_model.php.html#27"><abbr title="Auth_model::createAuthURL">createAuthURL</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/TranskripManage.php.html#7"><abbr title="TranskripManage::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Auth_model.php.html#39"><abbr title="Auth_model::authenticateOauthCode">authenticateOauthCode</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Auth_model.php.html#90"><abbr title="Auth_model::getUserInfo">getUserInfo</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Auth_model.php.html#94"><abbr title="Auth_model::checkModuleAllowed">checkModuleAllowed</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Auth_model.php.html#107"><abbr title="Auth_model::logout">logout</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Email_model.php.html#7"><abbr title="Email_model::send_email">send_email</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/JadwalDosen_model.php.html#14"><abbr title="JadwalDosen_model::requestsBy">requestsBy</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/PerubahanKuliah_model.php.html#18"><abbr title="PerubahanKuliah_model::requestsBy">requestsBy</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Transkrip_model.php.html#18"><abbr title="Transkrip_model::requestsBy">requestsBy</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Transkrip_model.php.html#36"><abbr title="Transkrip_model::requestByID">requestByID</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/Auth.php.html#11"><abbr title="Auth::index">index</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/TranskripManage.php.html#20"><abbr title="TranskripManage::index">index</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/PerubahanKuliahRequest.php.html#50"><abbr title="PerubahanKuliahRequest::add">add</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/LihatJadwalDosen.php.html#8"><abbr title="LihatJadwalDosen::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/Auth.php.html#16"><abbr title="Auth::oauth2callback">oauth2callback</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/Auth.php.html#33"><abbr title="Auth::logout">logout</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/EntriJadwalDosen.php.html#7"><abbr title="EntriJadwalDosen::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/EntriJadwalDosen.php.html#23"><abbr title="EntriJadwalDosen::index">index</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/EntriJadwalDosen.php.html#39"><abbr title="EntriJadwalDosen::add">add</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/EntriJadwalDosen.php.html#82"><abbr title="EntriJadwalDosen::update">update</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/EntriJadwalDosen.php.html#127"><abbr title="EntriJadwalDosen::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/EntriJadwalDosen.php.html#133"><abbr title="EntriJadwalDosen::deleteAll">deleteAll</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/EntriJadwalDosen.php.html#140"><abbr title="EntriJadwalDosen::getDataJadwal">getDataJadwal</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/EntriJadwalDosen.php.html#145"><abbr title="EntriJadwalDosen::export">export</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Transkrip_model.php.html#56"><abbr title="Transkrip_model::requestTypesForbidden">requestTypesForbidden</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/PerubahanKuliahRequest.php.html#20"><abbr title="PerubahanKuliahRequest::index">index</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/LihatJadwalDosen.php.html#24"><abbr title="LihatJadwalDosen::index">index</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/LihatJadwalDosen.php.html#46"><abbr title="LihatJadwalDosen::export">export</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/Migrate.php.html#11"><abbr title="Migrate::index">index</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/PerubahanKuliahManage.php.html#7"><abbr title="PerubahanKuliahManage::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/PerubahanKuliahManage.php.html#20"><abbr title="PerubahanKuliahManage::index">index</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/PerubahanKuliahManage.php.html#64"><abbr title="PerubahanKuliahManage::answer">answer</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/PerubahanKuliahManage.php.html#103"><abbr title="PerubahanKuliahManage::remove">remove</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/PerubahanKuliahManage.php.html#120"><abbr title="PerubahanKuliahManage::printview">printview</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/PerubahanKuliahRequest.php.html#7"><abbr title="PerubahanKuliahRequest::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/UnitTest.php.html#61"><abbr title="unittest::report">report</abbr></a></td><td class="text-right">9%</td></tr>
+       <tr><td><a href="controllers/UnitTest.php.html#12"><abbr title="unittest::__construct">__construct</abbr></a></td><td class="text-right">31%</td></tr>
+       <tr><td><a href="libraries/BlueTape.php.html#29"><abbr title="BlueTape::getName">getName</abbr></a></td><td class="text-right">88%</td></tr>
+       <tr><td><a href="controllers/UnitTest.php.html#439"><abbr title="unittest::cekDeleteJadwal">cekDeleteJadwal</abbr></a></td><td class="text-right">88%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="controllers/EntriJadwalDosen.php.html#145"><abbr title="EntriJadwalDosen::export">export</abbr></a></td><td class="text-right">182</td></tr>
+       <tr><td><a href="controllers/LihatJadwalDosen.php.html#46"><abbr title="LihatJadwalDosen::export">export</abbr></a></td><td class="text-right">156</td></tr>
+       <tr><td><a href="models/Auth_model.php.html#39"><abbr title="Auth_model::authenticateOauthCode">authenticateOauthCode</abbr></a></td><td class="text-right">132</td></tr>
+       <tr><td><a href="controllers/EntriJadwalDosen.php.html#82"><abbr title="EntriJadwalDosen::update">update</abbr></a></td><td class="text-right">110</td></tr>
+       <tr><td><a href="controllers/EntriJadwalDosen.php.html#39"><abbr title="EntriJadwalDosen::add">add</abbr></a></td><td class="text-right">90</td></tr>
+       <tr><td><a href="controllers/PerubahanKuliahRequest.php.html#50"><abbr title="PerubahanKuliahRequest::add">add</abbr></a></td><td class="text-right">72</td></tr>
+       <tr><td><a href="controllers/TranskripManage.php.html#20"><abbr title="TranskripManage::index">index</abbr></a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="controllers/TranskripRequest.php.html#53"><abbr title="TranskripRequest::add">add</abbr></a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="controllers/UnitTest.php.html#61"><abbr title="unittest::report">report</abbr></a></td><td class="text-right">43</td></tr>
+       <tr><td><a href="models/Transkrip_model.php.html#56"><abbr title="Transkrip_model::requestTypesForbidden">requestTypesForbidden</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="controllers/PerubahanKuliahManage.php.html#20"><abbr title="PerubahanKuliahManage::index">index</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="controllers/TranskripRequest.php.html#20"><abbr title="TranskripRequest::index">index</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="controllers/PerubahanKuliahManage.php.html#120"><abbr title="PerubahanKuliahManage::printview">printview</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="controllers/PerubahanKuliahRequest.php.html#20"><abbr title="PerubahanKuliahRequest::index">index</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="models/Transkrip_model.php.html#36"><abbr title="Transkrip_model::requestByID">requestByID</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="models/Transkrip_model.php.html#18"><abbr title="Transkrip_model::requestsBy">requestsBy</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="models/PerubahanKuliah_model.php.html#18"><abbr title="PerubahanKuliah_model::requestsBy">requestsBy</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="models/JadwalDosen_model.php.html#14"><abbr title="JadwalDosen_model::requestsBy">requestsBy</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="controllers/UnitTest.php.html#264"><abbr title="unittest::requestBy">requestBy</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="models/Email_model.php.html#7"><abbr title="Email_model::send_email">send_email</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="models/Auth_model.php.html#94"><abbr title="Auth_model::checkModuleAllowed">checkModuleAllowed</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="controllers/PerubahanKuliahManage.php.html#64"><abbr title="PerubahanKuliahManage::answer">answer</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="controllers/Migrate.php.html#11"><abbr title="Migrate::index">index</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="controllers/TranskripManage.php.html#106"><abbr title="TranskripManage::remove">remove</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="controllers/TranskripManage.php.html#72"><abbr title="TranskripManage::answer">answer</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="controllers/PerubahanKuliahManage.php.html#103"><abbr title="PerubahanKuliahManage::remove">remove</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="controllers/Auth.php.html#16"><abbr title="Auth::oauth2callback">oauth2callback</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="controllers/TranskripRequest.php.html#7"><abbr title="TranskripRequest::__construct">__construct</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="controllers/LihatJadwalDosen.php.html#24"><abbr title="LihatJadwalDosen::index">index</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="controllers/LihatJadwalDosen.php.html#8"><abbr title="LihatJadwalDosen::__construct">__construct</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="controllers/EntriJadwalDosen.php.html#7"><abbr title="EntriJadwalDosen::__construct">__construct</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="controllers/TranskripManage.php.html#7"><abbr title="TranskripManage::__construct">__construct</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="controllers/PerubahanKuliahManage.php.html#7"><abbr title="PerubahanKuliahManage::__construct">__construct</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="controllers/PerubahanKuliahRequest.php.html#7"><abbr title="PerubahanKuliahRequest::__construct">__construct</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="controllers/UnitTest.php.html#12"><abbr title="unittest::__construct">__construct</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="controllers/UnitTest.php.html#439"><abbr title="unittest::cekDeleteJadwal">cekDeleteJadwal</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="libraries/BlueTape.php.html#29"><abbr title="BlueTape::getName">getName</abbr></a></td><td class="text-right">2</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 7.0.1</a> using <a href="https://secure.php.net/" target="_top">PHP 7.2.4</a> with <a href="https://xdebug.org/">Xdebug 2.7.0beta1</a> at Tue Apr 2 9:50:54 CEST 2019.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="_js/jquery.min.js" type="text/javascript"></script>
+  <script src="_js/d3.min.js" type="text/javascript"></script>
+  <script src="_js/nv.d3.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([12,0,0,0,0,0,0,0,2,0,1,0], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([46,1,0,0,1,0,0,0,0,2,1,37], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[0,6,"<a href=\"controllers\/Auth.php.html#5\">Auth<\/a>"],[0,38,"<a href=\"controllers\/EntriJadwalDosen.php.html#5\">EntriJadwalDosen<\/a>"],[0,16,"<a href=\"controllers\/LihatJadwalDosen.php.html#5\">LihatJadwalDosen<\/a>"],[0,3,"<a href=\"controllers\/Migrate.php.html#5\">Migrate<\/a>"],[0,19,"<a href=\"controllers\/PerubahanKuliahManage.php.html#5\">PerubahanKuliahManage<\/a>"],[0,15,"<a href=\"controllers\/PerubahanKuliahRequest.php.html#5\">PerubahanKuliahRequest<\/a>"],[0,15,"<a href=\"controllers\/TranskripManage.php.html#5\">TranskripManage<\/a>"],[0,14,"<a href=\"controllers\/TranskripRequest.php.html#5\">TranskripRequest<\/a>"],[77.7327935222672,39,"<a href=\"controllers\/UnitTest.php.html#5\">unittest<\/a>"],[97.14285714285714,22,"<a href=\"libraries\/BlueTape.php.html#5\">BlueTape<\/a>"],[0,18,"<a href=\"models\/Auth_model.php.html#5\">Auth_model<\/a>"],[0,3,"<a href=\"models\/Email_model.php.html#5\">Email_model<\/a>"],[75.75757575757575,15,"<a href=\"models\/JadwalDosen_model.php.html#5\">JadwalDosen_model<\/a>"],[0,4,"<a href=\"models\/PerubahanKuliah_model.php.html#5\">PerubahanKuliah_model<\/a>"],[0,14,"<a href=\"models\/Transkrip_model.php.html#5\">Transkrip_model<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[0,1,"<a href=\"controllers\/Auth.php.html#7\">Auth::__construct<\/a>"],[0,1,"<a href=\"controllers\/Auth.php.html#11\">Auth::index<\/a>"],[0,3,"<a href=\"controllers\/Auth.php.html#16\">Auth::oauth2callback<\/a>"],[0,1,"<a href=\"controllers\/Auth.php.html#33\">Auth::logout<\/a>"],[0,2,"<a href=\"controllers\/EntriJadwalDosen.php.html#7\">EntriJadwalDosen::__construct<\/a>"],[0,1,"<a href=\"controllers\/EntriJadwalDosen.php.html#23\">EntriJadwalDosen::index<\/a>"],[0,9,"<a href=\"controllers\/EntriJadwalDosen.php.html#39\">EntriJadwalDosen::add<\/a>"],[0,10,"<a href=\"controllers\/EntriJadwalDosen.php.html#82\">EntriJadwalDosen::update<\/a>"],[0,1,"<a href=\"controllers\/EntriJadwalDosen.php.html#127\">EntriJadwalDosen::delete<\/a>"],[0,1,"<a href=\"controllers\/EntriJadwalDosen.php.html#133\">EntriJadwalDosen::deleteAll<\/a>"],[0,1,"<a href=\"controllers\/EntriJadwalDosen.php.html#140\">EntriJadwalDosen::getDataJadwal<\/a>"],[0,13,"<a href=\"controllers\/EntriJadwalDosen.php.html#145\">EntriJadwalDosen::export<\/a>"],[0,2,"<a href=\"controllers\/LihatJadwalDosen.php.html#8\">LihatJadwalDosen::__construct<\/a>"],[0,2,"<a href=\"controllers\/LihatJadwalDosen.php.html#24\">LihatJadwalDosen::index<\/a>"],[0,12,"<a href=\"controllers\/LihatJadwalDosen.php.html#46\">LihatJadwalDosen::export<\/a>"],[0,3,"<a href=\"controllers\/Migrate.php.html#11\">Migrate::index<\/a>"],[0,2,"<a href=\"controllers\/PerubahanKuliahManage.php.html#7\">PerubahanKuliahManage::__construct<\/a>"],[0,6,"<a href=\"controllers\/PerubahanKuliahManage.php.html#20\">PerubahanKuliahManage::index<\/a>"],[0,3,"<a href=\"controllers\/PerubahanKuliahManage.php.html#64\">PerubahanKuliahManage::answer<\/a>"],[0,3,"<a href=\"controllers\/PerubahanKuliahManage.php.html#103\">PerubahanKuliahManage::remove<\/a>"],[0,5,"<a href=\"controllers\/PerubahanKuliahManage.php.html#120\">PerubahanKuliahManage::printview<\/a>"],[0,2,"<a href=\"controllers\/PerubahanKuliahRequest.php.html#7\">PerubahanKuliahRequest::__construct<\/a>"],[0,5,"<a href=\"controllers\/PerubahanKuliahRequest.php.html#20\">PerubahanKuliahRequest::index<\/a>"],[0,8,"<a href=\"controllers\/PerubahanKuliahRequest.php.html#50\">PerubahanKuliahRequest::add<\/a>"],[0,2,"<a href=\"controllers\/TranskripManage.php.html#7\">TranskripManage::__construct<\/a>"],[0,7,"<a href=\"controllers\/TranskripManage.php.html#20\">TranskripManage::index<\/a>"],[0,3,"<a href=\"controllers\/TranskripManage.php.html#72\">TranskripManage::answer<\/a>"],[0,3,"<a href=\"controllers\/TranskripManage.php.html#106\">TranskripManage::remove<\/a>"],[0,2,"<a href=\"controllers\/TranskripRequest.php.html#7\">TranskripRequest::__construct<\/a>"],[0,5,"<a href=\"controllers\/TranskripRequest.php.html#20\">TranskripRequest::index<\/a>"],[0,7,"<a href=\"controllers\/TranskripRequest.php.html#53\">TranskripRequest::add<\/a>"],[31.25,2,"<a href=\"controllers\/UnitTest.php.html#12\">unittest::__construct<\/a>"],[95.65217391304348,1,"<a href=\"controllers\/UnitTest.php.html#33\">unittest::index<\/a>"],[9.523809523809524,7,"<a href=\"controllers\/UnitTest.php.html#61\">unittest::report<\/a>"],[100,1,"<a href=\"controllers\/UnitTest.php.html#101\">unittest::cekJadwalByUsername<\/a>"],[100,1,"<a href=\"controllers\/UnitTest.php.html#117\">unittest::cekYearMonthToSemesterCode<\/a>"],[100,1,"<a href=\"controllers\/UnitTest.php.html#144\">unittest::cekSemesterCodeToString<\/a>"],[100,1,"<a href=\"controllers\/UnitTest.php.html#170\">unittest::testBlueTapeGetNPM<\/a>"],[0,1,"<a href=\"controllers\/UnitTest.php.html#183\">unittest::requestByDosen<\/a>"],[100,1,"<a href=\"controllers\/UnitTest.php.html#194\">unittest::getEmail<\/a>"],[100,1,"<a href=\"controllers\/UnitTest.php.html#210\">unittest::getName<\/a>"],[100,1,"<a href=\"controllers\/UnitTest.php.html#223\">unittest::dbDateTimeToReadableDate<\/a>"],[100,2,"<a href=\"controllers\/UnitTest.php.html#240\">unittest::cekAddjadwal<\/a>"],[100,1,"<a href=\"controllers\/UnitTest.php.html#256\">unittest::cekJadwalByJamMulai<\/a>"],[0,4,"<a href=\"controllers\/UnitTest.php.html#264\">unittest::requestBy<\/a>"],[100,1,"<a href=\"controllers\/UnitTest.php.html#283\">unittest::cekGetNpm<\/a>"],[100,1,"<a href=\"controllers\/UnitTest.php.html#300\">unittest::cekYearMonthToSemesterCodeSimplified<\/a>"],[0,1,"<a href=\"controllers\/UnitTest.php.html#326\">unittest::expectedResDosen<\/a>"],[100,1,"<a href=\"controllers\/UnitTest.php.html#346\">unittest::expectedResGetName<\/a>"],[100,1,"<a href=\"controllers\/UnitTest.php.html#359\">unittest::cekGetAllJadwal<\/a>"],[100,1,"<a href=\"controllers\/UnitTest.php.html#371\">unittest::getAllJadwal<\/a>"],[100,1,"<a href=\"controllers\/UnitTest.php.html#378\">unittest::cekUpdateJadwal<\/a>"],[100,1,"<a href=\"controllers\/UnitTest.php.html#391\">unittest::cekGetNamaHari<\/a>"],[100,1,"<a href=\"controllers\/UnitTest.php.html#396\">unittest::cekGetNamaBulan<\/a>"],[100,1,"<a href=\"controllers\/UnitTest.php.html#402\">unittest::deleteByUsername<\/a>"],[100,1,"<a href=\"controllers\/UnitTest.php.html#416\">unittest::checkKolomKeHari<\/a>"],[100,1,"<a href=\"controllers\/UnitTest.php.html#427\">unittest::checkHariKeKolom<\/a>"],[88.88888888888889,2,"<a href=\"controllers\/UnitTest.php.html#439\">unittest::cekDeleteJadwal<\/a>"],[100,3,"<a href=\"libraries\/BlueTape.php.html#7\">BlueTape::getNPM<\/a>"],[100,3,"<a href=\"libraries\/BlueTape.php.html#18\">BlueTape::getEmail<\/a>"],[88.88888888888889,2,"<a href=\"libraries\/BlueTape.php.html#29\">BlueTape::getName<\/a>"],[100,5,"<a href=\"libraries\/BlueTape.php.html#48\">BlueTape::yearMonthToSemesterCode<\/a>"],[100,3,"<a href=\"libraries\/BlueTape.php.html#64\">BlueTape::yearMonthToSemesterCodeSimplified<\/a>"],[100,4,"<a href=\"libraries\/BlueTape.php.html#78\">BlueTape::semesterCodeToString<\/a>"],[100,2,"<a href=\"libraries\/BlueTape.php.html#94\">BlueTape::dbDateTimeToReadableDate<\/a>"],[0,1,"<a href=\"models\/Auth_model.php.html#9\">Auth_model::__construct<\/a>"],[0,1,"<a href=\"models\/Auth_model.php.html#27\">Auth_model::createAuthURL<\/a>"],[0,11,"<a href=\"models\/Auth_model.php.html#39\">Auth_model::authenticateOauthCode<\/a>"],[0,1,"<a href=\"models\/Auth_model.php.html#90\">Auth_model::getUserInfo<\/a>"],[0,3,"<a href=\"models\/Auth_model.php.html#94\">Auth_model::checkModuleAllowed<\/a>"],[0,1,"<a href=\"models\/Auth_model.php.html#107\">Auth_model::logout<\/a>"],[0,3,"<a href=\"models\/Email_model.php.html#7\">Email_model::send_email<\/a>"],[0,4,"<a href=\"models\/JadwalDosen_model.php.html#14\">JadwalDosen_model::requestsBy<\/a>"],[100,1,"<a href=\"models\/JadwalDosen_model.php.html#28\">JadwalDosen_model::addJadwal<\/a>"],[100,1,"<a href=\"models\/JadwalDosen_model.php.html#40\">JadwalDosen_model::getAllJadwal<\/a>"],[100,1,"<a href=\"models\/JadwalDosen_model.php.html#47\">JadwalDosen_model::getJadwalByUsername<\/a>"],[100,1,"<a href=\"models\/JadwalDosen_model.php.html#52\">JadwalDosen_model::updateJadwal<\/a>"],[100,1,"<a href=\"models\/JadwalDosen_model.php.html#56\">JadwalDosen_model::deleteJadwal<\/a>"],[100,1,"<a href=\"models\/JadwalDosen_model.php.html#60\">JadwalDosen_model::getNamaHari<\/a>"],[100,1,"<a href=\"models\/JadwalDosen_model.php.html#64\">JadwalDosen_model::getNamaBulan<\/a>"],[100,1,"<a href=\"models\/JadwalDosen_model.php.html#68\">JadwalDosen_model::kolomKeHari<\/a>"],[100,1,"<a href=\"models\/JadwalDosen_model.php.html#72\">JadwalDosen_model::hariKeKolom<\/a>"],[100,1,"<a href=\"models\/JadwalDosen_model.php.html#76\">JadwalDosen_model::deleteByUsername<\/a>"],[100,1,"<a href=\"models\/JadwalDosen_model.php.html#80\">JadwalDosen_model::cekJadwalByJamMulai<\/a>"],[0,4,"<a href=\"models\/PerubahanKuliah_model.php.html#18\">PerubahanKuliah_model::requestsBy<\/a>"],[0,4,"<a href=\"models\/Transkrip_model.php.html#18\">Transkrip_model::requestsBy<\/a>"],[0,4,"<a href=\"models\/Transkrip_model.php.html#36\">Transkrip_model::requestByID<\/a>"],[0,6,"<a href=\"models\/Transkrip_model.php.html#56\">Transkrip_model::requestTypesForbidden<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>
