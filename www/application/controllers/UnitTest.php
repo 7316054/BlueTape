@@ -57,7 +57,9 @@
             
 
             $this->deleteByUsername('anugrahjaya23@gmail.com');
-
+            $this->cekDeleteJadwal(1);
+            $this->cekRequestById(1,1,1);
+            $this->cekRequestById(1,null,null);
             $this->report();
             
         }
@@ -254,6 +256,7 @@
             $data2=array("user"=>$res['user'], "hari"=>$res['hari'], "jam_mulai"=>$res['jam_mulai'],"durasi"=>$res['durasi'],"jenis_jadwal"=>$res['jenis'],"label_jadwal"=>"aa");
             $this->unit->run($data,$data2,__FUNCTION__,"Test ini mengecek apakah data sudah masuk atau tidak");
         }
+        
         
          
     public function cekJadwalByJamMulai($jamMulai,$hari,$user){
@@ -942,31 +945,26 @@
 		
      }
      
-     public function cekDeleteJadwal(){
-        $data=array("user"=>"sihombing123", "hari"=>"0", "jam_mulai"=>"8","durasi"=>"1","jenis_jadwal"=>"konsultasi","label_jadwal"=>"sasa");
-        $this->JadwalDosen_model->addJadwal($data);
-        $query=$this->db->query("SELECT *from jadwal_dosen");
-        $row=$query->result();
-        $obj=$row[sizeof($row)-1];
-        if (is_object($obj)) {
-            $res = get_object_vars($obj);
-        }
-        //dimaskuin dulue ke database
-        $id=$res['id'];
+     public function cekDeleteJadwal($id){
         $this->JadwalDosen_model->deleteJadwal($id);
-        $query2=$this->db->query("SELECT *from jadwal_dosen where id=$id");
-        $row2=$query2->result();
-        $obj2=$row2[sizeof($row)-1];
-        $this->unit->run($obj2,null,__FUNCTION__,"Test ini mengecek apakah data sudah terdelete atau tidak");
+        $query=$this->db->query("SELECT *from jadwal_dosen where id=$id");
+        $row=$query->result();
+        $obj=null;
+        if(sizeof($row)==0){
+            $obj=null;
+        }
+        else{
+            $obj=$row[sizeof($row)-1];
+        }
+        
+        $this->unit->run($obj,null,__FUNCTION__,"Test ini mengecek apakah data sudah terdelete atau tidak");
       }
 
       //untuk Model/PerbuahanKuliah_model
       public function cekRequestById($id,$start,$row){
-
         $query=$this->db->query("SELECT *from transkrip where id=$id");
         $expected=$query->result()[0];
         $result=$this->Transkrip_model->requestById($id,$start,$row);
-    
         $this->unit->run($result,$expected,null,__FUNCTION__,"Test ini adakah request dari id tertentu pada transaksi");
       }
 
