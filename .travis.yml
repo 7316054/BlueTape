@@ -11,6 +11,7 @@ before_script:
   - mysql -e 'USE bluetape;create table Bluetape_Userinfo(email varchar(128),name varchar(256),lastUpdate datetime);'
   - mysql -e 'USE bluetape;create table PerubahanKuliah(id int,requestByEmail varchar(256),requestDateTime datetime);'
   - mysql -e 'USE bluetape;create table jadwal_dosen (id int , user varchar(256), hari int , jam_mulai int , durasi int , jenis varchar(256) , label varchar(100) , lastUpdate datetime );'
+  - mysql -e 'USE bluetape;create table Transkrip(id int,requestByEmail varchar(256),requestDateTime datetime,requestType varchar(8), requestUsage varchar(256),answer varchar(16),answeredByEmail varchar(128),answeredDateTime dateTime,answeredMessage varchar(256));'
   
   - mysql -e "USE bluetape;insert into PerubahanKuliah (requestByEmail) values ('7316054@student.unpar.ac.id');"
   - mysql -e "USE bluetape;
