@@ -37,7 +37,7 @@
             $this->cekSemesterCodeToString();
             $this->cekYearMonthToSemesterCodeSimplified();
             //$this->requestByDosen('Samuel');
-            $this->getName('GABRIEL PANJI LAZUARDI');
+            $this->getName('anugrahjaya23@gmail.com');
             $this->dbDateTimeToReadableDate();
             $this->getEmail();
             $this->cekGetNpm();
@@ -48,15 +48,11 @@
             $this->checkHariKeKolom();
             $this->cekGetNamaHari();
             $this->cekGetNamaBulan();
-           // $this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
-           // $this->requestBy('anugrahjaya23@gmail.com',1,1);
             $this->cekUpdateJadwal();
             $this->cekGetNamaHari();
             $this->cekGetNamaBulan();
             $this->deleteByUsername('anugrahjaya23@gmail.com');
             $this->cekDeleteJadwal(1);
-            $this->cekRequestById(1,1,1);
-            $this->cekRequestById(1,null,null);
             $this->report();
         }
 
@@ -210,12 +206,21 @@
          * Expected result merupakan  hasil query
         **/
         public function getName($var){
-            $test = $this->bluetape->getName($var);
+		//Test case 1
+            $test1 = $this->bluetape->getName($var);
             
             $expected_result = $this->expectedResGetName($var);
             $test_name = 'Memeriksa method getName dari BlueTape';
 
-            $this->unit->run($test, $expected_result, $test_name);
+            $this->unit->run($test1, $expected_result, $test_name);
+		
+		//Test case 2
+		 $test2 = $this->bluetape->getName('7316054@student');
+            
+            $expected_result2 = NULL;
+            $test_name2 = 'Memeriksa method getName dari BlueTape';
+
+            $this->unit->run($test2, $expected_result2, $test_name2);
         }
 
         /**
@@ -346,8 +351,8 @@
          * Expected result merupakan hasil query
         **/
         public function expectedResGetName($var){
-            $this->db->where('name',$var);
-            $this->db->from('bluetape_userinfo');
+            $this->db->where('email',$var);
+            $this->db->from('Bluetape_Userinfo');
 
             $query = $this->db->get();
 
@@ -356,8 +361,6 @@
             return $row->name;
         }
 	
-
-
         public function cekGetAllJadwal(){
             $result=$this->JadwalDosen_model->getAllJadwal();
             $expetecRes=$this->getAllJadwal();
@@ -385,8 +388,6 @@
                                      FROM jadwal_dosen
                                      WHERE id='$id'");
             $expected_result=$query->result();
-            
-              
             $this->unit->run($data,(array)$expected_result[0],__FUNCTION__,"Memeriksa apakah data yang di insert benar");
             }
 
