@@ -43,7 +43,7 @@
           //  $this->cekGetNpm();
            // $this->cekGetAllJadwal();
            // $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
-           //$this->cekAddjadwal(); LOLOS UJI 
+           $this->cekAddjadwal(); 
             
           //  $this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
            // $this->requestBy('anugrahjaya23@gmail.com',1,1);
