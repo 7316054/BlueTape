@@ -37,7 +37,7 @@
             $this->cekSemesterCodeToString();
             $this->cekYearMonthToSemesterCodeSimplified();
             //$this->requestByDosen('Samuel');
-            $this->getName('GABRIEL PANJI LAZUARDI');
+            $this->getName('anugrahjaya23@gmail.com');
             $this->dbDateTimeToReadableDate();
             $this->getEmail();
             $this->cekGetNpm();
@@ -48,15 +48,11 @@
             $this->checkHariKeKolom();
             $this->cekGetNamaHari();
             $this->cekGetNamaBulan();
-           // $this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
-           // $this->requestBy('anugrahjaya23@gmail.com',1,1);
             $this->cekUpdateJadwal();
             $this->cekGetNamaHari();
             $this->cekGetNamaBulan();
             $this->deleteByUsername('anugrahjaya23@gmail.com');
-            $this->cekDeleteJadwal();
-            $this->cekRequestById(1,1,1);
-            $this->cekRequestById(1,null,null);
+            $this->cekDeleteJadwal(1);
             $this->report();
         }
 
@@ -210,12 +206,21 @@
          * Expected result merupakan  hasil query
         **/
         public function getName($var){
-            $test = $this->bluetape->getName($var);
+		//Test case 1
+            $test1 = $this->bluetape->getName($var);
             
             $expected_result = $this->expectedResGetName($var);
             $test_name = 'Memeriksa method getName dari BlueTape';
 
-            $this->unit->run($test, $expected_result, $test_name);
+            $this->unit->run($test1, $expected_result, $test_name);
+		
+		//Test case 2
+		 $test2 = $this->bluetape->getName('7316054@student');
+            
+            $expected_result2 = NULL;
+            $test_name2 = 'Memeriksa method getName dari BlueTape';
+
+            $this->unit->run($test2, $expected_result2, $test_name2);
         }
 
         /**
@@ -252,6 +257,7 @@
             $data2=array("user"=>$res['user'], "hari"=>$res['hari'], "jam_mulai"=>$res['jam_mulai'],"durasi"=>$res['durasi'],"jenis_jadwal"=>$res['jenis'],"label_jadwal"=>"aa");
             $this->unit->run($data,$data2,__FUNCTION__,"Test ini mengecek apakah data sudah masuk atau tidak");
         }
+        
         
          
     public function cekJadwalByJamMulai($jamMulai,$hari,$user){
@@ -345,8 +351,8 @@
          * Expected result merupakan hasil query
         **/
         public function expectedResGetName($var){
-            $this->db->where('name',$var);
-            $this->db->from('bluetape_userinfo');
+            $this->db->where('email',$var);
+            $this->db->from('Bluetape_Userinfo');
 
             $query = $this->db->get();
 
@@ -355,8 +361,6 @@
             return $row->name;
         }
 	
-
-
         public function cekGetAllJadwal(){
             $result=$this->JadwalDosen_model->getAllJadwal();
             $expetecRes=$this->getAllJadwal();
@@ -384,8 +388,6 @@
                                      FROM jadwal_dosen
                                      WHERE id='$id'");
             $expected_result=$query->result();
-            
-              
             $this->unit->run($data,(array)$expected_result[0],__FUNCTION__,"Memeriksa apakah data yang di insert benar");
             }
 
@@ -437,31 +439,26 @@
 		
      }
      
-     public function cekDeleteJadwal(){
-        $data=array("user"=>"sihombing123", "hari"=>"0", "jam_mulai"=>"8","durasi"=>"1","jenis_jadwal"=>"konsultasi","label_jadwal"=>"sasa");
-        $this->JadwalDosen_model->addJadwal($data);
-        $query=$this->db->query("SELECT *from jadwal_dosen");
-        $row=$query->result();
-        $obj=$row[sizeof($row)-1];
-        if (is_object($obj)) {
-            $res = get_object_vars($obj);
-        }
-        //dimaskuin dulue ke database
-        $id=$res['id'];
+     public function cekDeleteJadwal($id){
         $this->JadwalDosen_model->deleteJadwal($id);
-        $query2=$this->db->query("SELECT *from jadwal_dosen where id=$id");
-        $row2=$query2->result();
-        $obj2=$row2[sizeof($row)-1];
-        $this->unit->run($obj2,null,__FUNCTION__,"Test ini mengecek apakah data sudah terdelete atau tidak");
+        $query=$this->db->query("SELECT *from jadwal_dosen where id=$id");
+        $row=$query->result();
+        $obj=null;
+        if(sizeof($row)==0){
+            $obj=null;
+        }
+        else{
+            $obj=$row[sizeof($row)-1];
+        }
+        
+        $this->unit->run($obj,null,__FUNCTION__,"Test ini mengecek apakah data sudah terdelete atau tidak");
       }
 
       //untuk Model/PerbuahanKuliah_model
       public function cekRequestById($id,$start,$row){
-
         $query=$this->db->query("SELECT *from transkrip where id=$id");
         $expected=$query->result()[0];
         $result=$this->Transkrip_model->requestById($id,$start,$row);
-    
         $this->unit->run($result,$expected,null,__FUNCTION__,"Test ini adakah request dari id tertentu pada transaksi");
       }
 
