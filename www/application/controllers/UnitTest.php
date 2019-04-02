@@ -397,416 +397,18 @@
                                      WHERE id='$id'");
             $expected_result=$query->result();
             $this->unit->run($data,(array)$expected_result[0],__FUNCTION__,"Memeriksa apakah data yang di insert benar");
-            }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          public function cekGetNamaHari(){
+        }
+        public function cekGetNamaHari(){
             $test=$this->JadwalDosen_model->getNamaHari();
             $expected_result=array("Senin","Selasa","Rabu","Kamis","Jumat");
             $this->unit->run($test,$expected_result,__FUNCTION__,"Memeriksa apakah nama hari-hari nya benar");
-          }
-          public function cekGetNamaBulan(){
+        }
+
+        public function cekGetNamaBulan(){
            $test=$this->JadwalDosen_model->getNamaBulan();
            $expected_result=array('Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
            $this->unit->run($test,$expected_result,__FUNCTION__,"Memeriksa apakah nama bulan-bulan nya benar");
-          }
-     
-	 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        }
 
         public function deleteByUsername($username){
             $query=$this->db->query('SELECT user from jadwal_dosen');
@@ -822,155 +424,50 @@
             $this->unit->run($result,$exceptedRes,__FUNCTION__,'Menghapus user dengan username ');
         }
 
+        public function checkKolomKeHari(){
+            $namaHari = 'Senin';
 
+            $test = $this->JadwalDosen_model->kolomKeHari($namaHari);
+            $exceptedRes = 2;
 
+            $test_name = 'Memerikas method kolom ke hari dari JadwalDosen_model';
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	 public function checkKolomKeHari(){
-	 	 $namaHari = 'Senin';
-
-		 $test = $this->JadwalDosen_model->kolomKeHari($namaHari);
-		 $exceptedRes = 2;
-
-		 $test_name = 'Memerikas method kolom ke hari dari JadwalDosen_model';
-
-		 $this->unit->run($test, $exceptedRes, $test_name);
-	 }
-
-	 public function checkHariKeKolom(){
-		$coloumn = 3;
-		
-		$test = $this->JadwalDosen_model->hariKeKolom($coloumn);
-		$expected_result = 'F';
-
-		$test_name = 'Memeriksa method hari ke kolom dari JadwalDosen_model';
-
-		$this->unit->run($test, $expected_result, $test_name);
-		
-     }
-     
-     public function cekDeleteJadwal($id){
-        $this->JadwalDosen_model->deleteJadwal($id);
-        $query=$this->db->query("SELECT *from jadwal_dosen where id=$id");
-        $row=$query->result();
-        $obj=null;
-        if(sizeof($row)==0){
-            $obj=null;
+            $this->unit->run($test, $exceptedRes, $test_name);
         }
-        else{
-            $obj=$row[sizeof($row)-1];
+
+        public function checkHariKeKolom(){
+            $coloumn = 3;
+            
+            $test = $this->JadwalDosen_model->hariKeKolom($coloumn);
+            $expected_result = 'F';
+
+            $test_name = 'Memeriksa method hari ke kolom dari JadwalDosen_model';
+
+            $this->unit->run($test, $expected_result, $test_name);
+            
         }
         
-        $this->unit->run($obj,null,__FUNCTION__,"Test ini mengecek apakah data sudah terdelete atau tidak");
-      }
+        public function cekDeleteJadwal($id){
+            $this->JadwalDosen_model->deleteJadwal($id);
+            $query=$this->db->query("SELECT *from jadwal_dosen where id=$id");
+            $row=$query->result();
+            $obj=null;
+            if(sizeof($row)==0){
+                $obj=null;
+            }
+            else{
+                $obj=$row[sizeof($row)-1];
+            }
+            
+            $this->unit->run($obj,null,__FUNCTION__,"Test ini mengecek apakah data sudah terdelete atau tidak");
+        }
 
-      //untuk Model/PerbuahanKuliah_model
-      public function cekRequestById($id,$start,$row){
-        $query=$this->db->query("SELECT *from transkrip where id=$id");
-        $expected=$query->result()[0];
-        $result=$this->Transkrip_model->requestById($id,$start,$row);
-        $this->unit->run($result,$expected,null,__FUNCTION__,"Test ini adakah request dari id tertentu pada transaksi");
-      }
+        //untuk Model/PerbuahanKuliah_model
+        public function cekRequestById($id,$start,$row){
+            $query=$this->db->query("SELECT *from transkrip where id=$id");
+            $expected=$query->result()[0];
+            $result=$this->Transkrip_model->requestById($id,$start,$row);
+            $this->unit->run($result,$expected,null,__FUNCTION__,"Test ini adakah request dari id tertentu pada transaksi");
+        }
 
     }
