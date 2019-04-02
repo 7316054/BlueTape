@@ -47,9 +47,12 @@
             $this->checkHariKeKolom();
             $this->cekGetNamaHari();
             $this->cekGetNamaBulan();
+<<<<<<< HEAD
             
             $this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
             $this->requestBy('anugrahjaya23@gmail.com',1,1);
+=======
+>>>>>>> 4572c3aa40838d1810add1147d7502ef5e3e4d25
             $this->cekUpdateJadwal();
             $this->cekGetNamaHari();
             $this->cekGetNamaBulan();
@@ -58,8 +61,6 @@
 
             $this->deleteByUsername('anugrahjaya23@gmail.com');
             $this->cekDeleteJadwal(1);
-            $this->cekRequestById(1,1,1);
-            $this->cekRequestById(1,null,null);
             $this->report();
             
         }
