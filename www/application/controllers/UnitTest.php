@@ -25,6 +25,7 @@
             $this->load->library('BlueTape');
             $this->load->model('JadwalDosen_model');
             $this->load->database();
+            $this->load->model('Transkrip_model');
        }
        /**
         * Method untuk menjalankan Test case
@@ -35,7 +36,7 @@
             $this->cekYearMonthToSemesterCode();
             $this->cekSemesterCodeToString();
             $this->cekYearMonthToSemesterCodeSimplified();
-            $this->requestByDosen('Samuel');
+            //$this->requestByDosen('Samuel');
             $this->getName('GABRIEL PANJI LAZUARDI');
             $this->dbDateTimeToReadableDate();
             $this->getEmail();
@@ -47,19 +48,16 @@
             $this->checkHariKeKolom();
             $this->cekGetNamaHari();
             $this->cekGetNamaBulan();
-            
-            $this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
-            $this->requestBy('anugrahjaya23@gmail.com',1,1);
+           // $this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
+           // $this->requestBy('anugrahjaya23@gmail.com',1,1);
             $this->cekUpdateJadwal();
             $this->cekGetNamaHari();
             $this->cekGetNamaBulan();
-
-            
-
             $this->deleteByUsername('anugrahjaya23@gmail.com');
-
+            $this->cekDeleteJadwal(1);
+            $this->cekRequestById(1,1,1);
+            $this->cekRequestById(1,null,null);
             $this->report();
-            
         }
 
        private function report() {
@@ -229,7 +227,7 @@
             $this->db->select('requestDateTime');
             $this->db->from('transkrip');
             $query = $this->db->get();
-            $dateTime = $query->row;
+            $dateTime = $query->row();
             setlocale(LC_TIME, 'ind');
             $expected_result = strftime('%A, %B, %Y',(new DateTime($dateTime->requestDateTime))->getTimestamp());
             $test = $this->bluetape->dbDateTimeToReadableDate($dateTime->requestDateTime);
@@ -352,7 +350,7 @@
 
             $query = $this->db->get();
 
-            $row = $query->row;
+            $row = $query->row();
 
             return $row->name;
         }
@@ -391,309 +389,6 @@
             $this->unit->run($data,(array)$expected_result[0],__FUNCTION__,"Memeriksa apakah data yang di insert benar");
             }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
           public function cekGetNamaHari(){
             $test=$this->JadwalDosen_model->getNamaHari();
             $expected_result=array("Senin","Selasa","Rabu","Kamis","Jumat");
@@ -704,102 +399,7 @@
            $expected_result=array('Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
            $this->unit->run($test,$expected_result,__FUNCTION__,"Memeriksa apakah nama bulan-bulan nya benar");
           }
-     
-	 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
         public function deleteByUsername($username){
             $query=$this->db->query('SELECT user from jadwal_dosen');
             $res=$query->result();
@@ -813,111 +413,6 @@
 
             $this->unit->run($result,$exceptedRes,__FUNCTION__,'Menghapus user dengan username ');
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	 public function checkKolomKeHari(){
 	 	 $namaHari = 'Senin';
@@ -940,12 +435,31 @@
 
 		$this->unit->run($test, $expected_result, $test_name);
 		
-	 }
+     }
+     
+     public function cekDeleteJadwal($id){
+        $this->JadwalDosen_model->deleteJadwal($id);
+        $query=$this->db->query("SELECT *from jadwal_dosen where id=$id");
+        $row=$query->result();
+        $obj=null;
+        if(sizeof($row)==0){
+            $obj=null;
+        }
+        else{
+            $obj=$row[sizeof($row)-1];
+        }
+        
+        $this->unit->run($obj,null,__FUNCTION__,"Test ini mengecek apakah data sudah terdelete atau tidak");
+      }
 
+      //untuk Model/PerbuahanKuliah_model
+      public function cekRequestById($id,$start,$row){
 
-
-	
-
-
+        $query=$this->db->query("SELECT *from transkrip where id=$id");
+        $expected=$query->result()[0];
+        $result=$this->Transkrip_model->requestById($id,$start,$row);
+    
+        $this->unit->run($result,$expected,null,__FUNCTION__,"Test ini adakah request dari id tertentu pada transaksi");
+      }
 
     }
