@@ -454,7 +454,6 @@
 
       //untuk Model/PerbuahanKuliah_model
       public function cekRequestById($id,$start,$row){
-
         $query=$this->db->query("SELECT *from transkrip where id=$id");
         $expected=$query->result()[0];
         $result=$this->Transkrip_model->requestById($id,$start,$row);
