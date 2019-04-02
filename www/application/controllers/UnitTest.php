@@ -227,7 +227,7 @@
             $this->db->select('requestDateTime');
             $this->db->from('transkrip');
             $query = $this->db->get();
-            $dateTime = $query->row;
+            $dateTime = $query->row();
             setlocale(LC_TIME, 'ind');
             $expected_result = strftime('%A, %B, %Y',(new DateTime($dateTime->requestDateTime))->getTimestamp());
             $test = $this->bluetape->dbDateTimeToReadableDate($dateTime->requestDateTime);
@@ -350,7 +350,7 @@
 
             $query = $this->db->get();
 
-            $row = $query->row;
+            $row = $query->row();
 
             return $row->name;
         }
