@@ -253,6 +253,7 @@
             $this->unit->run($data,$data2,__FUNCTION__,"Test ini mengecek apakah data sudah masuk atau tidak");
         }
         
+        
          
     public function cekJadwalByJamMulai($jamMulai,$hari,$user){
         $result=$this->JadwalDosen_model->cekJadwalByJamMulai($jamMulai,$hari,$user);
@@ -457,7 +458,6 @@
         $query=$this->db->query("SELECT *from transkrip where id=$id");
         $expected=$query->result()[0];
         $result=$this->Transkrip_model->requestById($id,$start,$row);
-    
         $this->unit->run($result,$expected,null,__FUNCTION__,"Test ini adakah request dari id tertentu pada transaksi");
       }
 
