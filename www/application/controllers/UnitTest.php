@@ -320,7 +320,6 @@
                 $result= $this->bluetape->yearMonthToSemesterCodeSimplified($year2,$month2);
             $expected='801';
                 $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek Konversi tahun dan bulan ke kode semester, disederhanakan menjadi dua semester");
-
         }
 
 	//--------------EXPECTED RESULTS-----------------------------------------------------------------------------------------------------------------------------------
