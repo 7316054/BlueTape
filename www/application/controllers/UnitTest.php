@@ -43,14 +43,14 @@
           //  $this->cekGetNpm();
            // $this->cekGetAllJadwal();
            // $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
-           $this->cekAddjadwal(); 
+           //$this->cekAddjadwal(); 
             
           //  $this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
            // $this->requestBy('anugrahjaya23@gmail.com',1,1);
            // $this->cekUpdateJadwal();
             //$this->cekDeleteJadwal(4);
-            //$this->cekRequestById(1,1,1);
-           // $this->cekRequestById(1,null,null);
+        $this->cekRequestById(1,1,1);
+         //  $this->cekRequestById(1,null,null);
             $this->report();
             
         }
@@ -398,17 +398,5 @@
             $this->unit->run($obj,null,__FUNCTION__,"Test ini mengecek apakah data sudah terdelete atau tidak");
           }
 
-
-
-          //untuk Model/PerbuahanKuliah_model
-          public function cekRequestById($id,$start,$row){
-
-            $query=$this->db->query("SELECT *from transkrip where id=$id");
-            $expected=$query->result()[0];
-            $result=$this->Transkrip_model->requestById($id,$start,$row);
-        
-            $this->unit->run($result,$expected,null,__FUNCTION__,"Test ini adakah request dari id tertentu pada transaksi");
-          }
-          
           
     }
