@@ -37,7 +37,7 @@
             $this->cekSemesterCodeToString();
             $this->cekYearMonthToSemesterCodeSimplified();
             //$this->requestByDosen('Samuel');
-            $this->getName('GABRIEL PANJI LAZUARDI');
+            $this->getName('ANUGRAH JAYA SAKTI');
             $this->dbDateTimeToReadableDate();
             $this->getEmail();
             $this->cekGetNpm();
@@ -346,7 +346,7 @@
         **/
         public function expectedResGetName($var){
             $this->db->where('name',$var);
-            $this->db->from('bluetape_userinfo');
+            $this->db->from('Bluetape_Userinfo');
 
             $query = $this->db->get();
 
