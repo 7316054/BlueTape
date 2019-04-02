@@ -48,7 +48,7 @@
           //  $this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
            // $this->requestBy('anugrahjaya23@gmail.com',1,1);
            // $this->cekUpdateJadwal();
-            $this->cekDeleteJadwal(4);
+            //$this->cekDeleteJadwal(4);
             //$this->cekRequestById(1,1,1);
            // $this->cekRequestById(1,null,null);
             $this->report();
