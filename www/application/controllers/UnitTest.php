@@ -55,8 +55,6 @@
             $this->cekGetNamaBulan();
             $this->deleteByUsername('anugrahjaya23@gmail.com');
             $this->cekDeleteJadwal(1);
-            $this->cekRequestById(1,1,1);
-            $this->cekRequestById(1,null,null);
             $this->report();
         }
 
