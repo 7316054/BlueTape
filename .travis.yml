@@ -15,7 +15,7 @@ before_script:
                                                       requestType varchar(8) ,
                                                       requestUsage varchar(256) ,
                                                       answer varchar(16) ,
-                                                      answeredByEmail varchar(128) L,
+                                                      answeredByEmail varchar(128) ,
                                                       answeredDateTime datetime ,
                                                       answeredMessage varchar(256) );'
 
