@@ -4,4 +4,4 @@ php:
 services: mysql
 cache: bundler
 before_install:
-  - mysql -u root --password="" < Test/bluetape.sql
+  - mysql -u dev --password="dev" < Test/bluetape.sql
