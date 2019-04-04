@@ -55,7 +55,7 @@ before_script:
                         insert into transkrip 
                         (1, '7316053@student.unpar.ac.id', '2019-03-26 15:28:58', 'DPS_ID', 'kuliah', 'printed', 'rootbluetape@gmail.com', '2019-04-02 10:06:09', 'oke'),
                         (3, '7316053@student.unpar.ac.id', '2019-04-02 10:21:03', 'LHS', 'kuliah', 'rejected', 'rootbluetape@gmail.com', '2019-04-02 14:25:33', 'Belum lunas pembayaran'),
-                        (4, '7316053@student.unpar.ac.id', '2019-04-02 14:25:58', 'LHS', 'Untuk beasiswa', 'printed', 'rootbluetape@gmail.com', '2019-04-02 14:26:32', 'Ambil di TU');
+                        (4, '7316053@student.unpar.ac.id', '2019-04-02 14:25:58', 'LHS', 'Untuk beasiswa', 'printed', 'rootbluetape@gmail.com', '2019-04-02 14:26:32', 'Ambil di TU');"
 
 script:
 - php www/index.php UnitTest
