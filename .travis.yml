@@ -8,8 +8,21 @@ before_script:
   - cp www/application/config/auth-dev.php www/application/config/auth.php
   - cp www/application/config/database-dev.php www/application/config/database.php
   - mysql -e 'CREATE DATABASE IF NOT EXISTS bluetape;'
-  - mysql  -e 'USE bluetape; create table transkrip (id int , requestByEmail varchar(128), requestDateTime datetime , requestType varchar(8) , requestUsage varchar(256) , answer varchar(16) , answeredByEmail varchar(128) , answeredDateTime datetime, answeredMessage varchar(256) );'
-  - mysql -e 'USE bluetape;create table Bluetape_Userinfo(email varchar(128),name varchar(256),lastUpdate datetime);'
+  - mysql  -e 'USE bluetape; create table transkrip 
+                                                      (id int,
+                                                      requestByEmail varchar(128) ,
+                                                      requestDateTime datetime ,
+                                                      requestType varchar(8) ,
+                                                      requestUsage varchar(256) ,
+                                                      answer varchar(16) ,
+                                                      answeredByEmail varchar(128) L,
+                                                      answeredDateTime datetime ,
+                                                      answeredMessage varchar(256) );'
+
+  - mysql -e 'USE bluetape;create table Bluetape_Userinfo(email varchar(128) ,
+                                                          name varchar(256) ,
+                                                          lastUpdate datetime );'
+
   - mysql -e 'USE bluetape;create table PerubahanKuliah(id int ,
                                                           requestByEmail varchar(256) ,
                                                           requestDateTime datetime ,
@@ -25,7 +38,16 @@ before_script:
                                                           answeredByEmail varchar(256),
                                                           answeredDateTime datetime ,
                                                           answeredMessage varchar(256));'
-  - mysql -e 'USE bluetape;create table jadwal_dosen (id int , user varchar(256), hari int , jam_mulai int , durasi int , jenis varchar(256) , label varchar(100) , lastUpdate datetime );'
+
+  - mysql -e 'USE bluetape;create table jadwal_dosen (id int,
+                                                      user varchar(256),
+                                                      hari int(11) ,
+                                                      jam_mulai int(11) ,
+                                                      durasi int(11) ,
+                                                      jenis varchar(256) ,
+                                                      label varchar(100) ,
+                                                      lastUpdate datetime);'
+
   - mysql -e "USE bluetape;
                             insert into PerubahanKuliah values 
                             (1, 'rootbluetape@gmail.com', '2019-04-02 09:48:23', 'Teknologi ', 'AIF123', 'A', 'G', '2019-04-02 09:47:00', '09021', '[{\"dateTime\":\"2019-04-05 09:48:00\",\"room\":\"09022\"}]', '', 'confirmed', 'rootbluetape@gmail.com', '2019-04-02 09:58:33', 'oke'),
@@ -52,7 +74,7 @@ before_script:
                             (11, 'rootbluetape@gmail.com', 4, 7, 3, 'kelas', 'Kelas Jaringan Komputer', '2019-04-02 09:13:43'),
                             (12, 'rootbluetape@gmail.com', 3, 10, 2, 'kelas', 'Kelas Multi Agen', '2019-04-02 09:14:23');"
   - mysql -e "USE bluetape; 
-                        insert into transkrip 
+                        insert into transkrip values
                         (1, '7316053@student.unpar.ac.id', '2019-03-26 15:28:58', 'DPS_ID', 'kuliah', 'printed', 'rootbluetape@gmail.com', '2019-04-02 10:06:09', 'oke'),
                         (3, '7316053@student.unpar.ac.id', '2019-04-02 10:21:03', 'LHS', 'kuliah', 'rejected', 'rootbluetape@gmail.com', '2019-04-02 14:25:33', 'Belum lunas pembayaran'),
                         (4, '7316053@student.unpar.ac.id', '2019-04-02 14:25:58', 'LHS', 'Untuk beasiswa', 'printed', 'rootbluetape@gmail.com', '2019-04-02 14:26:32', 'Ambil di TU');"
