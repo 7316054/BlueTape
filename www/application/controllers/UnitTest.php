@@ -251,7 +251,7 @@
 			 //Test Case2
 			 $request = $this->Transkrip_model->requestBy('7316054@student.unpar.ac.id');
 			$test2 = $this->Transkrip_model->requestTypeForbidden($request);
-			$expected_result2 ='Anda tidak bisa meminta cetak karena ada permintaan lain yang belum selesai.'
+			$expected_result2 ='Anda tidak bisa meminta cetak karena ada permintaan lain yang belum selesai.';
 			$test_name2 = 'Memeriksa method requestTypeForbidden dari Transkrip_model (Test case 2)';
 			 $this->unit->run($test2, $expected_result2, $test_name2);
 
