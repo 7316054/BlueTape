@@ -24,6 +24,7 @@
             } 
             $this->load->library('BlueTape');
             $this->load->model('JadwalDosen_model');
+	    $this->load->model('Transkrip_model');
             $this->load->database();
        }
        /**
@@ -60,6 +61,7 @@
             $this->cekDeleteJadwal(1);
             $this->cekRequestById(1,1,1);
             $this->cekRequestById(1,null,null);
+	    $this->cekRequestByIdTranskrip(1);
             $this->report();
             
         }
@@ -468,6 +470,24 @@
             $expected=$query->result()[0];
             $result=$this->Transkrip_model->requestById($id,$start,$row);
             $this->unit->run($result,$expected,null,__FUNCTION__,"Test ini adakah request dari id tertentu pada transaksi");
+        }
+	//transkrip model
+        public function cekRequestByIdTranskrip($id){
+            $res=$this->Transkrip_model->requestById($id);
+            
+            $exceptedRes=(object)[
+                "id" => 1,
+                "requestByEmail" => "7316053@student.unpar.ac.id",
+                "requestDateTime" => "2019-03-26 15:28:58",
+                "requestType" => "DPS_ID",
+                "requestUsage" => "kuliah",
+                "answer" => "printed",
+                "answeredByEmail" => "rootbluetape@gmail.com",
+                "answeredDateTime" => "2019-04-02 10:06:09",
+                "answeredMessage" => "oke"
+            ];
+
+            $this->unit->run($res->requestByEmail,$exceptedRes->requestByEmail,__FUNCTION__,"Test requestby berdasarkan id");
         }
 
     }
