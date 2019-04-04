@@ -7,7 +7,6 @@ cache: bundler
 before_script:
   - cp www/application/config/auth-dev.php www/application/config/auth.php
   - cp www/application/config/database-dev.php www/application/config/database.php
-<<<<<<< HEAD
   - mysql -e "CREATE DATABASE IF NOT EXISTS bluetape;"
   - mysql -e "USE bluetape; create table bluetape_userinfo(email varchar(128),name varchar(256),lastUpdate datetime);"
   - mysql -e "USE bluetape; create table Bluetape_Userinfo(email varchar(128),name varchar(256),lastUpdate datetime);"
@@ -19,18 +18,8 @@ before_script:
   - mysql -e "USE bluetape; insert into bluetape_userinfo values ('anugrahjaya23@gmail.com' , 'anugrah jaya' , '2019-04-02 04:40:28');"
   - mysql -e "USE bluetape; insert into Bluetape_Userinfo values ('anugrahjaya23@gmail.com' , 'anugrah jaya' , '2019-04-02 04:40:28');"
   - mysql -e "USE bluetape; insert into jadwal_dosen values('','jaya',1,1,1,'a','a','2019-02-25 08:23:12');"
-
-=======
-  - mysql -e 'CREATE DATABASE IF NOT EXISTS bluetape;'
-  - mysql -e 'USE bluetape;create table bluetape_userinfo(email varchar(128),name varchar(256),lastUpdate datetime);'
-  - mysql -e 'USE bluetape;create table PerubahanKuliah(id int,requestByEmail varchar(256),requestDateTime datetime);'
-  - mysql -e 'USE bluetape;create table jadwal_dosen (id int , user varchar(256), hari int , jam_mulai int , durasi int , jenis varchar(256) , label varchar(100) , lastUpdate datetime );'
-  - mysql -e 'USE bluetape;create table transkrip (id int,requestByEmail varchar(128),requestDateTime datetime,requestType varchar(8),requestUsage varchar(256),answer varchar(16),answeredByEmail varchar(128),answeredDateTime datetime,answeredMessage varchar(256));'
-  - mysql -e "USE bluetape;insert into PerubahanKuliah (requestByEmail) values ('7316054@student.unpar.ac.id');"
-  - mysql -e "USE bluetape;insert into bluetape_userinfo values ('7316054@student.unpar.ac.id' , 'Samuel Pangihutan Sihombing' , '2019-02-22 08:12:24');"
-  - mysql -e "USE bluetape;insert into jadwal_dosen values('','jaya',1,1,1,'a','a','2019-02-25 08:23:12');"
   - mysql -e "USE bluetape;insert into transkrip values(1, '7316053@student.unpar.ac.id', '2019-03-26 15:28:58', 'DPS_ID', 'kuliah', 'printed', 'rootbluetape@gmail.com', '2019-04-02 10:06:09', 'oke');"
->>>>>>> 8127dcfb55f0255d69f223090c2a524a7402f866
+
 
 
 script:
