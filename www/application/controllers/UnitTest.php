@@ -127,9 +127,6 @@
                 $i++;
             }
 
-            print_r($result);
-            print_r($expected_result);
-
             $this->unit->run($result,$expected_result,__FUNCTION__,'Memeriksa siapa yg request');
         }
        /**
