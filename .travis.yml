@@ -22,6 +22,10 @@ before_script:
   - mysql -e 'USE bluetape;create table Bluetape_Userinfo(email varchar(128) ,
                                                           name varchar(256) ,
                                                           lastUpdate datetime );'
+  
+   - mysql -e 'USE bluetape;create table bluetape_Userinfo(email varchar(128) ,
+                                                          name varchar(256) ,
+                                                          lastUpdate datetime );'
 
   - mysql -e 'USE bluetape;create table PerubahanKuliah(id int ,
                                                           requestByEmail varchar(256) ,
@@ -54,12 +58,21 @@ before_script:
                             (3, 'rootbluetape@gmail.com', '2019-04-02 14:17:40', 'Multi Agen', 'AIF234', 'A', 'X', '2019-04-04 10:00:00', '09020', '[]', 'Kelas diadakan karena dosen sakit', 'confirmed', 'rootbluetape@gmail.com', '2019-04-02 14:20:55', 'Boleh'),
                             (4, 'rootbluetape@gmail.com', '2019-04-02 14:19:47', 'Jaringan Komputer', 'AIF101', 'A', 'G', '2019-04-05 07:00:00', '09021', '[{\"dateTime\":\"2019-04-12 07:00:00\",\"room\":\"10317\"}]', 'Kelas diganti karena jaya sakit perut', 'confirmed', 'rootbluetape@gmail.com', '2019-04-02 14:21:03', 'Dipersilahkan'),
                             (5, 'rootbluetape@gmail.com', '2019-04-02 14:24:10', 'Proyek Informatika', 'AIF142', 'B', 'X', '2019-04-01 07:00:00', '09016', '[]', 'Kelas ditiadakan karena dosen ada urusan', 'confirmed', 'rootbluetape@gmail.com', '2019-04-02 14:24:20', '');"
+  
   - mysql -e "USE bluetape; 
                           insert into Bluetape_Userinfo values 
                             ('7316053@student.unpar.ac.id', 'ANUGRAH JAYA SAKTI', '2019-04-02 09:25:44'),
                             ('anugrahjaya23@gmail.com', 'anugrah jaya', '2019-04-02 04:40:28'),
                             ('muhammmaddipo@gmail.com', 'Muhammad Dipo', '2019-04-02 00:00:00'),
                             ('rootbluetape@gmail.com', 'Root Bluetape', '2019-04-02 09:26:20');"
+
+ - mysql -e "USE bluetape; 
+                          insert into bluetape_Userinfo values 
+                            ('7316053@student.unpar.ac.id', 'ANUGRAH JAYA SAKTI', '2019-04-02 09:25:44'),
+                            ('anugrahjaya23@gmail.com', 'anugrah jaya', '2019-04-02 04:40:28'),
+                            ('muhammmaddipo@gmail.com', 'Muhammad Dipo', '2019-04-02 00:00:00'),
+                            ('rootbluetape@gmail.com', 'Root Bluetape', '2019-04-02 09:26:20');"
+
   - mysql -e "USE bluetape; 
                             insert into jadwal_dosen values
                             (2, 'gemini2911f665@gmail.com', 0, 7, 1, 'konsultasi', 'aa', '2019-03-28 08:30:32'),
@@ -73,6 +86,7 @@ before_script:
                             (10, 'rootbluetape@gmail.com', 0, 13, 3, 'kelas', 'Kelas Proyek Informatika', '2019-04-02 09:13:27'),
                             (11, 'rootbluetape@gmail.com', 4, 7, 3, 'kelas', 'Kelas Jaringan Komputer', '2019-04-02 09:13:43'),
                             (12, 'rootbluetape@gmail.com', 3, 10, 2, 'kelas', 'Kelas Multi Agen', '2019-04-02 09:14:23');"
+
   - mysql -e "USE bluetape; 
                         insert into transkrip values
                         (1, '7316053@student.unpar.ac.id', '2019-03-26 15:28:58', 'DPS_ID', 'kuliah', 'printed', 'rootbluetape@gmail.com', '2019-04-02 10:06:09', 'oke'),
