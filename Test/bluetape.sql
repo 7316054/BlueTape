@@ -13,7 +13,7 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 --CREATE TEST USER
-CREATE USER 'dev'@'localhost' IDENTIFIED BY 'dev';
+CREATE USER 'root'@'localhost' IDENTIFIED BY '';
 GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP ON *.* TO 'dev'@'localhost';
 
 --CREATE DB
