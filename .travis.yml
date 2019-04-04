@@ -1,14 +1,7 @@
 language: php
 php:
   - '7.2'
-services: 
-    - mysql
-cache: 
-    -bundler
-
+services: mysql
+cache: bundler
 before_install:
-    - mysql -u root --password ="" < Test/bluetape.sql
-
-
-script:
-- php www/index.php UnitTest
+  - mysql -u root --password="" < Test/bluetape.sql
