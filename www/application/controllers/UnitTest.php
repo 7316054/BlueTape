@@ -24,6 +24,7 @@
             } 
             $this->load->library('BlueTape');
             $this->load->model('JadwalDosen_model');
+			$this->load->Model('Transkrip_model');
             $this->load->database();
        }
        /**
@@ -45,6 +46,7 @@
             $this->cekAddjadwal();
 			$this->checkKolomKeHari();
             $this->checkHariKeKolom();
+			$this->checkRequestTypesForbidden();
             $this->cekGetNamaHari();
             $this->cekGetNamaBulan();
             
@@ -230,6 +232,32 @@
 
             $this->unit->run($test2, $expected_result2, $test_name2);
         }
+
+		/**
+		* Memeriksa method request type forbidden dari Transkrip_model
+		*
+		*
+		**/
+		public function checkRequestTypesForbidden(){
+			
+
+			//Test case 1
+			$request = $this->Transkrip_model->requestBy('7316053@student.unpar.ac.id');
+			$test1 = $this->Transkrip_model->requestTypeForbidden($request);
+			$expected_result1 = array('DPS_ID'=> TRUE, 'LHS' => TRUE, 'LHS'=>TRUE);
+			$test_name1 = 'Memeriksa method requestTypeForbidden dari Transkrip_model (Test case 1)';
+			 $this->unit->run($test1, $expected_result1, $test_name1);
+
+			 //Test Case2
+			 $request = $this->Transkrip_model->requestBy('7316054@student.unpar.ac.id');
+			$test2 = $this->Transkrip_model->requestTypeForbidden($request);
+			$expected_result2 ='Anda tidak bisa meminta cetak karena ada permintaan lain yang belum selesai.'
+			$test_name2 = 'Memeriksa method requestTypeForbidden dari Transkrip_model (Test case 2)';
+			 $this->unit->run($test2, $expected_result2, $test_name2);
+
+			 //Test case 3
+
+		}
 
         /**
          * Method untuk memeriksa method dbDateTimeToReadableDate pada libraries/BlueTape
@@ -427,7 +455,7 @@
             $namaHari = 'Senin';
 
             $test = $this->JadwalDosen_model->kolomKeHari($namaHari);
-            $exceptedRes = 2;
+            $exceptedRes = FALSE;
 
             $test_name = 'Memerikas method kolom ke hari dari JadwalDosen_model';
 
