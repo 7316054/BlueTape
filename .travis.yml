@@ -4,4 +4,5 @@ php:
 services: mysql
 cache: bundler
 before_install:
-  - mysql -u dev --password="dev" < Test/bluetape.sql
+  - mysql -u root -e "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('')"
+  - mysql -u root --password="" < Test/bluetape.sql
