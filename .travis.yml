@@ -9,6 +9,7 @@ before_script:
   - cp www/application/config/database-dev.php www/application/config/database.php
   - mysql -e 'CREATE DATABASE IF NOT EXISTS bluetape;'
   - mysql  -e 'USE bluetape; create table transkrip 
+
                                                       (id int,
                                                       requestByEmail varchar(128) ,
                                                       requestDateTime datetime ,
