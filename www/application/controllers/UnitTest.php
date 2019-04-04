@@ -24,8 +24,9 @@
             } 
             $this->load->library('BlueTape');
             $this->load->model('JadwalDosen_model');
-            $this->load->database();
             $this->load->model('Transkrip_model');
+            $this->load->database();
+    
        }
        /**
         * Method untuk menjalankan Test case
@@ -49,8 +50,10 @@
            // $this->requestBy('anugrahjaya23@gmail.com',1,1);
            // $this->cekUpdateJadwal();
             //$this->cekDeleteJadwal(4);
-        $this->cekRequestById(1,1,1);
+       // $this->cekRequestById(1,1,1);
          //  $this->cekRequestById(1,null,null);
+         $this->cekRequestBy('7316053@student.unpar.ac.id',null,null);
+         $this->cekRequestBy('7316053@student.unpar.ac.id',1,3);
             $this->report();
             
         }
@@ -90,6 +93,35 @@
             }        
         }
 
+
+        /**
+         * cek Requesy by pada transkrip 
+         */
+        public function cekRequestBy($email,$rows,$start){
+            $temp=$this->Transkrip_model->requestsBy($email,$rows,$start);
+            $query=$this->db->query("SELECT *
+                 FROM transkrip
+                 WHERE requestByEmail='$email' Order By transkrip.id DESC
+                 ");
+            $obj=$query->result();
+            $expected_result=array();
+            $result=array();
+
+            for($i=0;$i<sizeof($temp);$i++){
+                if (is_object($temp[$i])) {
+                    $result[$i]= get_object_vars($temp[$i]);
+                }
+                if (is_object($obj[$i])) {
+                    $expected_result[$i]= get_object_vars($obj[$i]);
+                }
+                $i++;
+            }
+
+            print_r($result);
+            print_r($expected_result);
+
+            $this->unit->run($result,$expected_result,__FUNCTION__,'Memeriksa siapa yg request');
+        }
        /**
         * Method yang di gunakan untuk melakukan testing terhadap
         * jadwal menggunakan username yang di lakukan cek pada databasenya
