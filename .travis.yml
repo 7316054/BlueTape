@@ -7,20 +7,20 @@ cache: bundler
 before_script:
   - cp www/application/config/auth-dev.php www/application/config/auth.php
   - cp www/application/config/database-dev.php www/application/config/database.php
-  - mysql -e 'CREATE DATABASE IF NOT EXISTS bluetape;'
-  - mysql -e 'USE bluetape;create table bluetape_userinfo(email varchar(128),name varchar(256),lastUpdate datetime);'
-  - mysql -e 'USE bluetape;create table perubahankuliah(id int,requestByEmail varchar(256),requestDateTime datetime);'
-  - mysql -e 'USE bluetape;create table jadwal_dosen (id int , user varchar(256), hari int , jam_mulai int , durasi int , jenis varchar(256) , label varchar(100) , lastUpdate datetime );'
-  - mysql -e 'USE bluetape;create table transkrip (id int , requestByEmail varchar(128), requestDateTime datetime , requestType varchar(8) , requestUsage varchar(256) , answer varchar(16) , answeredByEmail varchar(128) , answeredDateTime datetime, answeredMessage varchar(256) );'
+  - mysql -e "CREATE DATABASE IF NOT EXISTS bluetape;"
+  - mysql -e "USE bluetape; create table bluetape_userinfo(email varchar(128),name varchar(256),lastUpdate datetime);"
+  - mysql -e "USE bluetape; create table perubahankuliah(id int,requestByEmail varchar(256),requestDateTime datetime);"
+  - mysql -e "USE bluetape; create table jadwal_dosen (id int , user varchar(256), hari int , jam_mulai int , durasi int , jenis varchar(256) , label varchar(100) , lastUpdate datetime );"
+  - mysql -e "USE bluetape; create table transkrip (id int , requestByEmail varchar(128), requestDateTime datetime , requestType varchar(8) , requestUsage varchar(256) , answer varchar(16) , answeredByEmail varchar(128) , answeredDateTime datetime, answeredMessage varchar(256) );"
 
 
-   - mysql -e "USE bluetape; INSERT INTO perubahankuliah select 1, 'rootbluetape@gmail.com', '2019-04-02 09:48:23', 'Teknologi ', 'AIF123', 'A', 'G', '2019-04-02 09:47:00', '09021', '[{\"dateTime\":\"2019-04-05 09:48:00\",\"room\":\"09022\"}]', '', 'confirmed', 'rootbluetape@gmail.com', '2019-04-02 09:58:33', 'oke' "
+   - mysql -e "USE bluetape; INSERT INTO perubahankuliah select 1, 'rootbluetape@gmail.com', '2019-04-02 09:48:23', 'Teknologi ', 'AIF123', 'A', 'G', '2019-04-02 09:47:00', '09021', '[{\"dateTime\":\"2019-04-05 09:48:00\",\"room\":\"09022\"}]', '', 'confirmed', 'rootbluetape@gmail.com', '2019-04-02 09:58:33', 'oke'; "
 
-   - mysql -e "USE bluetape; INSERT INTO transkrip select 1, '7316053@student.unpar.ac.id', '2019-03-26 15:28:58', 'DPS_ID', 'kuliah', 'printed', 'rootbluetape@gmail.com', '2019-04-02 10:06:09', 'oke'"
+   - mysql -e "USE bluetape; INSERT INTO transkrip select 1, '7316053@student.unpar.ac.id', '2019-03-26 15:28:58', 'DPS_ID', 'kuliah', 'printed', 'rootbluetape@gmail.com', '2019-04-02 10:06:09', 'oke';"
   
-   - mysql -e "USE bluetape; INSERT INTO jadwal_dosen select 1, 'gemini2911f665@gmail.com', 0, 7, 1, 'konsultasi', 'aa', '2019-03-28 08:30:32'"
+   - mysql -e "USE bluetape; INSERT INTO jadwal_dosen select 1, 'gemini2911f665@gmail.com', 0, 7, 1, 'konsultasi', 'aa', '2019-03-28 08:30:32';"
 
-   - mysql -e "USE bluetape; INSERT INTO bluetape_userinfo select '7316053@student.unpar.ac.id', 'ANUGRAH JAYA SAKTI', '2019-04-02 09:25:44'"
+   - mysql -e "USE bluetape; INSERT INTO bluetape_userinfo select '7316053@student.unpar.ac.id', 'ANUGRAH JAYA SAKTI', '2019-04-02 09:25:44';"
 
 script:
 - php www/index.php UnitTest
