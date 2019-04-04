@@ -10,7 +10,21 @@ before_script:
   - mysql -e 'CREATE DATABASE IF NOT EXISTS bluetape;'
   - mysql  -e 'USE bluetape; create table transkrip (id int , requestByEmail varchar(128), requestDateTime datetime , requestType varchar(8) , requestUsage varchar(256) , answer varchar(16) , answeredByEmail varchar(128) , answeredDateTime datetime, answeredMessage varchar(256) );'
   - mysql -e 'USE bluetape;create table Bluetape_Userinfo(id int, email varchar(128),name varchar(256),lastUpdate datetime);'
-  - mysql -e 'USE bluetape;create table PerubahanKuliah(id int,requestByEmail varchar(256),requestDateTime datetime);'
+  - mysql -e 'USE bluetape;create table PerubahanKuliah(id int(9) ,
+                                                          requestByEmail varchar(256) ,
+                                                          requestDateTime datetime ,
+                                                          mataKuliahName varchar(256) ,
+                                                          mataKuliahCode varchar(9) ,
+                                                          class varchar(1) ,
+                                                          changeType varchar(1) ,
+                                                          fromDateTime datetime,
+                                                          fromRoom varchar(16) ,
+                                                          'to' varchar(1024) ,
+                                                          remarks varchar(256) ,
+                                                          answer varchar(16) ,
+                                                          answeredByEmail varchar(256),
+                                                          answeredDateTime datetime ,
+                                                          answeredMessage varchar(256));'
   - mysql -e 'USE bluetape;create table jadwal_dosen (id int , user varchar(256), hari int , jam_mulai int , durasi int , jenis varchar(256) , label varchar(100) , lastUpdate datetime );'
   - mysql -e "USE bluetape;
                             insert into PerubahanKuliah values 
