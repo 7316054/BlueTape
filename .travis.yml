@@ -19,7 +19,7 @@ before_script:
                                                           changeType varchar(1) ,
                                                           fromDateTime datetime,
                                                           fromRoom varchar(16) ,
-                                                          to varchar(1024) ,
+                                                          ke varchar(1024) ,
                                                           remarks varchar(256) ,
                                                           answer varchar(16) ,
                                                           answeredByEmail varchar(256),
