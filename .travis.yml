@@ -7,7 +7,6 @@ cache: bundler
 before_script:
   - cp www/application/config/auth-dev.php www/application/config/auth.php
   - cp www/application/config/database-dev.php www/application/config/database.php
-  - mysql -u root --password ="" < Test/bluetape.sql
   - mysql -e 'CREATE DATABASE IF NOT EXISTS bluetape;'
   - mysql -e 'USE bluetape;create table bluetape_userinfo(email varchar(128),name varchar(256),lastUpdate datetime);'
   - mysql -e 'USE bluetape;create table perubahankuliah(id int,requestByEmail varchar(256),requestDateTime datetime);'
