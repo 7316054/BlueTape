@@ -23,7 +23,7 @@ before_script:
   - mysql -e 'USE bluetape;create table Bluetape_Userinfo(email varchar(128) ,
                                                           name varchar(256) ,
                                                           lastUpdate datetime );'
-  - mysql -e 'USE bluetape;create table bluetape_Userinfo(email varchar(128) ,
+  - mysql -e 'USE bluetape;create table bluetape_userinfo(email varchar(128) ,
                                                           name varchar(256) ,
                                                           lastUpdate datetime );'
   - mysql -e 'USE bluetape;create table PerubahanKuliah(id int ,
