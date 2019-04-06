@@ -73,7 +73,7 @@ before_script:
                                                       jenis varchar(256) ,
                                                       label varchar(100) ,
                                                       lastUpdate datetime);'
-   - mysql -e 'USE bluetape;create table Jadwal_dosen (id int,
+  - mysql -e 'USE bluetape;create table Jadwal_dosen (id int,
                                                       user varchar(256),
                                                       hari int(11) ,
                                                       jam_mulai int(11) ,
