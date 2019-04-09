@@ -542,23 +542,9 @@
             $this->unit->run($obj,null,__FUNCTION__,"Test ini mengecek apakah data sudah terdelete atau tidak");
         }
 
-<<<<<<< HEAD
-        //untuk Model/PerbuahanKuliah_model (pembuat error)
-        public function cekRequestById($id,$start,$row){
-            $query=$this->db->query("SELECT *from transkrip where id=$id");
-            $expected=$query->result()[0];
-            $result=$this->Transkrip_model->requestById($id,$start,$row);
-            $this->unit->run($result,$expected,null,__FUNCTION__,"Test ini adakah request dari id tertentu pada transaksi");
-        }
-	    //transkrip model
-        public function cekRequestByIdTranskrip($id,$rows,$start){
-            $res=$this->Transkrip_model->requestById($id,$rows,$start);
-            
-=======
 	    //PATH : Model/transkrip_model.php
         public function cekRequestByIdTranskrip($id,$rows,$start){
             $res=$this->Transkrip_model->requestById($id,$rows,$start);
->>>>>>> 5acd00f1f4fc27920507cebf35d13d05465a95b2
             $exceptedRes=(object)[
                 "id" => 1,
                 "requestByEmail" => "7316053@student.unpar.ac.id",
