@@ -36,29 +36,28 @@
             $this->cekYearMonthToSemesterCode();
             $this->cekSemesterCodeToString();
             $this->cekYearMonthToSemesterCodeSimplified();
-            //$this->requestByDosen('Samuel');
-          //  $this->getName('anugrahjaya23@gmail.com');
-          //  $this->dbDateTimeToReadableDate();
-          //  $this->getEmail();
-          //  $this->cekGetNpm();
-           // $this->cekGetAllJadwal();
-           // $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
+            $this->getName('anugrahjaya23@gmail.com');
+            $this->dbDateTimeToReadableDate();
+            $this->getEmail();
+            $this->cekGetNpm();
+            $this->cekGetAllJadwal();
+            $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
 			$this->checkRequestTypesForbidden();
-           // $this->cekAddjadwal();
-			//$this->checkKolomKeHari();
-            //$this->checkHariKeKolom();
-           // $this->cekGetNamaHari();
-            //$this->cekGetNamaBulan();
-            //$this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
-            //$this->requestBy('anugrahjaya23@gmail.com',1,1);
-          //  $this->cekUpdateJadwal();
-          //  $this->cekGetNamaHari();
-           // $this->cekGetNamaBulan();
-          //  $this->deleteByUsername('anugrahjaya23@gmail.com');
-           // $this->cekDeleteJadwal(1);
-          //  $this->cekRequestByIdTranskrip(1);
-          //  $this->cekRequestBy('7316053@student.unpar.ac.id',null,null);
-           // $this->cekRequestBy('7316053@student.unpar.ac.id',1,3);
+            $this->cekAddjadwal();
+			$this->checkKolomKeHari();
+            $this->checkHariKeKolom();
+            $this->cekGetNamaHari();
+            $this->cekGetNamaBulan();
+            $this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
+            $this->requestBy('anugrahjaya23@gmail.com',1,1);
+            $this->cekUpdateJadwal();
+            $this->cekGetNamaHari();
+            $this->cekGetNamaBulan();
+            $this->deleteByUsername('anugrahjaya23@gmail.com');
+            $this->cekDeleteJadwal(1);
+            $this->cekRequestByIdTranskrip(1);
+            $this->cekRequestBy('7316053@student.unpar.ac.id',null,null);
+            $this->cekRequestBy('7316053@student.unpar.ac.id',1,3);
             $this->report();
             
         }
@@ -206,20 +205,7 @@
                 'angkatan 2016'
             );
         }
-        /**
-        * Method untuk memeriksa method requestBy pada model jadwal_dosen
-        * @var adalaha nama dari dosen
-        * Expected result merupakan Array dari hasil query
-        **/
-        public function requestByDosen($var){
-            
-            $test = $this->JadwalDosen_model->requestsBy($var);
-            //print_r($test);
-            $expected_result = $this->expectedResDosen($var);
-            $test_name = 'Memeriksa method requestBy dari JadwalDosen_model';
-
-            $this->unit->run($test, $expected_result, $test_name);
-        }   
+  
        
 
         public function getEmail(){
