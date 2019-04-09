@@ -266,7 +266,7 @@
             $query = $this->db->get();
             $dateTime = $query->row();
             setlocale(LC_TIME, 'ind');
-            $expected_result = strftime('%A, %B, %Y',(new DateTime($dateTime->requestDateTime))->getTimestamp());
+            $expected_result = strftime('%A, %#d %B %Y',(new DateTime($dateTime->requestDateTime))->getTimestamp());
             $test = $this->bluetape->dbDateTimeToReadableDate($dateTime->requestDateTime);
             $test_name = 'Memeriksa method dbDateTimeToReadableDate dari BlueTape';
 
