@@ -514,7 +514,4 @@
 
             $this->unit->run($res->requestByEmail,$exceptedRes->requestByEmail,__FUNCTION__,"Test requestby berdasarkan id");
         }
-
-    
-
     }
