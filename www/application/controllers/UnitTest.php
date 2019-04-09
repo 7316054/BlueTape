@@ -24,7 +24,8 @@
             } 
             $this->load->library('BlueTape');
             $this->load->model('JadwalDosen_model');
-	        $this->load->model('Transkrip_model');
+            $this->load->model('Transkrip_model');
+            $this->load->model('PerubahanKuliah_model');
             $this->load->database();
        }
        /**
@@ -59,8 +60,9 @@
             $this->cekRequestByIdTranskrip(1,3,0);
             $this->cekRequestBy('7316053@student.unpar.ac.id',null,null);
             $this->cekRequestBy('7316053@student.unpar.ac.id',1,3);
+            $this->cekRequestByPerubahanKuliah('rootbluetape@gmail.com',null,null);
+            $this->cekRequestByPerubahanKuliah('rootbluetape@gmail.com',1,0);
             $this->report();
-            
         }
 
        private function report() {
@@ -558,5 +560,34 @@
             ];
 
             $this->unit->run($res->requestByEmail,$exceptedRes->requestByEmail,__FUNCTION__,"Test requestby berdasarkan id");
+        }
+
+        /** 
+         * Path: Models/PerubahanKuliah_model.php
+        */
+        public function cekRequestByPerubahanKuliah($email,$row,$start){
+            $temp=$this->PerubahanKuliah_model->requestsBy($email,$row,$start);
+
+            $query=$this->db->query("SELECT *
+                 FROM PerubahanKuliah
+                 WHERE requestByEmail='$email'
+                 Order by requestDateTime DESC
+                 ");
+            $obj=$query->result();
+            $expected_result=array();
+            $result=array();
+
+            for($i=0;$i<sizeof($temp);$i++){
+                if (is_object($temp[$i])) {
+                    $result[$i]= get_object_vars($temp[$i]);
+                }
+                if (is_object($obj[$i])) {
+                    $expected_result[$i]= get_object_vars($obj[$i]);
+                }
+                $i++;
+            }
+            $this->unit->run($result,$expected_result,__FUNCTION__,'Memeriksa siapa yg request');
+
+         
         }
     }
