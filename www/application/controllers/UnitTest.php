@@ -262,7 +262,7 @@
 
 		/**
 		* Memeriksa method request type forbidden dari Transkrip_model
-		*
+		* path model/Transkrip_model
 		*
 		**/
 		public function checkRequestTypesForbidden(){
