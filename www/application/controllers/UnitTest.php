@@ -36,7 +36,7 @@
             $this->cekYearMonthToSemesterCode();
             $this->cekSemesterCodeToString();
             $this->cekYearMonthToSemesterCodeSimplified();
-            //$this->requestByDosen('Samuel');
+            $this->requestByDosen('Samuel');
             $this->getName('anugrahjaya23@gmail.com');
             $this->dbDateTimeToReadableDate();
             $this->getEmail();
@@ -50,8 +50,8 @@
             $this->cekGetNamaHari();
             $this->cekGetNamaBulan();
             
-            //$this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
-            //$this->requestBy('anugrahjaya23@gmail.com',1,1);
+            $this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
+            $this->requestBy('anugrahjaya23@gmail.com',1,1);
             $this->cekUpdateJadwal();
             $this->cekGetNamaHari();
             $this->cekGetNamaBulan();
@@ -268,8 +268,10 @@
             $query = $this->db->get();
             $dateTime = $query->row();
             setlocale(LC_TIME, 'ind');
-            $expected_result = strftime('%A, %B, %Y',(new DateTime($dateTime->requestDateTime))->getTimestamp());
+            $expected_result = strftime('%A, %#d %B %Y',(new DateTime($dateTime->requestDateTime))->getTimestamp());
+			print_r($expected_result);
             $test = $this->bluetape->dbDateTimeToReadableDate($dateTime->requestDateTime);
+			print_r($this->bluetape->dbDateTimeToReadableDate($dateTime->requestDateTime));
             $test_name = 'Memeriksa method dbDateTimeToReadableDate dari BlueTape';
 
             $this->unit->run($test, $expected_result, $test_name);
