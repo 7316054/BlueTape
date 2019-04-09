@@ -24,7 +24,11 @@
             } 
             $this->load->library('BlueTape');
             $this->load->model('JadwalDosen_model');
+<<<<<<< HEAD
             $this->load->model('Transkrip_model');
+=======
+	        $this->load->model('Transkrip_model');
+>>>>>>> dcf3b3dde83f8f3608e73db66d348a3bc339b07c
             $this->load->database();
        }
        /**
@@ -48,20 +52,22 @@
             $this->checkHariKeKolom();
             $this->cekGetNamaHari();
             $this->cekGetNamaBulan();
-            
             //$this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
             //$this->requestBy('anugrahjaya23@gmail.com',1,1);
             $this->cekUpdateJadwal();
             $this->cekGetNamaHari();
             $this->cekGetNamaBulan();
-
-            
-
             $this->deleteByUsername('anugrahjaya23@gmail.com');
             $this->cekDeleteJadwal(1);
+<<<<<<< HEAD
             $this->cekRequestById(1,1,1);
             $this->cekRequestById(1,null,null);
             $this->cekRequestByIdTranskrip(1);
+=======
+            $this->cekRequestByIdTranskrip(1);
+            $this->cekRequestBy('7316053@student.unpar.ac.id',null,null);
+            $this->cekRequestBy('7316053@student.unpar.ac.id',1,3);
+>>>>>>> dcf3b3dde83f8f3608e73db66d348a3bc339b07c
             $this->report();
             
         }
@@ -101,6 +107,32 @@
             }        
         }
 
+
+        /**
+         * cek Requesy by pada transkrip 
+         */
+        public function cekRequestBy($email,$rows,$start){
+            $temp=$this->Transkrip_model->requestsBy($email,$rows,$start);
+            $query=$this->db->query("SELECT *
+                 FROM transkrip
+                 WHERE requestByEmail='$email' Order By transkrip.id DESC
+                 ");
+            $obj=$query->result();
+            $expected_result=array();
+            $result=array();
+
+            for($i=0;$i<sizeof($temp);$i++){
+                if (is_object($temp[$i])) {
+                    $result[$i]= get_object_vars($temp[$i]);
+                }
+                if (is_object($obj[$i])) {
+                    $expected_result[$i]= get_object_vars($obj[$i]);
+                }
+                $i++;
+            }
+
+            $this->unit->run($result,$expected_result,__FUNCTION__,'Memeriksa siapa yg request');
+        }
        /**
         * Method yang di gunakan untuk melakukan testing terhadap
         * jadwal menggunakan username yang di lakukan cek pada databasenya
@@ -130,7 +162,7 @@
             $test1=$this->bluetape->yearMonthToSemesterCode($tahun1,$bulan1);
             $expected_result1=192;
             $test_name1="Memeriksa code semester sudah sesuai dengan tahun dan bulan semester";
-            $this->unit->run($test1,$expected_result1,__FUNCTION__,$test_name1);
+            $this->unit->run((int)$test1,$expected_result1,__FUNCTION__,$test_name1);
             //testcase untuk semester padat
             $tahun2=2018;
             $bulan2=6;
@@ -138,7 +170,7 @@
             $test2=$this->bluetape->yearMonthToSemesterCode($tahun2,$bulan2);
             $expected_result2=184;
             $test_name2="Memeriksa code semester sudah sesuai dengan tahun dan bulan semester";
-            $this->unit->run($test2,$expected_result2,__FUNCTION__,$test_name2);
+            $this->unit->run((int)$test2,$expected_result2,__FUNCTION__,$test_name2);
             //testcase untuk semester ganjil
             $tahun3=2018;
             $bulan3=11;
@@ -146,7 +178,7 @@
             $test3=$this->bluetape->yearMonthToSemesterCode($tahun3,$bulan3);
             $expected_result3=181;
             $test_name3="Memeriksa code semester sudah sesuai dengan tahun dan bulan semester ";
-            $this->unit->run($test3,$expected_result3,__FUNCTION__,$test_name3);
+            $this->unit->run((int)$test3,$expected_result3,__FUNCTION__,$test_name3);
        }
 
        public function cekSemesterCodeToString(){
@@ -172,7 +204,7 @@
              $test4=$this->bluetape->semesterCodeToString(185);
              $expected_result3=FALSE;
              $test_name4="Memeriksa hasil dari translasi code semester ke string";
-             $this->unit->run($test3,$expected_result3,__FUNCTION__,$test_name3);
+             $this->unit->run($test4,$expected_result3,__FUNCTION__,$test_name3);
        }
 
        public function testBlueTapeGetNPM(){
@@ -274,6 +306,10 @@
         $result=$this->JadwalDosen_model->cekJadwalByJamMulai($jamMulai,$hari,$user);
         $size=sizeof($result);
         $expetecRes=0;
+<<<<<<< HEAD
+=======
+        
+>>>>>>> dcf3b3dde83f8f3608e73db66d348a3bc339b07c
         $this->unit->run($size,$expetecRes,__FUNCTION__,'Jadwal Dosen pada hari dan jam yang sama hanya boleh ada 1');
         //echo $this->unit->report();
     }
@@ -308,7 +344,7 @@
             $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek apakah NPM valid atau tidak");
             //test case3
             $result= $this->bluetape->getNPM('6181801025@goole.com');
-            $expected='null';
+            $expected=NULL;
             $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek apakah NPM valid atau tidak");
         }
    
@@ -325,11 +361,11 @@
 
 
             //test case 2
-            $year2=2080;
+            $year2=2019;
             $month2=3;
-                $result= $this->bluetape->yearMonthToSemesterCodeSimplified($year2,$month2);
-            $expected='801';
-                $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek Konversi tahun dan bulan ke kode semester, disederhanakan menjadi dua semester");
+                $result2= $this->bluetape->yearMonthToSemesterCodeSimplified($year2,$month2);
+            $expected2='192';
+                $this->unit->run($result2,$expected2,__FUNCTION__,"Test ini mengecek Konversi tahun dan bulan ke kode semester, disederhanakan menjadi dua semester");
 
         }
 
@@ -374,8 +410,8 @@
         public function cekGetAllJadwal(){
             $result=$this->JadwalDosen_model->getAllJadwal();
             $expetecRes=$this->getAllJadwal();
-
-            $this->unit->run($result,$expetecRes,__FUNCTION__,'Jadwal sama');
+            
+            $this->unit->run((array)$result[0],(array)$expetecRes[0],__FUNCTION__,'Jadwal sama');
             //echo $this->unit->report();
         }
 
@@ -416,34 +452,34 @@
             $query=$this->db->query('SELECT user from jadwal_dosen');
             $res=$query->result();
         
-            $exceptedRes=sizeof($res)-1;
+            $exceptedRes=sizeof($res);
             $this->JadwalDosen_model->deleteByUsername($username);
 
             $query=$this->db->query('SELECT user from jadwal_dosen');
             $res=$query->result();
             $result=sizeof($res);
-
+            
             $this->unit->run($result,$exceptedRes,__FUNCTION__,'Menghapus user dengan username ');
         }
 
         public function checkKolomKeHari(){
             $namaHari = 'Senin';
 
-            $test = $this->JadwalDosen_model->kolomKeHari($namaHari);
-            $exceptedRes = 2;
+		 $test = $this->JadwalDosen_model->kolomKeHari($namaHari);
+		 $exceptedRes = FALSE;
 
             $test_name = 'Memerikas method kolom ke hari dari JadwalDosen_model';
 
             $this->unit->run($test, $exceptedRes, $test_name);
         }
 
-        public function checkHariKeKolom(){
-            $coloumn = 3;
-            
-            $test = $this->JadwalDosen_model->hariKeKolom($coloumn);
-            $expected_result = 'F';
-
-            $test_name = 'Memeriksa method hari ke kolom dari JadwalDosen_model';
+	 public function checkHariKeKolom(){
+		$coloumn = 3;
+		
+		$test = $this->JadwalDosen_model->hariKeKolom($coloumn);
+		$expected_result = 'E';
+        
+		$test_name = 'Memeriksa method hari ke kolom dari JadwalDosen_model';
 
             $this->unit->run($test, $expected_result, $test_name);
             
@@ -464,14 +500,18 @@
             $this->unit->run($obj,null,__FUNCTION__,"Test ini mengecek apakah data sudah terdelete atau tidak");
         }
 
-        //untuk Model/PerbuahanKuliah_model
+        //untuk Model/PerbuahanKuliah_model (pembuat error)
         public function cekRequestById($id,$start,$row){
             $query=$this->db->query("SELECT *from transkrip where id=$id");
             $expected=$query->result()[0];
             $result=$this->Transkrip_model->requestById($id,$start,$row);
             $this->unit->run($result,$expected,null,__FUNCTION__,"Test ini adakah request dari id tertentu pada transaksi");
         }
+<<<<<<< HEAD
         //transkrip model
+=======
+	    //transkrip model
+>>>>>>> dcf3b3dde83f8f3608e73db66d348a3bc339b07c
         public function cekRequestByIdTranskrip($id){
             $res=$this->Transkrip_model->requestById($id);
             
@@ -489,5 +529,10 @@
 
             $this->unit->run($res->requestByEmail,$exceptedRes->requestByEmail,__FUNCTION__,"Test requestby berdasarkan id");
         }
+<<<<<<< HEAD
+=======
+
+    
+>>>>>>> dcf3b3dde83f8f3608e73db66d348a3bc339b07c
 
     }
