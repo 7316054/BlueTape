@@ -36,26 +36,34 @@
             $this->cekYearMonthToSemesterCode();
             $this->cekSemesterCodeToString();
             $this->cekYearMonthToSemesterCodeSimplified();
-            //$this->requestByDosen('Samuel');
             $this->getName('anugrahjaya23@gmail.com');
             $this->dbDateTimeToReadableDate();
             $this->getEmail();
             $this->cekGetNpm();
             $this->cekGetAllJadwal();
+<<<<<<< HEAD
              $this->cekJadwalByJamMulai(7,0,'rootbluetape@gmail.com');
+=======
+            $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
+			$this->checkRequestTypesForbidden();
+>>>>>>> 5acd00f1f4fc27920507cebf35d13d05465a95b2
             $this->cekAddjadwal();
 			$this->checkKolomKeHari();
             $this->checkHariKeKolom();
             $this->cekGetNamaHari();
             $this->cekGetNamaBulan();
-            //$this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
+           // $this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
             //$this->requestBy('anugrahjaya23@gmail.com',1,1);
             $this->cekUpdateJadwal();
             $this->cekGetNamaHari();
             $this->cekGetNamaBulan();
             $this->deleteByUsername('anugrahjaya23@gmail.com');
             $this->cekDeleteJadwal(1);
+<<<<<<< HEAD
             $this->cekRequestByIdTranskrip(1,NULL,NULL);
+=======
+            $this->cekRequestByIdTranskrip(1,null,null);
+>>>>>>> 5acd00f1f4fc27920507cebf35d13d05465a95b2
             $this->cekRequestByIdTranskrip(1,3,0);
             $this->cekRequestBy('7316053@student.unpar.ac.id',null,null);
             $this->cekRequestBy('7316053@student.unpar.ac.id',1,3);
@@ -100,7 +108,7 @@
 
 
         /**
-         * cek Requesy by pada transkrip 
+         * PATH : Models/transkrip_model.php
          */
         public function cekRequestBy($email,$rows,$start){
             $temp=$this->Transkrip_model->requestsBy($email,$rows,$start);
@@ -144,6 +152,7 @@
        /**
         * Method ini memeriksa apakah method yearMonthToSemester
         * berfungsi dengan semestinya.
+        * PATH : libraries/bluetape.php
         */
        public function cekYearMonthToSemesterCode(){
             //testcase untuk semester genap
@@ -171,7 +180,9 @@
             $test_name3="Memeriksa code semester sudah sesuai dengan tahun dan bulan semester ";
             $this->unit->run((int)$test3,$expected_result3,__FUNCTION__,$test_name3);
        }
-
+       /**
+        * PATH : libraries/bluetape.php
+        */
        public function cekSemesterCodeToString(){
             //testcase semester genap
             $test=$this->bluetape->semesterCodeToString(192);
@@ -222,7 +233,10 @@
         }   
        
 
-        public function getEmail(){
+          /**
+         * PATH : libraries/bluetape.php
+         */
+	   public function getEmail(){
             //testcase1 < 2017
             $npm='2016730053';
             $exceptedRes='7316053@student.unpar.ac.id';
@@ -237,6 +251,7 @@
          * Method untuk memeriksa method getName pada libraries/BlueTape
          * @var adalaha nama dari user BlueTape
          * Expected result merupakan  hasil query
+         * PATH : libraries/bluetape.php
         **/
         public function getName($var){
 		//Test case 1
@@ -259,6 +274,7 @@
         /**
          * Method untuk memeriksa method dbDateTimeToReadableDate pada libraries/BlueTape
          * Expected result merupakan  hasil konversi DateTime dari database ke dalam string yang dapat dibaca
+         * PATH : libraries/bluetape.php
         **/
         public function dbDateTimeToReadableDate(){
             
@@ -273,6 +289,31 @@
 
             $this->unit->run($test, $expected_result, $test_name);
         }
+
+		/**
+		* Memeriksa method request type forbidden dari Transkrip_model
+		* path model/Transkrip_model
+		*
+		**/
+		public function checkRequestTypesForbidden(){
+			
+			//Test case 1
+			
+			$request = $this->Transkrip_model->requestsBy('7316053@student.unpar.ac.id');
+			$test1 = $this->Transkrip_model->requestTypesForbidden($request);
+			$expected_result1 = array( 'LHS', 'DPS_ID');
+			$test_name1 = 'Memeriksa method requestTypeForbidden dari Transkrip_model (Test case 1)';
+			 $this->unit->run($test1, $expected_result1, $test_name1);
+
+			 //Test Case2
+			 $request = $this->Transkrip_model->requestsBy('7316054@student.unpar.ac.id');
+			$test2 = $this->Transkrip_model->requestTypesForbidden($request);
+			$expected_result2 =array();//'Anda tidak bisa meminta cetak karena ada permintaan lain yang belum selesai.';
+			$test_name2 = 'Memeriksa method requestTypeForbidden dari Transkrip_model (Test case 2)';
+			 $this->unit->run($test2, $expected_result2, $test_name2);
+
+			 //Test case 3
+		}
 
 
         //sam
@@ -292,7 +333,9 @@
         }
         
         
-         
+         /**
+          * PATH : models/JadwalDosen_model.php
+          */
     public function cekJadwalByJamMulai($jamMulai,$hari,$user){
         $result=$this->JadwalDosen_model->cekJadwalByJamMulai($jamMulai,$hari,$user);
         $size=sizeof($result);
@@ -301,7 +344,9 @@
         $this->unit->run($size,$expetecRes,__FUNCTION__,'Jadwal Dosen pada hari dan jam yang sama hanya boleh ada 1');
         //echo $this->unit->report();
     }
-
+    /**
+     * PATH : models/JadwalDosen_model.php 
+     */
     public function requestBy($email,$rows,$start){
         $result=$this->JadwalDosen_model->requestsBy($email,$rows,$start);
 
@@ -320,7 +365,7 @@
         $this->unit->run($result,$exceptedRes,__FUNCTION__,'seluruh request dari email '+$email);        
         }
 
-        //Libraries-BlueTape
+        //PATH : Libraries/BlueTape.php
         public function cekGetNpm(){
             //test case 1
             $result= $this->bluetape->getNPM('7316054@student.unpar.ac.id');
@@ -337,7 +382,7 @@
         }
    
 
-        //libraries-yearMonthToSemesterCodeSimplifeid
+        //PATH : libraries/bluetape.php
         public function cekYearMonthToSemesterCodeSimplified(){
 
             //test case 1
@@ -394,7 +439,9 @@
 
             return $row->name;
         }
-	
+        /**
+         * PATH : models/jadwaldosen_model.php
+         */
         public function cekGetAllJadwal(){
             $result=$this->JadwalDosen_model->getAllJadwal();
             $expetecRes=$this->getAllJadwal();
@@ -413,7 +460,9 @@
                 INNER JOIN bluetape_userinfo ON jadwal_dosen.user=bluetape_userinfo.email');
             return $query->result();
         }
-
+        /**
+         * PATH : models/jadwaldosen_model.php
+         */
         public function cekUpdateJadwal(){
             $data=array("user"=>"Dipo1","hari"=>"4","jam_mulai"=>"13","durasi"=>"5","jenis"=>"Kelas","label"=>"Update");
             $id=4;
@@ -424,18 +473,25 @@
             $expected_result=$query->result();
             $this->unit->run($data,(array)$expected_result[0],__FUNCTION__,"Memeriksa apakah data yang di insert benar");
         }
+        /**
+         * PATH : models/jadwaldosen_model.php
+         */
         public function cekGetNamaHari(){
             $test=$this->JadwalDosen_model->getNamaHari();
             $expected_result=array("Senin","Selasa","Rabu","Kamis","Jumat");
             $this->unit->run($test,$expected_result,__FUNCTION__,"Memeriksa apakah nama hari-hari nya benar");
         }
-
+        /**
+         * PATH : models/jadwaldosen_model.php
+         */
         public function cekGetNamaBulan(){
            $test=$this->JadwalDosen_model->getNamaBulan();
            $expected_result=array('Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
            $this->unit->run($test,$expected_result,__FUNCTION__,"Memeriksa apakah nama bulan-bulan nya benar");
         }
-
+        /**
+         * PATH : models/jadwaldosen_model.php
+         */
         public function deleteByUsername($username){
             $query=$this->db->query('SELECT user from jadwal_dosen');
             $res=$query->result();
@@ -449,7 +505,9 @@
             
             $this->unit->run($result,$exceptedRes,__FUNCTION__,'Menghapus user dengan username ');
         }
-
+        /**
+         * PATH : models/jadwaldosen_model.php
+         */
         public function checkKolomKeHari(){
             $namaHari = 'Senin';
 
@@ -460,7 +518,9 @@
 
             $this->unit->run($test, $exceptedRes, $test_name);
         }
-
+        /**
+         * PATH : models/jadwaldosen_model.php
+         */
 	 public function checkHariKeKolom(){
 		$coloumn = 3;
 		
@@ -472,7 +532,9 @@
             $this->unit->run($test, $expected_result, $test_name);
             
         }
-        
+        /**
+         * PATH : models/jadwaldosen_model.php
+         */
         public function cekDeleteJadwal($id){
             $this->JadwalDosen_model->deleteJadwal($id);
             $query=$this->db->query("SELECT *from jadwal_dosen where id=$id");
@@ -488,6 +550,7 @@
             $this->unit->run($obj,null,__FUNCTION__,"Test ini mengecek apakah data sudah terdelete atau tidak");
         }
 
+<<<<<<< HEAD
         //untuk Model/PerbuahanKuliah_model (pembuat error)
         public function cekRequestById($id,$start,$row){
             $query=$this->db->query("SELECT *from transkrip where id=$id");
@@ -499,6 +562,11 @@
         public function cekRequestByIdTranskrip($id,$rows,$start){
             $res=$this->Transkrip_model->requestById($id,$rows,$start);
             
+=======
+	    //PATH : Model/transkrip_model.php
+        public function cekRequestByIdTranskrip($id,$rows,$start){
+            $res=$this->Transkrip_model->requestById($id,$rows,$start);
+>>>>>>> 5acd00f1f4fc27920507cebf35d13d05465a95b2
             $exceptedRes=(object)[
                 "id" => 1,
                 "requestByEmail" => "7316053@student.unpar.ac.id",
@@ -513,7 +581,4 @@
 
             $this->unit->run($res->requestByEmail,$exceptedRes->requestByEmail,__FUNCTION__,"Test requestby berdasarkan id");
         }
-
-    
-
     }
