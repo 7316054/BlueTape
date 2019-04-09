@@ -24,11 +24,7 @@
             } 
             $this->load->library('BlueTape');
             $this->load->model('JadwalDosen_model');
-<<<<<<< HEAD
-            $this->load->model('Transkrip_model');
-=======
 	        $this->load->model('Transkrip_model');
->>>>>>> dcf3b3dde83f8f3608e73db66d348a3bc339b07c
             $this->load->database();
        }
        /**
@@ -59,15 +55,9 @@
             $this->cekGetNamaBulan();
             $this->deleteByUsername('anugrahjaya23@gmail.com');
             $this->cekDeleteJadwal(1);
-<<<<<<< HEAD
-            $this->cekRequestById(1,1,1);
-            $this->cekRequestById(1,null,null);
-            $this->cekRequestByIdTranskrip(1);
-=======
             $this->cekRequestByIdTranskrip(1);
             $this->cekRequestBy('7316053@student.unpar.ac.id',null,null);
             $this->cekRequestBy('7316053@student.unpar.ac.id',1,3);
->>>>>>> dcf3b3dde83f8f3608e73db66d348a3bc339b07c
             $this->report();
             
         }
@@ -306,10 +296,7 @@
         $result=$this->JadwalDosen_model->cekJadwalByJamMulai($jamMulai,$hari,$user);
         $size=sizeof($result);
         $expetecRes=0;
-<<<<<<< HEAD
-=======
         
->>>>>>> dcf3b3dde83f8f3608e73db66d348a3bc339b07c
         $this->unit->run($size,$expetecRes,__FUNCTION__,'Jadwal Dosen pada hari dan jam yang sama hanya boleh ada 1');
         //echo $this->unit->report();
     }
@@ -507,11 +494,7 @@
             $result=$this->Transkrip_model->requestById($id,$start,$row);
             $this->unit->run($result,$expected,null,__FUNCTION__,"Test ini adakah request dari id tertentu pada transaksi");
         }
-<<<<<<< HEAD
-        //transkrip model
-=======
 	    //transkrip model
->>>>>>> dcf3b3dde83f8f3608e73db66d348a3bc339b07c
         public function cekRequestByIdTranskrip($id){
             $res=$this->Transkrip_model->requestById($id);
             
@@ -529,10 +512,7 @@
 
             $this->unit->run($res->requestByEmail,$exceptedRes->requestByEmail,__FUNCTION__,"Test requestby berdasarkan id");
         }
-<<<<<<< HEAD
-=======
 
     
->>>>>>> dcf3b3dde83f8f3608e73db66d348a3bc339b07c
 
     }
