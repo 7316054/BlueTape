@@ -32,7 +32,6 @@
         * Method untuk menjalankan Test case
         */
        public function index(){
-            $this->testBlueTapeGetNPM();
             $this->cekJadwalByUsername('Dipo');
             $this->cekYearMonthToSemesterCode();
             $this->cekSemesterCodeToString();
@@ -201,14 +200,6 @@
              $this->unit->run($test4,$expected_result3,__FUNCTION__,$test_name3);
        }
 
-       public function testBlueTapeGetNPM(){
-            $this->unit->run(
-                $this->bluetape->getNPM('7316054@student.unpar.ac.id'),
-                '2016730054',
-                __FUNCTION__,
-                'angkatan 2016'
-            );
-        }
         /**
         * Method untuk memeriksa method requestBy pada model jadwal_dosen
         * @var adalaha nama dari dosen
