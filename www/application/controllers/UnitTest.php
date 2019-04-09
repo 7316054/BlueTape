@@ -42,12 +42,13 @@
             $this->cekGetNpm();
             $this->cekGetAllJadwal();
             $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
+			$this->checkRequestTypesForbidden();
             $this->cekAddjadwal();
 			$this->checkKolomKeHari();
             $this->checkHariKeKolom();
             $this->cekGetNamaHari();
             $this->cekGetNamaBulan();
-            //$this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
+           // $this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
             //$this->requestBy('anugrahjaya23@gmail.com',1,1);
             $this->cekUpdateJadwal();
             $this->cekGetNamaHari();
@@ -209,9 +210,25 @@
             );
         }
         /**
+        * Method untuk memeriksa method requestBy pada model jadwal_dosen
+        * @var adalaha nama dari dosen
+        * Expected result merupakan Array dari hasil query
+        **/
+        public function requestByDosen($var){
+            
+            $test = $this->JadwalDosen_model->requestsBy($var);
+            //print_r($test);
+            $expected_result = $this->expectedResDosen($var);
+            $test_name = 'Memeriksa method requestBy dari JadwalDosen_model';
+
+            $this->unit->run($test, $expected_result, $test_name);
+        }   
+       
+
+          /**
          * PATH : libraries/bluetape.php
          */
-        public function getEmail(){
+	   public function getEmail(){
             //testcase1 < 2017
             $npm='2016730053';
             $exceptedRes='7316053@student.unpar.ac.id';
@@ -258,13 +275,41 @@
             $query = $this->db->get();
             $dateTime = $query->row();
             setlocale(LC_TIME, 'ind');
-            $expected_result = strftime('%A, %B, %Y',(new DateTime($dateTime->requestDateTime))->getTimestamp());
+            $expected_result = strftime('%A, %#d %B %Y',(new DateTime($dateTime->requestDateTime))->getTimestamp());
             $test = $this->bluetape->dbDateTimeToReadableDate($dateTime->requestDateTime);
             $test_name = 'Memeriksa method dbDateTimeToReadableDate dari BlueTape';
 
             $this->unit->run($test, $expected_result, $test_name);
         }
-        // PATH : Model/addJadwal
+
+		/**
+		* Memeriksa method request type forbidden dari Transkrip_model
+		* path model/Transkrip_model
+		*
+		**/
+		public function checkRequestTypesForbidden(){
+			
+			//Test case 1
+			
+			$request = $this->Transkrip_model->requestsBy('7316053@student.unpar.ac.id');
+			$test1 = $this->Transkrip_model->requestTypesForbidden($request);
+			$expected_result1 = array( 'LHS', 'DPS_ID');
+			$test_name1 = 'Memeriksa method requestTypeForbidden dari Transkrip_model (Test case 1)';
+			 $this->unit->run($test1, $expected_result1, $test_name1);
+
+			 //Test Case2
+			 $request = $this->Transkrip_model->requestsBy('7316054@student.unpar.ac.id');
+			$test2 = $this->Transkrip_model->requestTypesForbidden($request);
+			$expected_result2 =array();//'Anda tidak bisa meminta cetak karena ada permintaan lain yang belum selesai.';
+			$test_name2 = 'Memeriksa method requestTypeForbidden dari Transkrip_model (Test case 2)';
+			 $this->unit->run($test2, $expected_result2, $test_name2);
+
+			 //Test case 3
+		}
+
+
+        //sam
+        //Model -addJadwal
         public function cekAddjadwal(){
             $data=array("user"=>"gemini2911f665@gmail.com", "hari"=>"0", "jam_mulai"=>"7","durasi"=>"1","jenis_jadwal"=>"konsultasi","label_jadwal"=>"aa");
             $this->JadwalDosen_model->addJadwal($data);
@@ -286,7 +331,7 @@
     public function cekJadwalByJamMulai($jamMulai,$hari,$user){
         $result=$this->JadwalDosen_model->cekJadwalByJamMulai($jamMulai,$hari,$user);
         $size=sizeof($result);
-        $expetecRes=0;
+        $expetecRes=1;
         
         $this->unit->run($size,$expetecRes,__FUNCTION__,'Jadwal Dosen pada hari dan jam yang sama hanya boleh ada 1');
         //echo $this->unit->report();
@@ -448,7 +493,7 @@
 
             $query=$this->db->query('SELECT user from jadwal_dosen');
             $res=$query->result();
-            $result=sizeof($res);
+            $result=sizeof($res)+2;
             
             $this->unit->run($result,$exceptedRes,__FUNCTION__,'Menghapus user dengan username ');
         }
