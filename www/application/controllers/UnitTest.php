@@ -37,27 +37,28 @@
             $this->cekSemesterCodeToString();
             $this->cekYearMonthToSemesterCodeSimplified();
             //$this->requestByDosen('Samuel');
-            $this->getName('anugrahjaya23@gmail.com');
-            $this->dbDateTimeToReadableDate();
-            $this->getEmail();
-            $this->cekGetNpm();
-            $this->cekGetAllJadwal();
-            $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
-            $this->cekAddjadwal();
-			$this->checkKolomKeHari();
-            $this->checkHariKeKolom();
-            $this->cekGetNamaHari();
-            $this->cekGetNamaBulan();
+          //  $this->getName('anugrahjaya23@gmail.com');
+          //  $this->dbDateTimeToReadableDate();
+          //  $this->getEmail();
+          //  $this->cekGetNpm();
+           // $this->cekGetAllJadwal();
+           // $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
+			$this->checkRequestTypesForbidden();
+           // $this->cekAddjadwal();
+			//$this->checkKolomKeHari();
+            //$this->checkHariKeKolom();
+           // $this->cekGetNamaHari();
+            //$this->cekGetNamaBulan();
             //$this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
             //$this->requestBy('anugrahjaya23@gmail.com',1,1);
-            $this->cekUpdateJadwal();
-            $this->cekGetNamaHari();
-            $this->cekGetNamaBulan();
-            $this->deleteByUsername('anugrahjaya23@gmail.com');
-            $this->cekDeleteJadwal(1);
-            $this->cekRequestByIdTranskrip(1);
-            $this->cekRequestBy('7316053@student.unpar.ac.id',null,null);
-            $this->cekRequestBy('7316053@student.unpar.ac.id',1,3);
+          //  $this->cekUpdateJadwal();
+          //  $this->cekGetNamaHari();
+           // $this->cekGetNamaBulan();
+          //  $this->deleteByUsername('anugrahjaya23@gmail.com');
+           // $this->cekDeleteJadwal(1);
+          //  $this->cekRequestByIdTranskrip(1);
+          //  $this->cekRequestBy('7316053@student.unpar.ac.id',null,null);
+           // $this->cekRequestBy('7316053@student.unpar.ac.id',1,3);
             $this->report();
             
         }
@@ -272,6 +273,35 @@
 
             $this->unit->run($test, $expected_result, $test_name);
         }
+
+		/**
+		* Memeriksa method request type forbidden dari Transkrip_model
+		*
+		*
+		**/
+		public function checkRequestTypesForbidden(){
+			
+			//Test case 1
+			
+			$request = $this->Transkrip_model->requestsBy('7316053@student.unpar.ac.id');
+			$test1 = $this->Transkrip_model->requestTypesForbidden($request);
+			$expected_result1 = array( 'LHS', 'DPS_ID');
+			print_r($expected_result1);
+			print_r($test1);	
+			$test_name1 = 'Memeriksa method requestTypeForbidden dari Transkrip_model (Test case 1)';
+			 $this->unit->run($test1, $expected_result1, $test_name1);
+
+			 //Test Case2
+			 $request = $this->Transkrip_model->requestsBy('7316054@student.unpar.ac.id');
+			$test2 = $this->Transkrip_model->requestTypesForbidden($request);
+			$expected_result2 =array();//'Anda tidak bisa meminta cetak karena ada permintaan lain yang belum selesai.';
+			$test_name2 = 'Memeriksa method requestTypeForbidden dari Transkrip_model (Test case 2)';
+			 $this->unit->run($test2, $expected_result2, $test_name2);
+			 print_r($expected_result2);
+			print_r($test2);
+
+			 //Test case 3
+		}
 
 
         //sam
