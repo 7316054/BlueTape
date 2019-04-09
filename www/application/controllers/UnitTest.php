@@ -106,7 +106,7 @@
             $temp=$this->Transkrip_model->requestsBy($email,$rows,$start);
             $query=$this->db->query("SELECT *
                  FROM transkrip
-                 WHERE requestByEmail='$email' Order By transkrip.id DESC
+                 WHERE requestByEmail='$email' Order By requestDateTime DESC
                  ");
             $obj=$query->result();
             $expected_result=array();
@@ -122,7 +122,7 @@
                 $i++;
             }
 
-            $this->unit->run($result,$expected_result,__FUNCTION__,'Memeriksa siapa yg request');
+            $this->unit->run($result,$expected_result,__FUNCTION__,'Test ini berfungsi untuk memeriksa apakah method requestBy pada transkrip model sudah masuk ke dalam dataBase atau belum');
         }
        /**
         * Method yang di gunakan untuk melakukan testing terhadap
