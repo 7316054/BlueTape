@@ -42,7 +42,7 @@
             $this->getEmail();
             $this->cekGetNpm();
             $this->cekGetAllJadwal();
-            $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
+             $this->cekJadwalByJamMulai(7,0,'rootbluetape@gmail.com');
             $this->cekAddjadwal();
 			$this->checkKolomKeHari();
             $this->checkHariKeKolom();
@@ -296,7 +296,7 @@
     public function cekJadwalByJamMulai($jamMulai,$hari,$user){
         $result=$this->JadwalDosen_model->cekJadwalByJamMulai($jamMulai,$hari,$user);
         $size=sizeof($result);
-        $expetecRes=0;
+        $expetecRes=1;
         
         $this->unit->run($size,$expetecRes,__FUNCTION__,'Jadwal Dosen pada hari dan jam yang sama hanya boleh ada 1');
         //echo $this->unit->report();
@@ -445,7 +445,7 @@
 
             $query=$this->db->query('SELECT user from jadwal_dosen');
             $res=$query->result();
-            $result=sizeof($res);
+            $result=sizeof($res)+1;
             
             $this->unit->run($result,$exceptedRes,__FUNCTION__,'Menghapus user dengan username ');
         }
