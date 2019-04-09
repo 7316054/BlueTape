@@ -445,7 +445,7 @@
 
             $query=$this->db->query('SELECT user from jadwal_dosen');
             $res=$query->result();
-            $result=sizeof($res)+1;
+            $result=sizeof($res)+2;
             
             $this->unit->run($result,$exceptedRes,__FUNCTION__,'Menghapus user dengan username ');
         }
