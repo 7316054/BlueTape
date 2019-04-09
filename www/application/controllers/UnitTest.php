@@ -41,12 +41,8 @@
             $this->getEmail();
             $this->cekGetNpm();
             $this->cekGetAllJadwal();
-<<<<<<< HEAD
-             $this->cekJadwalByJamMulai(7,0,'rootbluetape@gmail.com');
-=======
             $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
 			$this->checkRequestTypesForbidden();
->>>>>>> 5acd00f1f4fc27920507cebf35d13d05465a95b2
             $this->cekAddjadwal();
 			$this->checkKolomKeHari();
             $this->checkHariKeKolom();
@@ -59,11 +55,7 @@
             $this->cekGetNamaBulan();
             $this->deleteByUsername('anugrahjaya23@gmail.com');
             $this->cekDeleteJadwal(1);
-<<<<<<< HEAD
-            $this->cekRequestByIdTranskrip(1,NULL,NULL);
-=======
             $this->cekRequestByIdTranskrip(1,null,null);
->>>>>>> 5acd00f1f4fc27920507cebf35d13d05465a95b2
             $this->cekRequestByIdTranskrip(1,3,0);
             $this->cekRequestBy('7316053@student.unpar.ac.id',null,null);
             $this->cekRequestBy('7316053@student.unpar.ac.id',1,3);
