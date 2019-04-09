@@ -55,7 +55,8 @@
             $this->cekGetNamaBulan();
             $this->deleteByUsername('anugrahjaya23@gmail.com');
             $this->cekDeleteJadwal(1);
-            $this->cekRequestByIdTranskrip(1);
+            $this->cekRequestByIdTranskrip(1,NULL,NULL);
+            $this->cekRequestByIdTranskrip(1,3,0);
             $this->cekRequestBy('7316053@student.unpar.ac.id',null,null);
             $this->cekRequestBy('7316053@student.unpar.ac.id',1,3);
             $this->report();
@@ -495,8 +496,8 @@
             $this->unit->run($result,$expected,null,__FUNCTION__,"Test ini adakah request dari id tertentu pada transaksi");
         }
 	    //transkrip model
-        public function cekRequestByIdTranskrip($id){
-            $res=$this->Transkrip_model->requestById($id);
+        public function cekRequestByIdTranskrip($id,$rows,$start){
+            $res=$this->Transkrip_model->requestById($id,$rows,$start);
             
             $exceptedRes=(object)[
                 "id" => 1,
