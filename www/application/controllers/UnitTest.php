@@ -32,7 +32,6 @@
         * Method untuk menjalankan Test case
         */
        public function index(){
-            $this->testBlueTapeGetNPM();
             $this->cekJadwalByUsername('Dipo');
             $this->cekYearMonthToSemesterCode();
             $this->cekSemesterCodeToString();
@@ -106,7 +105,7 @@
             $temp=$this->Transkrip_model->requestsBy($email,$rows,$start);
             $query=$this->db->query("SELECT *
                  FROM transkrip
-                 WHERE requestByEmail='$email' Order By transkrip.id DESC
+                 WHERE requestByEmail='$email' Order By requestDateTime DESC
                  ");
             $obj=$query->result();
             $expected_result=array();
@@ -122,7 +121,7 @@
                 $i++;
             }
 
-            $this->unit->run($result,$expected_result,__FUNCTION__,'Memeriksa siapa yg request');
+            $this->unit->run($result,$expected_result,__FUNCTION__,'Test ini berfungsi untuk memeriksa apakah method requestBy pada transkrip model sudah masuk ke dalam dataBase atau belum');
         }
        /**
         * Method yang di gunakan untuk melakukan testing terhadap
@@ -201,14 +200,6 @@
              $this->unit->run($test4,$expected_result3,__FUNCTION__,$test_name3);
        }
 
-       public function testBlueTapeGetNPM(){
-            $this->unit->run(
-                $this->bluetape->getNPM('7316054@student.unpar.ac.id'),
-                '2016730054',
-                __FUNCTION__,
-                'angkatan 2016'
-            );
-        }
         /**
         * Method untuk memeriksa method requestBy pada model jadwal_dosen
         * @var adalaha nama dari dosen
