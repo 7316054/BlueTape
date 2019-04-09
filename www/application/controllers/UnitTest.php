@@ -24,7 +24,8 @@
             } 
             $this->load->library('BlueTape');
             $this->load->model('JadwalDosen_model');
-	        $this->load->model('Transkrip_model');
+            $this->load->model('Transkrip_model');
+            $this->load->model('PerubahanKuliah_model');
             $this->load->database();
        }
        /**
@@ -48,8 +49,6 @@
             $this->checkHariKeKolom();
             $this->cekGetNamaHari();
             $this->cekGetNamaBulan();
-           // $this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
-            //$this->requestBy('anugrahjaya23@gmail.com',1,1);
             $this->cekUpdateJadwal();
             $this->cekGetNamaHari();
             $this->cekGetNamaBulan();
@@ -59,8 +58,9 @@
             $this->cekRequestByIdTranskrip(1,3,0);
             $this->cekRequestBy('7316053@student.unpar.ac.id',null,null);
             $this->cekRequestBy('7316053@student.unpar.ac.id',1,3);
+            $this->cekRequestByPerubahanKuliah('rootbluetape@gmail.com',null,null);
+            $this->cekRequestByPerubahanKuliah('rootbluetape@gmail.com',1,0);
             $this->report();
-            
         }
 
        private function report() {
@@ -308,7 +308,7 @@
 		}
 
 
-        //sam
+        
         //Model -addJadwal
         public function cekAddjadwal(){
             $data=array("user"=>"gemini2911f665@gmail.com", "hari"=>"0", "jam_mulai"=>"7","durasi"=>"1","jenis_jadwal"=>"konsultasi","label_jadwal"=>"aa");
@@ -394,43 +394,6 @@
 
         }
 
-	//--------------EXPECTED RESULTS-----------------------------------------------------------------------------------------------------------------------------------
-
-        /**
-         * Method untuk mendapatkan expected result dari test requestByDosen
-         * @var adalaha nama dari dosen
-         * Expected result merupakan Array dari hasil query
-        **/
-        public function expectedResDosen($var){
-            // cara 1
-            $query1 = $this->db->query("SELECT * FROM jadwal_dosen WHERE user = '$var' ORDER BY durasi DESC");
-            //cara 2
-            $this->db->where('user', $var);
-            $this->db->from('jadwal_dosen');
-            $this->db->order_by('durasi', 'DESC');
-            $query2 = $this->db->get();
-
-            //ubah $query menjadi  $query1 atau  $query2 untuk memilih cara query yang digunakan
-            $res = $query1->result();
-            //print_r($res);
-            return $res;
-        }
-
-        /**
-         * Method untuk mendapatkan expected result dari test getName
-         * @var adalaha nama dari user BlueTape
-         * Expected result merupakan hasil query
-        **/
-        public function expectedResGetName($var){
-            $this->db->where('email',$var);
-            $this->db->from('Bluetape_Userinfo');
-
-            $query = $this->db->get();
-
-            $row = $query->row();
-
-            return $row->name;
-        }
         /**
          * PATH : models/jadwaldosen_model.php
          */
@@ -559,4 +522,57 @@
 
             $this->unit->run($res->requestByEmail,$exceptedRes->requestByEmail,__FUNCTION__,"Test requestby berdasarkan id");
         }
+
+        /** 
+         * Path: Models/PerubahanKuliah_model.php
+        */
+        public function cekRequestByPerubahanKuliah($email,$row,$start){
+            $temp=$this->PerubahanKuliah_model->requestsBy($email,$row,$start);
+
+            $query=$this->db->query("SELECT *
+                 FROM PerubahanKuliah
+                 WHERE requestByEmail='$email'
+                 Order by requestDateTime DESC
+                 ");
+            $obj=$query->result();
+            $expected_result=array();
+            $result=array();
+
+            for($i=0;$i<sizeof($temp);$i++){
+                if (is_object($temp[$i])) {
+                    $result[$i]= get_object_vars($temp[$i]);
+                }
+                if (is_object($obj[$i])) {
+                    $expected_result[$i]= get_object_vars($obj[$i]);
+                }
+                $i++;
+            }
+            $this->unit->run($result,$expected_result,__FUNCTION__,'Memeriksa siapa yg request');
+
+         
+        }
+
+        	//--------------EXPECTED RESULTS-----------------------------------------------------------------------------------------------------------------------------------
+
+
+        /**
+         * Method untuk mendapatkan expected result dari test getName
+         * @var adalaha nama dari user BlueTape
+         * Expected result merupakan hasil query
+        **/
+        public function expectedResGetName($var){
+            $this->db->where('email',$var);
+            $this->db->from('Bluetape_Userinfo');
+
+            $query = $this->db->get();
+
+            $row = $query->row();
+
+            return $row->name;
+        }
     }
+
+
+
+
+        
