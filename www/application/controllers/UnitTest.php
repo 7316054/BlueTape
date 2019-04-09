@@ -273,7 +273,7 @@
     public function cekJadwalByJamMulai($jamMulai,$hari,$user){
         $result=$this->JadwalDosen_model->cekJadwalByJamMulai($jamMulai,$hari,$user);
         $size=sizeof($result);
-        $expetecRes=1;
+        $expetecRes=0;
         $this->unit->run($size,$expetecRes,__FUNCTION__,'Jadwal Dosen pada hari dan jam yang sama hanya boleh ada 1');
         //echo $this->unit->report();
     }
