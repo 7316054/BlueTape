@@ -59,6 +59,7 @@
             $this->cekRequestBy('7316053@student.unpar.ac.id',1,3);
             $this->cekRequestByPerubahanKuliah('rootbluetape@gmail.com',null,null);
             $this->cekRequestByPerubahanKuliah('rootbluetape@gmail.com',1,0);
+            $this->cekSend_email('rootbluetape@gmail.com','Mengetes pengiriman pesan','Tugas proyek informatika',false);
             $this->report();
         }
 
@@ -562,7 +563,12 @@
             return $row->name;
         }
 
-        
+        public function cekSend_email($email,$subject,$message,$debug){
+            $this->Email_model->send_email($email,$subject,$message,$debug);
+
+        }
+
+
     }
 
 
