@@ -6,7 +6,7 @@ class Email_model extends CI_Model {
 
     public function send_email($email, $subject, $message, $debug = FALSE) {
         if ($debug === TRUE) {
-            echo $message;
+            return $message;
             exit();
         }
         $this->load->config('auth');
