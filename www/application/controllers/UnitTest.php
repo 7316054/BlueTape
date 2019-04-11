@@ -589,7 +589,7 @@
             }
            
             $expected3="Maaf, gagal mengirim email notifikasi.";
-            $this->unit->run($result3,$expected3,__FUNCTION__,'Test ini berfungsi untuk memeriksa apakah email sudah terkirim atau belum');
+           // $this->unit->run($result3,$expected3,__FUNCTION__,'Test ini berfungsi untuk memeriksa apakah email sudah terkirim atau belum');
            
         }
 
