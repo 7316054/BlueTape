@@ -25,50 +25,14 @@
             $this->load->library('BlueTape');
             $this->load->model('JadwalDosen_model');
             $this->load->model('Transkrip_model');
-<<<<<<< HEAD
-=======
             $this->load->model('PerubahanKuliah_model');
             $this->load->model('Email_model');
->>>>>>> 1ece3a0ee0ae4b1ff8b9b2e81c3e53d9054b2d75
             $this->load->database();
        }
        /**
         * Method untuk menjalankan Test case
         */
        public function index(){
-<<<<<<< HEAD
-            $this->testBlueTapeGetNPM();
-            $this->cekJadwalByUsername('Dipo');
-            $this->cekYearMonthToSemesterCode();
-            $this->cekSemesterCodeToString();
-            $this->cekYearMonthToSemesterCodeSimplified();
-            //$this->requestByDosen('Samuel');
-            $this->getName('anugrahjaya23@gmail.com');
-            $this->dbDateTimeToReadableDate();
-            $this->getEmail();
-            $this->cekGetNpm();
-            $this->cekGetAllJadwal();
-            $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
-            $this->cekAddjadwal();
-			$this->checkKolomKeHari();
-            $this->checkHariKeKolom();
-            $this->cekGetNamaHari();
-            $this->cekGetNamaBulan();
-            
-            //$this->requestBy('anugrahjaya23@gmail.com',NULL,NULL);
-            //$this->requestBy('anugrahjaya23@gmail.com',1,1);
-            $this->cekUpdateJadwal();
-            $this->cekGetNamaHari();
-            $this->cekGetNamaBulan();
-
-            
-
-            $this->deleteByUsername('anugrahjaya23@gmail.com');
-            $this->cekDeleteJadwal(1);
-            $this->cekRequestById(1,1,1);
-            $this->cekRequestById(1,null,null);
-            $this->cekRequestByIdTranskrip(1);
-=======
             // $this->cekJadwalByUsername('Dipo');
             // $this->cekYearMonthToSemesterCode();
             // $this->cekSemesterCodeToString();
@@ -97,7 +61,6 @@
             // $this->cekRequestByPerubahanKuliah('rootbluetape@gmail.com',null,null);
             // $this->cekRequestByPerubahanKuliah('rootbluetape@gmail.com',1,0);
             $this->cekSend_email();
->>>>>>> 1ece3a0ee0ae4b1ff8b9b2e81c3e53d9054b2d75
             $this->report();
         }
 
