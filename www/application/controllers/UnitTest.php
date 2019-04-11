@@ -60,7 +60,7 @@
             $this->cekRequestByPerubahanKuliah('rootbluetape@gmail.com',null,null);
             $this->cekRequestByPerubahanKuliah('rootbluetape@gmail.com',1,0);
             $this->cekSend_email('rootbluetape@gmail.com','Mengetes pengiriman pesan','Tugas proyek informatika',false);
-            $this->report();
+             $this->report();
         }
 
        private function report() {
@@ -287,14 +287,15 @@
 			$test1 = $this->Transkrip_model->requestTypesForbidden($request);
 			$expected_result1 = array( 'LHS', 'DPS_ID');
 			$test_name1 = 'Test ini berfungsi untuk memeriksa method requestTypeForbidden dari Transkrip_model yang keluarannya request type dari permintaan transkrip';
-			 $this->unit->run($test1, $expected_result1, $test_name1);
-
+             $this->unit->run($test1, $expected_result1, $test_name1);
+             
 			 //Test Case2
 			 $request = $this->Transkrip_model->requestsBy('7316054@student.unpar.ac.id');
 			$test2 = $this->Transkrip_model->requestTypesForbidden($request);
-			$expected_result2 =array();//'Anda tidak bisa meminta cetak karena ada permintaan lain yang belum selesai.';
+			$expected_result2 ='Anda tidak bisa meminta cetak karena ada permintaan lain yang belum selesai.';
 			$test_name2 = 'Test ini berfungsi untuk memeriksa method requestTypeForbidden dari Transkrip_model dimana belum ada transkrip yang di jawab(answer)';
-			 $this->unit->run($test2, $expected_result2, $test_name2);
+             $this->unit->run($test2, $expected_result2, $test_name2);
+          
 
 			 //Test case 3
 		}
