@@ -59,6 +59,7 @@
             $this->cekRequestBy('7316053@student.unpar.ac.id',1,3);
             $this->cekRequestByPerubahanKuliah('rootbluetape@gmail.com',null,null);
             $this->cekRequestByPerubahanKuliah('rootbluetape@gmail.com',1,0);
+            $this->cekSend_email('rootbluetape@gmail.com','Mengetes pengiriman pesan','Tugas proyek informatika',false);
             $this->report();
         }
 
@@ -136,7 +137,7 @@
             
             $test=$this->JadwalDosen_model->getJadwalByUsername($user);
             
-            $test_name="Memeriksa apakah Jadwal sesuai dengan Username nya.";
+            $test_name="Test ini berfungsi untuk memeriksa apakah Jadwal sesuai dengan Username nya.";
             $this->unit->run($test,$expected_result,__FUNCTION__,$test_name);
        }
 
@@ -152,7 +153,7 @@
 
             $test1=$this->bluetape->yearMonthToSemesterCode($tahun1,$bulan1);
             $expected_result1=192;
-            $test_name1="Memeriksa code semester sudah sesuai dengan tahun dan bulan semester";
+            $test_name1="Test ini berfungsi untuk memeriksa code semester sudah sesuai dengan tahun dan bulan semester genap";
             $this->unit->run((int)$test1,$expected_result1,__FUNCTION__,$test_name1);
             //testcase untuk semester padat
             $tahun2=2018;
@@ -160,7 +161,7 @@
 
             $test2=$this->bluetape->yearMonthToSemesterCode($tahun2,$bulan2);
             $expected_result2=184;
-            $test_name2="Memeriksa code semester sudah sesuai dengan tahun dan bulan semester";
+            $test_name2="Test ini berfungsi untuk memeriksa code semester sudah sesuai dengan tahun dan bulan semester padat";
             $this->unit->run((int)$test2,$expected_result2,__FUNCTION__,$test_name2);
             //testcase untuk semester ganjil
             $tahun3=2018;
@@ -168,7 +169,7 @@
 
             $test3=$this->bluetape->yearMonthToSemesterCode($tahun3,$bulan3);
             $expected_result3=181;
-            $test_name3="Memeriksa code semester sudah sesuai dengan tahun dan bulan semester ";
+            $test_name3="Test ini berfungsi untuk memeriksa code semester sudah sesuai dengan tahun dan bulan semester ganjil";
             $this->unit->run((int)$test3,$expected_result3,__FUNCTION__,$test_name3);
        }
        /**
@@ -178,25 +179,25 @@
             //testcase semester genap
             $test=$this->bluetape->semesterCodeToString(192);
             $expected_result="Genap 2018/2019";
-            $test_name="Memeriksa hasil dari translasi code semester ke string";
+            $test_name="Test ini berfungsi untuk memeriksa hasil dari translasi code semester genap ke string";
             $this->unit->run($test,$expected_result,__FUNCTION__,$test_name);
 
             //testcase semester ganjil
             $test2=$this->bluetape->semesterCodeToString(181);
             $expected_result2="Ganjil 2018/2019";
-            $test_name2="Memeriksa hasil dari translasi code semester ke string";
+            $test_name2="Test ini berfungsi untuk memeriksa hasil dari translasi code semester ganjil ke string";
             $this->unit->run($test2,$expected_result2,__FUNCTION__,$test_name2);
 
             //testcase semester padat
             $test3=$this->bluetape->semesterCodeToString(184);
             $expected_result3="Padat 2017/2018";
-            $test_name3="Memeriksa hasil dari translasi code semester ke string";
+            $test_name3="Test ini berfungsi untuk memeriksa hasil dari translasi code semester padat ke string";
             $this->unit->run($test3,$expected_result3,__FUNCTION__,$test_name3);
 
             //testcase semester false
              $test4=$this->bluetape->semesterCodeToString(185);
              $expected_result3=FALSE;
-             $test_name4="Memeriksa hasil dari translasi code semester ke string";
+             $test_name4="Test ini berfungsi untuk memeriksa hasil dari translasi code semester ke string untuk kasus yang return false";
              $this->unit->run($test4,$expected_result3,__FUNCTION__,$test_name3);
        }
 
@@ -210,7 +211,7 @@
             $test = $this->JadwalDosen_model->requestsBy($var);
             //print_r($test);
             $expected_result = $this->expectedResDosen($var);
-            $test_name = 'Memeriksa method requestBy dari JadwalDosen_model';
+            $test_name = 'Test ini berfungsi untuk memeriksa method requestBy dari JadwalDosen_model';
 
             $this->unit->run($test, $expected_result, $test_name);
         }   
@@ -223,12 +224,12 @@
             //testcase1 < 2017
             $npm='2016730053';
             $exceptedRes='7316053@student.unpar.ac.id';
-            $this->unit->run($this->bluetape->getEmail($npm),$exceptedRes,__FUNCTION__,"NPM angkatan sebelum 2017");
+            $this->unit->run($this->bluetape->getEmail($npm),$exceptedRes,__FUNCTION__,"Test ini berfungsi untuk memeriksa melakukan cek terhadap email dari NPM yang angkatannya sebelum 2017");
 
             //testcase2 >= 2017
             $npm1='6181801025';
             $exceptedRes1='6181801025@student.unpar.ac.id';
-            $this->unit->run($this->bluetape->getEmail($npm1),$exceptedRes1,__FUNCTION__,"NPM angkatan sesudah 2017");
+            $this->unit->run($this->bluetape->getEmail($npm1),$exceptedRes1,__FUNCTION__,"NTest ini berfungsi untuk memeriksa melakukan cek terhadap email dari NPM yang angkatannya sesudah 2017");
         }
         /**
          * Method untuk memeriksa method getName pada libraries/BlueTape
@@ -241,7 +242,7 @@
             $test1 = $this->bluetape->getName($var);
             
             $expected_result = $this->expectedResGetName($var);
-            $test_name = 'Memeriksa method getName dari BlueTape';
+            $test_name = 'Test ini berfungsi untuk memeriksa method getName dari BlueTape untuk yang return nya bernilai suatu value';
 
             $this->unit->run($test1, $expected_result, $test_name);
 		
@@ -249,7 +250,7 @@
 		 $test2 = $this->bluetape->getName('7316054@student');
             
             $expected_result2 = NULL;
-            $test_name2 = 'Memeriksa method getName dari BlueTape';
+            $test_name2 = 'Test ini berfungsi untuk memeriksa method getName dari BlueTape untuk kasus contoh yang nilai nya NULL';
 
             $this->unit->run($test2, $expected_result2, $test_name2);
         }
@@ -268,7 +269,7 @@
             setlocale(LC_TIME, 'ind');
             $expected_result = strftime('%A, %#d %B %Y',(new DateTime($dateTime->requestDateTime))->getTimestamp());
             $test = $this->bluetape->dbDateTimeToReadableDate($dateTime->requestDateTime);
-            $test_name = 'Memeriksa method dbDateTimeToReadableDate dari BlueTape';
+            $test_name = 'Test ini berfungsi untuk memeriksa method dbDateTimeToReadableDate dari BlueTape';
 
             $this->unit->run($test, $expected_result, $test_name);
         }
@@ -285,14 +286,14 @@
 			$request = $this->Transkrip_model->requestsBy('7316053@student.unpar.ac.id');
 			$test1 = $this->Transkrip_model->requestTypesForbidden($request);
 			$expected_result1 = array( 'LHS', 'DPS_ID');
-			$test_name1 = 'Memeriksa method requestTypeForbidden dari Transkrip_model (Test case 1)';
+			$test_name1 = 'Test ini berfungsi untuk memeriksa method requestTypeForbidden dari Transkrip_model yang keluarannya request type dari permintaan transkrip';
 			 $this->unit->run($test1, $expected_result1, $test_name1);
 
 			 //Test Case2
 			 $request = $this->Transkrip_model->requestsBy('7316054@student.unpar.ac.id');
 			$test2 = $this->Transkrip_model->requestTypesForbidden($request);
 			$expected_result2 =array();//'Anda tidak bisa meminta cetak karena ada permintaan lain yang belum selesai.';
-			$test_name2 = 'Memeriksa method requestTypeForbidden dari Transkrip_model (Test case 2)';
+			$test_name2 = 'Test ini berfungsi untuk memeriksa method requestTypeForbidden dari Transkrip_model dimana belum ada transkrip yang di jawab(answer)';
 			 $this->unit->run($test2, $expected_result2, $test_name2);
 
 			 //Test case 3
@@ -312,7 +313,7 @@
                 $res = get_object_vars($obj);
             }
             $data2=array("user"=>$res['user'], "hari"=>$res['hari'], "jam_mulai"=>$res['jam_mulai'],"durasi"=>$res['durasi'],"jenis_jadwal"=>$res['jenis'],"label_jadwal"=>"aa");
-            $this->unit->run($data,$data2,__FUNCTION__,"Test ini mengecek apakah data sudah masuk atau tidak");
+            $this->unit->run($data,$data2,__FUNCTION__,"Test ini berfungsi untuk mengecek apakah inputan data sudah masuk atau tidak");
         }
         
         
@@ -324,7 +325,7 @@
         $size=sizeof($result);
         $expetecRes=1;
         
-        $this->unit->run($size,$expetecRes,__FUNCTION__,'Jadwal Dosen pada hari dan jam yang sama hanya boleh ada 1');
+        $this->unit->run($size,$expetecRes,__FUNCTION__,'Test ini berfungsi untuk memeriksa Jadwal Dosen pada hari dan jam yang sama hanya boleh ada 1');
         //echo $this->unit->report();
     }
     /**
@@ -345,7 +346,7 @@
         $exceptedRes=$query->result();
 
 
-        $this->unit->run($result,$exceptedRes,__FUNCTION__,'seluruh request dari email '+$email);        
+        $this->unit->run($result,$exceptedRes,__FUNCTION__,'Test ini berfungsi untuk memeriksa seluruh request dari email '+$email);        
         }
 
         //PATH : Libraries/BlueTape.php
@@ -353,15 +354,15 @@
             //test case 1
             $result= $this->bluetape->getNPM('7316054@student.unpar.ac.id');
             $expected='2016730054';
-            $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek apakah NPM valid atau tidak");
+            $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek apakah NPM valid atau tidak untuk kasus dimana mahasiswa angkatan di bawah 2017");
             //test case2 
             $result= $this->bluetape->getNPM('6181801025@student.unpar.ac.id');
             $expected='6181801025';
-            $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek apakah NPM valid atau tidak");
+            $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek apakah NPM valid atau tidak untuk kasus dimana mahasiswa angkatan di atas 2017");
             //test case3
             $result= $this->bluetape->getNPM('6181801025@goole.com');
             $expected=NULL;
-            $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek apakah NPM valid atau tidak");
+            $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek apakah NPM valid atau tidak untuk kasis yang tidak valid");
         }
    
 
@@ -373,7 +374,7 @@
             $month=12;
                 $result= $this->bluetape->yearMonthToSemesterCodeSimplified($year,$month);
             $expected='191';
-            $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek Konversi tahun dan bulan ke kode semester, disederhanakan menjadi dua semester");
+            $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek Konversi tahun dan bulan ke kode semester, disederhanakan menjadi dua semester untuk kasus semester ganjil");
 
 
             //test case 2
@@ -381,7 +382,7 @@
             $month2=3;
                 $result2= $this->bluetape->yearMonthToSemesterCodeSimplified($year2,$month2);
             $expected2='192';
-                $this->unit->run($result2,$expected2,__FUNCTION__,"Test ini mengecek Konversi tahun dan bulan ke kode semester, disederhanakan menjadi dua semester");
+                $this->unit->run($result2,$expected2,__FUNCTION__,"Test ini mengecek Konversi tahun dan bulan ke kode semester, disederhanakan menjadi dua semester untuk kasus semester genap");
 
         }
 
@@ -392,7 +393,7 @@
             $result=$this->JadwalDosen_model->getAllJadwal();
             $expetecRes=$this->getAllJadwal();
             
-            $this->unit->run((array)$result[0],(array)$expetecRes[0],__FUNCTION__,'Jadwal sama');
+            $this->unit->run((array)$result[0],(array)$expetecRes[0],__FUNCTION__,'Test ini berfungsi untuk memeriksa semua jadwal apakah sama dengan yang ada di database atau tidak');
             //echo $this->unit->report();
         }
 
@@ -417,7 +418,7 @@
                                      FROM jadwal_dosen
                                      WHERE id='$id'");
             $expected_result=$query->result();
-            $this->unit->run($data,(array)$expected_result[0],__FUNCTION__,"Memeriksa apakah data yang di insert benar");
+            $this->unit->run($data,(array)$expected_result[0],__FUNCTION__,"Test ini berfungsi untuk memeriksa apakah data yang di insert ke tabel jadwal_dosen sudah benar");
         }
         /**
          * PATH : models/jadwaldosen_model.php
@@ -425,7 +426,7 @@
         public function cekGetNamaHari(){
             $test=$this->JadwalDosen_model->getNamaHari();
             $expected_result=array("Senin","Selasa","Rabu","Kamis","Jumat");
-            $this->unit->run($test,$expected_result,__FUNCTION__,"Memeriksa apakah nama hari-hari nya benar");
+            $this->unit->run($test,$expected_result,__FUNCTION__,"Test ini berfungsi untuk memeriksa apakah nama hari-hari nya benar");
         }
         /**
          * PATH : models/jadwaldosen_model.php
@@ -433,7 +434,7 @@
         public function cekGetNamaBulan(){
            $test=$this->JadwalDosen_model->getNamaBulan();
            $expected_result=array('Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
-           $this->unit->run($test,$expected_result,__FUNCTION__,"Memeriksa apakah nama bulan-bulan nya benar");
+           $this->unit->run($test,$expected_result,__FUNCTION__,"Test ini berfungsi untuk memeriksa apakah nama bulan-bulan nya benar");
         }
         /**
          * PATH : models/jadwaldosen_model.php
@@ -449,7 +450,7 @@
             $res=$query->result();
             $result=sizeof($res)+2;
             
-            $this->unit->run($result,$exceptedRes,__FUNCTION__,'Menghapus user dengan username ');
+            $this->unit->run($result,$exceptedRes,__FUNCTION__,'Test ini berfungsi untuk memeriksa apakah username yang dihapus sudah tidak ada di database lagi');
         }
         /**
          * PATH : models/jadwaldosen_model.php
@@ -460,7 +461,7 @@
 		 $test = $this->JadwalDosen_model->kolomKeHari($namaHari);
 		 $exceptedRes = FALSE;
 
-            $test_name = 'Memerikas method kolom ke hari dari JadwalDosen_model';
+            $test_name = 'Test ini berfungsi untuk memerikas method kolom ke hari dari JadwalDosen_model apakah valid atau tidak';
 
             $this->unit->run($test, $exceptedRes, $test_name);
         }
@@ -473,7 +474,7 @@
 		$test = $this->JadwalDosen_model->hariKeKolom($coloumn);
 		$expected_result = 'E';
         
-		$test_name = 'Memeriksa method hari ke kolom dari JadwalDosen_model';
+		$test_name = 'Test ini berfungsi untuk memeriksa method hari ke kolom dari JadwalDosen_model apakah valid atau tidak';
 
             $this->unit->run($test, $expected_result, $test_name);
             
@@ -493,7 +494,7 @@
                 $obj=$row[sizeof($row)-1];
             }
             
-            $this->unit->run($obj,null,__FUNCTION__,"Test ini mengecek apakah data sudah terdelete atau tidak");
+            $this->unit->run($obj,null,__FUNCTION__,"Test ini berfungsi untuk mengecek apakah data sudah terdelete atau tidak");
         }
 
 	    //PATH : Model/transkrip_model.php
@@ -511,7 +512,7 @@
                 "answeredMessage" => "oke"
             ];
 
-            $this->unit->run($res->requestByEmail,$exceptedRes->requestByEmail,__FUNCTION__,"Test requestby berdasarkan id");
+            $this->unit->run($res->requestByEmail,$exceptedRes->requestByEmail,__FUNCTION__,"Test ini berfungsi untuk memeriksa requestby berdasarkan id");
         }
 
         /** 
@@ -538,7 +539,7 @@
                 }
                 $i++;
             }
-            $this->unit->run($result,$expected_result,__FUNCTION__,'Memeriksa siapa yg request');
+            $this->unit->run($result,$expected_result,__FUNCTION__,'Test ini berfungsi untuk memeriksa siapa yang melakukan request');
 
          
         }
@@ -561,6 +562,13 @@
 
             return $row->name;
         }
+
+        public function cekSend_email($email,$subject,$message,$debug){
+            $this->Email_model->send_email($email,$subject,$message,$debug);
+
+        }
+
+
     }
 
 
