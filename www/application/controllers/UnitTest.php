@@ -26,6 +26,7 @@
             $this->load->model('JadwalDosen_model');
             $this->load->model('Transkrip_model');
             $this->load->model('PerubahanKuliah_model');
+            $this->load->model('Email_model');
             $this->load->database();
        }
        /**
@@ -59,8 +60,8 @@
             $this->cekRequestBy('7316053@student.unpar.ac.id',1,3);
             $this->cekRequestByPerubahanKuliah('rootbluetape@gmail.com',null,null);
             $this->cekRequestByPerubahanKuliah('rootbluetape@gmail.com',1,0);
-            $this->cekSend_email('rootbluetape@gmail.com','Mengetes pengiriman pesan','Tugas proyek informatika',false);
-             $this->report();
+            $this->cekSend_email();
+            $this->report();
         }
 
        private function report() {
@@ -283,29 +284,20 @@
 			
 			//Test case 1
 			
-			$request = $this->Transkrip_model->requestsBy('7316091@student.unpar.ac.id');
+			$request = $this->Transkrip_model->requestsBy('7316053@student.unpar.ac.id');
 			$test1 = $this->Transkrip_model->requestTypesForbidden($request);
-			$expected_result1 = array( 'LHS');
+			$expected_result1 = array( 'LHS', 'DPS_ID');
 			$test_name1 = 'Test ini berfungsi untuk memeriksa method requestTypeForbidden dari Transkrip_model yang keluarannya request type dari permintaan transkrip';
-             $this->unit->run($test1, $expected_result1, $test_name1);
-             
+			 $this->unit->run($test1, $expected_result1, $test_name1);
+
 			 //Test Case2
 			 $request = $this->Transkrip_model->requestsBy('7316054@student.unpar.ac.id');
 			$test2 = $this->Transkrip_model->requestTypesForbidden($request);
-			$expected_result2 ='Anda tidak bisa meminta cetak karena ada permintaan lain yang belum selesai.';
+			$expected_result2 =array();//'Anda tidak bisa meminta cetak karena ada permintaan lain yang belum selesai.';
 			$test_name2 = 'Test ini berfungsi untuk memeriksa method requestTypeForbidden dari Transkrip_model dimana belum ada transkrip yang di jawab(answer)';
-            $this->unit->run($test2, $expected_result2, $test_name2);
-          
-             //Test case 3
-             $date = getdate();
-            $currentYear = $date['year'];
-            $currentMonth = $date['mon'];
-             $currentSemester = $this->bluetape->yearMonthToSemesterCodeSimplified($currentYear, $currentMonth);      
-             $request = $this->Transkrip_model->requestsBy('7316053@student.unpar.ac.id');
-			$test3 = $this->Transkrip_model->requestTypesForbidden($request);
-			$expected_result3 ='Anda tidak bisa meminta cetak karena seluruh jenis transkrip sudah pernah dikabulkan di semester ini (' . $this->bluetape->semesterCodeToString($currentSemester) . ').';
-            $test_name3 = 'Test ini berfungsi untuk memeriksa method requestTypeForbidden dari Transkrip_model dimana seluruh jenis transkrip sudah terkabul';
-            $this->unit->run($test3, $expected_result3, $test_name3);
+			 $this->unit->run($test2, $expected_result2, $test_name2);
+
+			 //Test case 3
 		}
 
 
@@ -572,10 +564,27 @@
             return $row->name;
         }
 
-        public function cekSend_email($email,$subject,$message,$debug){
-            $this->Email_model->send_email($email,$subject,$message,$debug);
+        public function cekSend_email(){
+            //test case jika=Debug true
+            $email='gemini2911f665@gmail.com';
+            $subject='Mengetes pengiriman pesan';
+            $message='Tugas proyek informatika';
+            $debug=TRUE;
+            $result=$this->Email_model->send_email($email,$subject,$message,$debug);
+            $expected='Tugas proyek informatika';
+            $this->unit->run($result,$expected,__FUNCTION__,'Test ini berfungsi untuk memeriksa apakah email sudah terkirim atau belum');
 
-        }
+            //test case jika debug=false dan mail terkirim
+            $debug2=FALSE;
+            $result2=$this->Email_model->send_email($email,$subject,$message,$debug2);
+            $expected=NULL;
+            $this->unit->run($result2,$expected,__FUNCTION__,'Test ini berfungsi untuk memeriksa apakah email sudah terkirim atau belum');
+
+            //test case jika debug=false dan mail tidak terkirim
+            $result3=$this->Email_model->send_email(NULL,NULL,NULL,$debug2);
+            $expected3="Maaf, gagal mengirim email notifikasi.";
+            $this->unit->run($result3,$expected3,__FUNCTION__,'Test ini berfungsi untuk memeriksa apakah email sudah terkirim atau belum');
+       }
 
 
     }
