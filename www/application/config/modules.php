@@ -26,6 +26,6 @@ $config['roles'] = array(
     'tu.ftis' => array('gabriel.lazuardi@gmail.com'),
     'mahasiswa.ftis' => '(7[123]\\d{5})|(20[1-9][0-9]7[123][0-9]{4})@student\\.unpar\\.ac\\.id',
     'staf.unpar' => '.+@unpar\\.ac\\.id',
-	'dosen.informatika' => array ('anugrahjaya23@gmail.com'),
+	'dosen.informatika' => array ('gemini2911f665@gmail.com'),
 	'mahasiswa.informatika' => '73\\d{5}@student\\.unpar\\.ac\\.id'
 );
