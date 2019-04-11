@@ -33,33 +33,33 @@
         * Method untuk menjalankan Test case
         */
        public function index(){
-            // $this->cekJadwalByUsername('Dipo');
-            // $this->cekYearMonthToSemesterCode();
-            // $this->cekSemesterCodeToString();
-            // $this->cekYearMonthToSemesterCodeSimplified();
-            // $this->getName('anugrahjaya23@gmail.com');
-            // $this->dbDateTimeToReadableDate();
-            // $this->getEmail();
-            // $this->cekGetNpm();
-            // $this->cekGetAllJadwal();
-            // $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
-			// $this->checkRequestTypesForbidden();
-            // $this->cekAddjadwal();
-			// $this->checkKolomKeHari();
-            // $this->checkHariKeKolom();
-            // $this->cekGetNamaHari();
-            // $this->cekGetNamaBulan();
-            // $this->cekUpdateJadwal();
-            // $this->cekGetNamaHari();
-            // $this->cekGetNamaBulan();
-            // $this->deleteByUsername('anugrahjaya23@gmail.com');
-            // $this->cekDeleteJadwal(1);
-            // $this->cekRequestByIdTranskrip(1,null,null);
-            // $this->cekRequestByIdTranskrip(1,3,0);
-            // $this->cekRequestBy('7316053@student.unpar.ac.id',null,null);
-            // $this->cekRequestBy('7316053@student.unpar.ac.id',1,3);
-            // $this->cekRequestByPerubahanKuliah('rootbluetape@gmail.com',null,null);
-            // $this->cekRequestByPerubahanKuliah('rootbluetape@gmail.com',1,0);
+            $this->cekJadwalByUsername('Dipo');
+            $this->cekYearMonthToSemesterCode();
+            $this->cekSemesterCodeToString();
+            $this->cekYearMonthToSemesterCodeSimplified();
+            $this->getName('anugrahjaya23@gmail.com');
+            $this->dbDateTimeToReadableDate();
+            $this->getEmail();
+            $this->cekGetNpm();
+            $this->cekGetAllJadwal();
+            $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
+			$this->checkRequestTypesForbidden();
+            $this->cekAddjadwal();
+			$this->checkKolomKeHari();
+            $this->checkHariKeKolom();
+            $this->cekGetNamaHari();
+            $this->cekGetNamaBulan();
+            $this->cekUpdateJadwal();
+            $this->cekGetNamaHari();
+            $this->cekGetNamaBulan();
+            $this->deleteByUsername('anugrahjaya23@gmail.com');
+            $this->cekDeleteJadwal(1);
+            $this->cekRequestByIdTranskrip(1,null,null);
+            $this->cekRequestByIdTranskrip(1,3,0);
+            $this->cekRequestBy('7316053@student.unpar.ac.id',null,null);
+            $this->cekRequestBy('7316053@student.unpar.ac.id',1,3);
+            $this->cekRequestByPerubahanKuliah('rootbluetape@gmail.com',null,null);
+            $this->cekRequestByPerubahanKuliah('rootbluetape@gmail.com',1,0);
             $this->cekSend_email();
             $this->report();
         }
@@ -581,10 +581,10 @@
             $this->unit->run($result2,$expected,__FUNCTION__,'Test ini berfungsi untuk memeriksa apakah email sudah terkirim atau belum');
 
             //test case jika debug=false dan mail tidak terkirim
-            $result3=$this->Email_model->send_email($email,$subject,$message,$debug2);
-            $expected2="Maaf, gagal mengirim email notifikasi.";
-            $this->unit->run($result,$expected2,__FUNCTION__,'Test ini berfungsi untuk memeriksa apakah email sudah terkirim atau belum');
-        }
+            $result3=$this->Email_model->send_email(NULL,NULL,NULL,$debug2);
+            $expected3="Maaf, gagal mengirim email notifikasi.";
+            $this->unit->run($result3,$expected3,__FUNCTION__,'Test ini berfungsi untuk memeriksa apakah email sudah terkirim atau belum');
+       }
 
 
     }
