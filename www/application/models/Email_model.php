@@ -19,7 +19,8 @@ class Email_model extends CI_Model {
         $this->email->subject($subject);
         $this->email->message($message);
         if (!$this->email->send()) {
-            throw new Exception("Maaf, gagal mengirim email notifikasi.");
+            //throw new Exception("Maaf, gagal mengirim email notifikasi.");
+            return "Maaf, gagal mengirim email notifikasi.";
         }
     }
 
