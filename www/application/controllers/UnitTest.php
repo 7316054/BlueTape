@@ -295,7 +295,7 @@
             $test2 = $this->Transkrip_model->requestTypesForbidden($request);
             $expected_result2 ='Anda tidak bisa meminta cetak karena ada permintaan lain yang belum selesai.';
             $test_name2 = 'Test ini berfungsi untuk memeriksa method requestTypeForbidden dari Transkrip_model dimana belum ada transkrip yang di jawab(answer)';
-            $this->unit->run($test2, $expected_result2, __FUNCTION__,$test_name2);
+            $this->unit->run($test2."", $expected_result2, __FUNCTION__,$test_name2);
                    
             //Test case 3
             $date = getdate();
@@ -306,7 +306,7 @@
             $test3 = $this->Transkrip_model->requestTypesForbidden($request);
             $expected_result3 ='Anda tidak bisa meminta cetak karena seluruh jenis transkrip sudah pernah dikabulkan di semester ini (' . $this->bluetape->semesterCodeToString($currentSemester) . ').';
             $test_name3 = 'Test ini berfungsi untuk memeriksa method requestTypeForbidden dari Transkrip_model dimana seluruh jenis transkrip sudah terkabul';
-            $this->unit->run($test3, $expected_result3, __FUNCTION__,$test_name3);
+            $this->unit->run($test3."", $expected_result3, __FUNCTION__,$test_name3);
 
 		}
 
