@@ -213,7 +213,7 @@
             $expected_result = $this->expectedResDosen($var);
             $test_name = 'Test ini berfungsi untuk memeriksa method requestBy dari JadwalDosen_model';
 
-            $this->unit->run($test, $expected_result, __FUNCTION__,$test_name);
+            $this->unit->run($test, $expected_result,__FUNCTION__,$test_name);
         }   
        
 
