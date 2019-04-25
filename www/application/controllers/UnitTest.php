@@ -28,12 +28,16 @@
             $this->load->config('auth');
             $this->load->model('PerubahanKuliah_model');
             $this->load->model('Email_model');
+            $this->load->config('auth');
+            $this->load->model('Auth_model');
+            $this->Auth_model->__construct();
             $this->load->database();
        }
        /**
         * Method untuk menjalankan Test case
         */
        public function index(){
+    
             $this->cekJadwalByUsername('Dipo');
             $this->cekYearMonthToSemesterCode();
             $this->cekSemesterCodeToString();
@@ -62,6 +66,9 @@
             $this->cekRequestByPerubahanKuliah('rootbluetape@gmail.com',null,null);
             $this->cekRequestByPerubahanKuliah('rootbluetape@gmail.com',1,0);
             $this->cekSend_email();
+            $this->testLogout();
+            $this->testCreateAuthUrl();
+            $this->cekGetUserInfo();
             $this->report();
         }
 
@@ -576,6 +583,9 @@
         }
 
         public function cekSend_email(){
+
+            
+     // copy('../config/auth-test.php','../config/auth.php');
             //test case jika=Debug true
             $email='gemini2911f665@gmail.com';
             $subject='Mengetes pengiriman pesan';
@@ -588,15 +598,71 @@
             //test case jika debug=false dan mail terkirim
             $debug2=FALSE;
             $result2=$this->Email_model->send_email($email,$subject,$message,$debug2);
-            $expected=NULL;
-            $this->unit->run($result2,$expected,__FUNCTION__,'Test ini berfungsi untuk memeriksa apakah email sudah terkirim atau belum');
+            $expected2=NULL;
+            $this->unit->run($result2,$expected2,__FUNCTION__,'Test ini berfungsi untuk memeriksa apakah email sudah terkirim atau belum');
 
             //test case jika debug=false dan mail tidak terkirim
             $result3=$this->Email_model->send_email(NULL,NULL,NULL,$debug2);
             $expected3="Maaf, gagal mengirim email notifikasi.";
             $this->unit->run($result3,$expected3,__FUNCTION__,'Test ini berfungsi untuk memeriksa apakah email sudah terkirim atau belum');
        }
+       //Auth_model
+       public function cekGetUserInfo(){
+        $role=array(
+            'mahasiswa.informatika' => '7316053@student.unpar.ac.id'
+        );
+            $this->session->set_userdata('auth',array(
+                'email'=>'7316053@student.unpar.ac.id',
+                'name'=>'ANUGRAH JAYA SAKTI',
+                'roles'=>$role,
+                'modules'=>array()
 
+            ));
+
+            $result=$this->Auth_model->getUserInfo();
+            $expected=array(
+                'email'=>'7316053@student.unpar.ac.id',
+                'name'=>'ANUGRAH JAYA SAKTI',
+                'roles'=>$role,
+                'modules'=>array()
+            );
+            $this->unit->run($result,$expected,__FUNCTION__,'Test ini berfungsi untuk mengecek Apakah userinfo yang ada pada session sudah sesuai /tidak');
+
+       }
+
+       public function testLogout(){
+        $role=array(
+            'mahasiswa.informatika' => '7316053@student.unpar.ac.id'
+        );
+        $this->session->set_userdata('auth',array(
+                'email'=>'7316053@student.unpar.ac.id',
+                'name'=>'ANUGRAH JAYA SAKTI',
+                'roles'=>$role,
+                'modules'=>array()
+
+         ));
+        $this->Auth_model->logout();
+        $info = $this->session->userdata();
+        if(sizeof($info)==0){
+            $result=array();
+        }
+        $expected=array();
+
+        $this->unit->run($result,$expected,__FUNCTION__,'Test ini berfungsi untuk mengecek Apakah userinfo sudah berhasil logout atau tidak , jika user berhasil logout maka tidak ada info user yang tersedia');
+
+       }
+
+       public function testCreateAuthUrl(){
+        $temp=$this->Auth_model->createAuthUrl();
+        if($temp==""){
+            $result=false;
+        }
+        else{    
+            $result=true;
+        }
+        $expected=true;
+        $this->unit->run($result,$expected,__FUNCTION__,'Test ini berfungsi untuk mengecek Apakah Url sudah terbuat atau tidak');
+       }
 
     }
 
