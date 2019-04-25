@@ -6,7 +6,7 @@ class Email_model extends CI_Model {
 
     public function send_email($email, $subject, $message, $debug = FALSE) {
         if ($debug === TRUE) {
-            echo $message;
+            return $message;
             exit();
         }
         $this->load->config('auth');
@@ -19,7 +19,8 @@ class Email_model extends CI_Model {
         $this->email->subject($subject);
         $this->email->message($message);
         if (!$this->email->send()) {
-            throw new Exception("Maaf, gagal mengirim email notifikasi.");
+            //throw new Exception("Maaf, gagal mengirim email notifikasi.");
+            return "Maaf, gagal mengirim email notifikasi.";
         }
     }
 
