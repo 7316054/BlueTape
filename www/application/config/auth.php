@@ -13,6 +13,7 @@ $config['email-config'] = Array(
     'smtp_port' => 465,
     'smtp_user' => 'rootbluetape@gmail.com',
     'smtp_pass' => 'Rootbluetape123',
+    'smtp_crypto' => 'tls',
     'mailtype' => 'html',
     'charset' => 'iso-8859-1'
 );
