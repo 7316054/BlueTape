@@ -7,6 +7,13 @@ services: mysql
 
 cache: bundler
 
+deploy:
+  provider: script
+  script:   scripts/deploy.sh
+  on:
+    tags:   true
+    branch: jaya
+
 before_isntall:
   - mv www/application/config/auth-test.php www/application/config/auth.php 
 
