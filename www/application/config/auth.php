@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$config['domain'] = 'http://localhost';
+$config['domain'] = 'http://travis-ci.com';
 $config['google-clientid'] = '466653343196-620lga9usl4lsmr99o9k1kljrd94ecfj.apps.googleusercontent.com';
 $config['google-clientsecret'] = 'a8yaddxuxBLO9JR8to9vkxyT';
 $config['google-redirecturi'] = $config['domain'] . '/auth/oauth2callback';
