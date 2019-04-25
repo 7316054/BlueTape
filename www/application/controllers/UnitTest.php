@@ -1,7 +1,7 @@
 <?php
-    use SebastianBergmann\CodeCoverage\CodeCoverage; 
+    use SebastianBergmann\CodeCoverage\CodeCoverage;
     defined('BASEPATH') OR exit('No direct script access allowed');
-    
+
     class unittest extends CI_Controller{
 
         const ENABLE_COVERAGE = true; // Requires xdebug
@@ -12,16 +12,16 @@
        public function __construct(){
             parent::__construct();
             $this->load->library('unit_test');
-            $this->unit->use_strict(TRUE); 
-            if (self::ENABLE_COVERAGE) { 
-                $this->coverage = new SebastianBergmann\CodeCoverage\CodeCoverage; 
-                $this->coverage->filter()->addDirectoryToWhitelist('application/controllers'); 
-                $this->coverage->filter()->removeDirectoryFromWhitelist('application/controllers/tests'); 
-                $this->coverage->filter()->addDirectoryToWhitelist('application/libraries'); 
-                $this->coverage->filter()->addDirectoryToWhitelist('application/models'); 
-                $this->coverage->filter()->addDirectoryToWhitelist('application/views'); 
-                $this->coverage->start('UnitTests'); 
-            } 
+            $this->unit->use_strict(TRUE);
+            if (self::ENABLE_COVERAGE) {
+                $this->coverage = new SebastianBergmann\CodeCoverage\CodeCoverage;
+                $this->coverage->filter()->addDirectoryToWhitelist('application/controllers');
+                $this->coverage->filter()->removeDirectoryFromWhitelist('application/controllers/tests');
+                $this->coverage->filter()->addDirectoryToWhitelist('application/libraries');
+                $this->coverage->filter()->addDirectoryToWhitelist('application/models');
+                $this->coverage->filter()->addDirectoryToWhitelist('application/views');
+                $this->coverage->start('UnitTests');
+            }
             $this->load->library('BlueTape');
             $this->load->model('JadwalDosen_model');
             $this->load->model('Transkrip_model');
@@ -67,7 +67,7 @@
 
        private function report() {
             if (self::ENABLE_COVERAGE) {
-                $this->coverage->stop();        
+                $this->coverage->stop();
                 $writer = new \SebastianBergmann\CodeCoverage\Report\Html\Facade;
                 $writer->process($this->coverage, '../reports/code-coverage');
             }
@@ -97,7 +97,7 @@
             }
             if ($statistics['Fail'] > 0) {
                 exit(1);
-            }        
+            }
         }
 
 
@@ -136,9 +136,9 @@
                                     FROM jadwal_dosen
                                     WHERE user='$user'");
             $expected_result=$query->result();
-            
+
             $test=$this->JadwalDosen_model->getJadwalByUsername($user);
-            
+
             $test_name="Test ini berfungsi untuk memeriksa apakah Jadwal sesuai dengan Username nya.";
             $this->unit->run($test,$expected_result,__FUNCTION__,$test_name);
        }
@@ -209,15 +209,15 @@
         * Expected result merupakan Array dari hasil query
         **/
         public function requestByDosen($var){
-            
+
             $test = $this->JadwalDosen_model->requestsBy($var);
             //print_r($test);
             $expected_result = $this->expectedResDosen($var);
             $test_name = 'Test ini berfungsi untuk memeriksa method requestBy dari JadwalDosen_model';
 
             $this->unit->run($test, $expected_result,__FUNCTION__, $test_name);
-        }   
-       
+        }
+
 
           /**
          * PATH : libraries/bluetape.php
@@ -242,15 +242,15 @@
         public function getName($var){
 		//Test case 1
             $test1 = $this->bluetape->getName($var);
-            
+
             $expected_result = $this->expectedResGetName($var);
             $test_name = 'Test ini berfungsi untuk memeriksa method getName dari BlueTape untuk yang return nya bernilai suatu value';
 
             $this->unit->run($test1, $expected_result, __FUNCTION__,$test_name);
-		
+
 		//Test case 2
 		 $test2 = $this->bluetape->getName('7316054@student');
-            
+
             $expected_result2 = NULL;
             $test_name2 = 'Test ini berfungsi untuk memeriksa method getName dari BlueTape untuk kasus contoh yang nilai nya NULL';
 
@@ -263,7 +263,7 @@
          * PATH : libraries/bluetape.php
         **/
         public function dbDateTimeToReadableDate(){
-            
+
             $this->db->select('requestDateTime');
             $this->db->from('transkrip');
             $query = $this->db->get();
@@ -282,27 +282,27 @@
 		*
 		**/
 		public function checkRequestTypesForbidden(){
-			
+
 			//Test case 1
-   
+
             $request = $this->Transkrip_model->requestsBy('7316091@student.unpar.ac.id');
             $test1 = $this->Transkrip_model->requestTypesForbidden($request);
             $expected_result1 = array( 'LHS');
             $test_name1 = 'Test ini berfungsi untuk memeriksa method requestTypeForbidden dari Transkrip_model yang keluarannya request type dari permintaan transkrip';
             $this->unit->run($test1, $expected_result1, __FUNCTION__,$test_name1);
-                      
+
             //Test Case2
             $request = $this->Transkrip_model->requestsBy('7316054@student.unpar.ac.id');
             $test2 = $this->Transkrip_model->requestTypesForbidden($request);
             $expected_result2 ='Anda tidak bisa meminta cetak karena ada permintaan lain yang belum selesai.';
             $test_name2 = 'Test ini berfungsi untuk memeriksa method requestTypeForbidden dari Transkrip_model dimana belum ada transkrip yang di jawab(answer)';
             $this->unit->run($test2, $expected_result2, __FUNCTION__,$test_name2);
-                   
+
             //Test case 3
             $date = getdate();
             $currentYear = $date['year'];
             $currentMonth = $date['mon'];
-            $currentSemester = $this->bluetape->yearMonthToSemesterCodeSimplified($currentYear, $currentMonth);      
+            $currentSemester = $this->bluetape->yearMonthToSemesterCodeSimplified($currentYear, $currentMonth);
             $request = $this->Transkrip_model->requestsBy('7316053@student.unpar.ac.id');
             $test3 = $this->Transkrip_model->requestTypesForbidden($request);
             $expected_result3 ='Anda tidak bisa meminta cetak karena seluruh jenis transkrip sudah pernah dikabulkan di semester ini (' . $this->bluetape->semesterCodeToString($currentSemester) . ').';
@@ -312,12 +312,12 @@
 		}
 
 
-        
+
         //Model -addJadwal
         public function cekAddjadwal(){
             $data=array("user"=>"gemini2911f665@gmail.com", "hari"=>"0", "jam_mulai"=>"7","durasi"=>"1","jenis_jadwal"=>"konsultasi","label_jadwal"=>"aa");
             $this->JadwalDosen_model->addJadwal($data);
-            $query=$this->db->query("SELECT *from jadwal_dosen where user='gemini2911f665@gmail.com' And hari=0  
+            $query=$this->db->query("SELECT *from jadwal_dosen where user='gemini2911f665@gmail.com' And hari=0
             And jam_mulai=7 And durasi=1 And jenis='konsultasi'");
             $row=$query->result();
             $obj=$row[sizeof($row)-1];
@@ -327,8 +327,8 @@
             $data2=array("user"=>$res['user'], "hari"=>$res['hari'], "jam_mulai"=>$res['jam_mulai'],"durasi"=>$res['durasi'],"jenis_jadwal"=>$res['jenis'],"label_jadwal"=>"aa");
             $this->unit->run($data,$data2,__FUNCTION__,"Test ini berfungsi untuk mengecek apakah inputan data sudah masuk atau tidak");
         }
-        
-        
+
+
          /**
           * PATH : models/JadwalDosen_model.php
           */
@@ -336,12 +336,12 @@
         $result=$this->JadwalDosen_model->cekJadwalByJamMulai($jamMulai,$hari,$user);
         $size=sizeof($result);
         $expetecRes=1;
-        
+
         $this->unit->run($size,$expetecRes,__FUNCTION__,'Test ini berfungsi untuk memeriksa Jadwal Dosen pada hari dan jam yang sama hanya boleh ada 1');
         //echo $this->unit->report();
     }
     /**
-     * PATH : models/JadwalDosen_model.php 
+     * PATH : models/JadwalDosen_model.php
      */
     public function requestBy($email,$rows,$start){
         $result=$this->JadwalDosen_model->requestsBy($email,$rows,$start);
@@ -358,7 +358,7 @@
         $exceptedRes=$query->result();
 
 
-        $this->unit->run($result,$exceptedRes,__FUNCTION__,'Test ini berfungsi untuk memeriksa seluruh request dari email '+$email);        
+        $this->unit->run($result,$exceptedRes,__FUNCTION__,'Test ini berfungsi untuk memeriksa seluruh request dari email '+$email);
         }
 
         //PATH : Libraries/BlueTape.php
@@ -367,7 +367,7 @@
             $result= $this->bluetape->getNPM('7316054@student.unpar.ac.id');
             $expected='2016730054';
             $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek apakah NPM valid atau tidak untuk kasus dimana mahasiswa angkatan di bawah 2017");
-            //test case2 
+            //test case2
             $result= $this->bluetape->getNPM('6181801025@student.unpar.ac.id');
             $expected='6181801025';
             $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek apakah NPM valid atau tidak untuk kasus dimana mahasiswa angkatan di atas 2017");
@@ -376,7 +376,7 @@
             $expected=NULL;
             $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek apakah NPM valid atau tidak untuk kasis yang tidak valid");
         }
-   
+
 
         //PATH : libraries/bluetape.php
         public function cekYearMonthToSemesterCodeSimplified(){
@@ -404,12 +404,12 @@
         public function cekGetAllJadwal(){
             $result=$this->JadwalDosen_model->getAllJadwal();
             $expetecRes=$this->getAllJadwal();
-            
+
             $this->unit->run((array)$result[0],(array)$expetecRes[0],__FUNCTION__,'Test ini berfungsi untuk memeriksa semua jadwal apakah sama dengan yang ada di database atau tidak');
             //echo $this->unit->report();
         }
 
-        
+
         /**
          * User = email
          */
@@ -454,14 +454,14 @@
         public function deleteByUsername($username){
             $query=$this->db->query('SELECT user from jadwal_dosen');
             $res=$query->result();
-        
+
             $exceptedRes=sizeof($res);
             $this->JadwalDosen_model->deleteByUsername($username);
 
             $query=$this->db->query('SELECT user from jadwal_dosen');
             $res=$query->result();
             $result=sizeof($res)+2;
-            
+
             $this->unit->run($result,$exceptedRes,__FUNCTION__,'Test ini berfungsi untuk memeriksa apakah username yang dihapus sudah tidak ada di database lagi');
         }
         /**
@@ -482,14 +482,14 @@
          */
 	 public function checkHariKeKolom(){
 		$coloumn = 3;
-		
+
 		$test = $this->JadwalDosen_model->hariKeKolom($coloumn);
 		$expected_result = 'E';
-        
+
 		$test_name = 'Test ini berfungsi untuk memeriksa method hari ke kolom dari JadwalDosen_model apakah valid atau tidak';
 
             $this->unit->run($test, $expected_result, __FUNCTION__,$test_name);
-            
+
         }
         /**
          * PATH : models/jadwaldosen_model.php
@@ -505,7 +505,7 @@
             else{
                 $obj=$row[sizeof($row)-1];
             }
-            
+
             $this->unit->run($obj,null,__FUNCTION__,"Test ini berfungsi untuk mengecek apakah data sudah terdelete atau tidak");
         }
 
@@ -527,7 +527,7 @@
             $this->unit->run($res->requestByEmail,$exceptedRes->requestByEmail,__FUNCTION__,"Test ini berfungsi untuk memeriksa requestby berdasarkan id");
         }
 
-        /** 
+        /**
          * Path: Models/PerubahanKuliah_model.php
         */
         public function cekRequestByPerubahanKuliah($email,$row,$start){
@@ -553,7 +553,7 @@
             }
             $this->unit->run($result,$expected_result,__FUNCTION__,'Test ini berfungsi untuk memeriksa siapa yang melakukan request');
 
-         
+
         }
 
         	//--------------EXPECTED RESULTS-----------------------------------------------------------------------------------------------------------------------------------
@@ -576,6 +576,9 @@
         }
 
         public function cekSend_email(){
+             $config = $this->config->item('email-config');
+                $this->load->library('email',$config);
+
             //test case jika=Debug true
             $email='gemini2911f665@gmail.com';
             $subject='Mengetes pengiriman pesan';
