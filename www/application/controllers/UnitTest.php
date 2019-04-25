@@ -25,13 +25,19 @@
             $this->load->library('BlueTape');
             $this->load->model('JadwalDosen_model');
             $this->load->model('Transkrip_model');
+            $this->load->config('auth');
             $this->load->model('PerubahanKuliah_model');
+            $this->load->model('Email_model');
+            $this->load->config('auth');
+            $this->load->model('Auth_model');
+            $this->Auth_model->__construct();
             $this->load->database();
        }
        /**
         * Method untuk menjalankan Test case
         */
        public function index(){
+    
             $this->cekJadwalByUsername('Dipo');
             $this->cekYearMonthToSemesterCode();
             $this->cekSemesterCodeToString();
@@ -59,8 +65,16 @@
             $this->cekRequestBy('7316053@student.unpar.ac.id',1,3);
             $this->cekRequestByPerubahanKuliah('rootbluetape@gmail.com',null,null);
             $this->cekRequestByPerubahanKuliah('rootbluetape@gmail.com',1,0);
+<<<<<<< HEAD
             //$this->cekSend_email('rootbluetape@gmail.com','Mengetes pengiriman pesan','Tugas proyek informatika',false);
              $this->report();
+=======
+            $this->cekSend_email();
+            $this->testLogout();
+            $this->testCreateAuthUrl();
+            $this->cekGetUserInfo();
+            $this->report();
+>>>>>>> d3af5cb055cb63962b08df5f56eb218ee968fc06
         }
 
        private function report() {
@@ -213,7 +227,11 @@
             $expected_result = $this->expectedResDosen($var);
             $test_name = 'Test ini berfungsi untuk memeriksa method requestBy dari JadwalDosen_model';
 
+<<<<<<< HEAD
             $this->unit->run($test, $expected_result,__FUNCTION__,$test_name);
+=======
+            $this->unit->run($test, $expected_result,__FUNCTION__, $test_name);
+>>>>>>> d3af5cb055cb63962b08df5f56eb218ee968fc06
         }   
        
 
@@ -282,6 +300,7 @@
 		public function checkRequestTypesForbidden(){
 			
 			//Test case 1
+<<<<<<< HEAD
 			
 			$request = $this->Transkrip_model->requestsBy('7316091@student.unpar.ac.id');
 			$test1 = $this->Transkrip_model->requestTypesForbidden($request);
@@ -298,14 +317,37 @@
           
              //Test case 3
              $date = getdate();
+=======
+   
+            $request = $this->Transkrip_model->requestsBy('7316091@student.unpar.ac.id');
+            $test1 = $this->Transkrip_model->requestTypesForbidden($request);
+            $expected_result1 = array( 'LHS');
+            $test_name1 = 'Test ini berfungsi untuk memeriksa method requestTypeForbidden dari Transkrip_model yang keluarannya request type dari permintaan transkrip';
+            $this->unit->run($test1, $expected_result1, __FUNCTION__,$test_name1);
+                      
+            //Test Case2
+            $request = $this->Transkrip_model->requestsBy('7316054@student.unpar.ac.id');
+            $test2 = $this->Transkrip_model->requestTypesForbidden($request);
+            $expected_result2 ='Anda tidak bisa meminta cetak karena ada permintaan lain yang belum selesai.';
+            $test_name2 = 'Test ini berfungsi untuk memeriksa method requestTypeForbidden dari Transkrip_model dimana belum ada transkrip yang di jawab(answer)';
+            $this->unit->run($test2, $expected_result2, __FUNCTION__,$test_name2);
+                   
+            //Test case 3
+            $date = getdate();
+>>>>>>> d3af5cb055cb63962b08df5f56eb218ee968fc06
             $currentYear = $date['year'];
             $currentMonth = $date['mon'];
-             $currentSemester = $this->bluetape->yearMonthToSemesterCodeSimplified($currentYear, $currentMonth);      
-             $request = $this->Transkrip_model->requestsBy('7316053@student.unpar.ac.id');
-			$test3 = $this->Transkrip_model->requestTypesForbidden($request);
-			$expected_result3 ='Anda tidak bisa meminta cetak karena seluruh jenis transkrip sudah pernah dikabulkan di semester ini (' . $this->bluetape->semesterCodeToString($currentSemester) . ').';
+            $currentSemester = $this->bluetape->yearMonthToSemesterCodeSimplified($currentYear, $currentMonth);      
+            $request = $this->Transkrip_model->requestsBy('7316053@student.unpar.ac.id');
+            $test3 = $this->Transkrip_model->requestTypesForbidden($request);
+            $expected_result3 ='Anda tidak bisa meminta cetak karena seluruh jenis transkrip sudah pernah dikabulkan di semester ini (' . $this->bluetape->semesterCodeToString($currentSemester) . ').';
             $test_name3 = 'Test ini berfungsi untuk memeriksa method requestTypeForbidden dari Transkrip_model dimana seluruh jenis transkrip sudah terkabul';
+<<<<<<< HEAD
             $this->unit->run($test3, $expected_result3,__FUNCTION__, $test_name3);
+=======
+            $this->unit->run($test3, $expected_result3, __FUNCTION__,$test_name3);
+
+>>>>>>> d3af5cb055cb63962b08df5f56eb218ee968fc06
 		}
 
 
@@ -470,7 +512,13 @@
 		 $test = $this->JadwalDosen_model->kolomKeHari($namaHari);
 		 $exceptedRes = FALSE;
 
+<<<<<<< HEAD
             $this->unit->run($test, $exceptedRes, __FUNCTION__,'Test ini berfungsi untuk memerikas method kolom ke hari dari JadwalDosen_model apakah valid atau tidak');
+=======
+            $test_name = 'Test ini berfungsi untuk memerikas method kolom ke hari dari JadwalDosen_model apakah valid atau tidak';
+
+            $this->unit->run($test, $exceptedRes, __FUNCTION__,$test_name);
+>>>>>>> d3af5cb055cb63962b08df5f56eb218ee968fc06
         }
         /**
          * PATH : models/jadwaldosen_model.php
@@ -483,7 +531,11 @@
         
 		$test_name = 'Test ini berfungsi untuk memeriksa method hari ke kolom dari JadwalDosen_model apakah valid atau tidak';
 
+<<<<<<< HEAD
             $this->unit->run($test, $expected_result,__FUNCTION__ ,$test_name);
+=======
+            $this->unit->run($test, $expected_result, __FUNCTION__,$test_name);
+>>>>>>> d3af5cb055cb63962b08df5f56eb218ee968fc06
             
         }
         /**
@@ -570,11 +622,87 @@
             return $row->name;
         }
 
-        public function cekSend_email($email,$subject,$message,$debug){
-            $this->Email_model->send_email($email,$subject,$message,$debug);
+        public function cekSend_email(){
 
+            
+     // copy('../config/auth-test.php','../config/auth.php');
+            //test case jika=Debug true
+            $email='gemini2911f665@gmail.com';
+            $subject='Mengetes pengiriman pesan';
+            $message='Tugas proyek informatika';
+            $debug=TRUE;
+            $result=$this->Email_model->send_email($email,$subject,$message,$debug);
+            $expected='Tugas proyek informatika';
+            $this->unit->run($result,$expected,__FUNCTION__,'Test ini berfungsi untuk memeriksa apakah email sudah terkirim atau belum');
+
+            //test case jika debug=false dan mail terkirim
+            $debug2=FALSE;
+            $result2=$this->Email_model->send_email($email,$subject,$message,$debug2);
+            $expected2=NULL;
+            $this->unit->run($result2,$expected2,__FUNCTION__,'Test ini berfungsi untuk memeriksa apakah email sudah terkirim atau belum');
+
+            //test case jika debug=false dan mail tidak terkirim
+            $result3=$this->Email_model->send_email(NULL,NULL,NULL,$debug2);
+            $expected3="Maaf, gagal mengirim email notifikasi.";
+            $this->unit->run($result3,$expected3,__FUNCTION__,'Test ini berfungsi untuk memeriksa apakah email sudah terkirim atau belum');
+       }
+       //Auth_model
+       public function cekGetUserInfo(){
+        $role=array(
+            'mahasiswa.informatika' => '7316053@student.unpar.ac.id'
+        );
+            $this->session->set_userdata('auth',array(
+                'email'=>'7316053@student.unpar.ac.id',
+                'name'=>'ANUGRAH JAYA SAKTI',
+                'roles'=>$role,
+                'modules'=>array()
+
+            ));
+
+            $result=$this->Auth_model->getUserInfo();
+            $expected=array(
+                'email'=>'7316053@student.unpar.ac.id',
+                'name'=>'ANUGRAH JAYA SAKTI',
+                'roles'=>$role,
+                'modules'=>array()
+            );
+            $this->unit->run($result,$expected,__FUNCTION__,'Test ini berfungsi untuk mengecek Apakah userinfo yang ada pada session sudah sesuai /tidak');
+
+       }
+
+       public function testLogout(){
+        $role=array(
+            'mahasiswa.informatika' => '7316053@student.unpar.ac.id'
+        );
+        $this->session->set_userdata('auth',array(
+                'email'=>'7316053@student.unpar.ac.id',
+                'name'=>'ANUGRAH JAYA SAKTI',
+                'roles'=>$role,
+                'modules'=>array()
+
+         ));
+        $this->Auth_model->logout();
+        $info = $this->session->userdata();
+        if(sizeof($info)==0){
+            $result=array();
         }
+        $expected=array();
 
+        $this->unit->run($result,$expected,__FUNCTION__,'Test ini berfungsi untuk mengecek Apakah userinfo sudah berhasil logout atau tidak , jika user berhasil logout maka tidak ada info user yang tersedia');
+
+       }
+
+       public function testCreateAuthUrl(){
+        $temp=$this->Auth_model->createAuthUrl();
+        if($temp==""){
+            $result=false;
+        }
+        else{    
+            $result=true;
+        }
+        $expected=true;
+        $this->unit->run($result,$expected,__FUNCTION__,'Test ini berfungsi untuk mengecek Apakah Url sudah terbuat atau tidak');
+       }
 
     }
 
