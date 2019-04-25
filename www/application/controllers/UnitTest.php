@@ -25,6 +25,7 @@
             $this->load->library('BlueTape');
             $this->load->model('JadwalDosen_model');
             $this->load->model('Transkrip_model');
+            $this->load->config('auth');
             $this->load->model('PerubahanKuliah_model');
             $this->load->model('Email_model');
             $this->load->config('auth');
@@ -216,7 +217,7 @@
             $expected_result = $this->expectedResDosen($var);
             $test_name = 'Test ini berfungsi untuk memeriksa method requestBy dari JadwalDosen_model';
 
-            $this->unit->run($test, $expected_result, $test_name);
+            $this->unit->run($test, $expected_result,__FUNCTION__, $test_name);
         }   
        
 
@@ -247,7 +248,7 @@
             $expected_result = $this->expectedResGetName($var);
             $test_name = 'Test ini berfungsi untuk memeriksa method getName dari BlueTape untuk yang return nya bernilai suatu value';
 
-            $this->unit->run($test1, $expected_result, $test_name);
+            $this->unit->run($test1, $expected_result, __FUNCTION__,$test_name);
 		
 		//Test case 2
 		 $test2 = $this->bluetape->getName('7316054@student');
@@ -255,7 +256,7 @@
             $expected_result2 = NULL;
             $test_name2 = 'Test ini berfungsi untuk memeriksa method getName dari BlueTape untuk kasus contoh yang nilai nya NULL';
 
-            $this->unit->run($test2, $expected_result2, $test_name2);
+            $this->unit->run($test2, $expected_result2, __FUNCTION__,$test_name2);
         }
 
         /**
@@ -274,7 +275,7 @@
             $test = $this->bluetape->dbDateTimeToReadableDate($dateTime->requestDateTime);
             $test_name = 'Test ini berfungsi untuk memeriksa method dbDateTimeToReadableDate dari BlueTape';
 
-            $this->unit->run($test, $expected_result, $test_name);
+            $this->unit->run($test, $expected_result, __FUNCTION__,$test_name);
         }
 
 		/**
@@ -290,14 +291,14 @@
             $test1 = $this->Transkrip_model->requestTypesForbidden($request);
             $expected_result1 = array( 'LHS');
             $test_name1 = 'Test ini berfungsi untuk memeriksa method requestTypeForbidden dari Transkrip_model yang keluarannya request type dari permintaan transkrip';
-            $this->unit->run($test1, $expected_result1, $test_name1);
+            $this->unit->run($test1, $expected_result1, __FUNCTION__,$test_name1);
                       
             //Test Case2
             $request = $this->Transkrip_model->requestsBy('7316054@student.unpar.ac.id');
             $test2 = $this->Transkrip_model->requestTypesForbidden($request);
             $expected_result2 ='Anda tidak bisa meminta cetak karena ada permintaan lain yang belum selesai.';
             $test_name2 = 'Test ini berfungsi untuk memeriksa method requestTypeForbidden dari Transkrip_model dimana belum ada transkrip yang di jawab(answer)';
-            $this->unit->run($test2, $expected_result2, $test_name2);
+            $this->unit->run($test2, $expected_result2, __FUNCTION__,$test_name2);
                    
             //Test case 3
             $date = getdate();
@@ -308,7 +309,7 @@
             $test3 = $this->Transkrip_model->requestTypesForbidden($request);
             $expected_result3 ='Anda tidak bisa meminta cetak karena seluruh jenis transkrip sudah pernah dikabulkan di semester ini (' . $this->bluetape->semesterCodeToString($currentSemester) . ').';
             $test_name3 = 'Test ini berfungsi untuk memeriksa method requestTypeForbidden dari Transkrip_model dimana seluruh jenis transkrip sudah terkabul';
-            $this->unit->run($test3, $expected_result3, $test_name3);
+            $this->unit->run($test3, $expected_result3, __FUNCTION__,$test_name3);
 
 		}
 
@@ -476,7 +477,7 @@
 
             $test_name = 'Test ini berfungsi untuk memerikas method kolom ke hari dari JadwalDosen_model apakah valid atau tidak';
 
-            $this->unit->run($test, $exceptedRes, $test_name);
+            $this->unit->run($test, $exceptedRes, __FUNCTION__,$test_name);
         }
         /**
          * PATH : models/jadwaldosen_model.php
@@ -489,7 +490,7 @@
         
 		$test_name = 'Test ini berfungsi untuk memeriksa method hari ke kolom dari JadwalDosen_model apakah valid atau tidak';
 
-            $this->unit->run($test, $expected_result, $test_name);
+            $this->unit->run($test, $expected_result, __FUNCTION__,$test_name);
             
         }
         /**
