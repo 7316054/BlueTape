@@ -596,9 +596,9 @@
             $this->unit->run($result,$expected,__FUNCTION__,'Test ini berfungsi untuk memeriksa apakah email sudah terkirim atau belum');
 
             //test case jika debug=false dan mail terkirim
-            // $debug2=FALSE;
-            // $result2=$this->Email_model->send_email($email,$subject,$message,$debug2);
-            // $expected2=NULL;
+             $debug2=FALSE;
+             $result2=$this->Email_model->send_email($email,$subject,$message,$debug2);
+             $expected2=NULL;
             // $this->unit->run($result2,$expected2,__FUNCTION__,'Test ini berfungsi untuk memeriksa apakah email sudah terkirim atau belum');
 
             //test case jika debug=false dan mail tidak terkirim
