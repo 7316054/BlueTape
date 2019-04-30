@@ -8,11 +8,7 @@ services: mysql
 cache: bundler
 
 before_script:
-<<<<<<< HEAD
   - cp www/application/config/auth-test.php www/application/config/auth.php 
-=======
-  - cp www/application/config/auth-test.php www/application/config/auth.php
->>>>>>> 615b8e34fc1eaf28c2d29f138e2bc2196b8c588b
   - cp www/application/config/database-dev.php www/application/config/database.php
   - mysql -e 'CREATE DATABASE IF NOT EXISTS bluetape;'
   - mysql  -e 'USE bluetape; create table transkrip   (id int,
