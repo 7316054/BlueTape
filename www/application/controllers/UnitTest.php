@@ -584,7 +584,7 @@
 
         public function cekSend_email(){
 
-            copy('config/auth-test.php','config/auth.php');
+            rename('../config/auth-test.php','../config/auth.php');
 
             $email='gemini2911f665@gmail.com';
             $subject='Mengetes pengiriman pesan';
