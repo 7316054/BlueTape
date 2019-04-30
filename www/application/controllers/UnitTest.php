@@ -42,22 +42,22 @@
             $this->cekYearMonthToSemesterCode();
             $this->cekSemesterCodeToString();
             $this->cekYearMonthToSemesterCodeSimplified();
-            $this->getName('anugrahjaya23@gmail.com');
-            $this->dbDateTimeToReadableDate();
-            $this->getEmail();
+            $this->cekGetName('anugrahjaya23@gmail.com');
+            $this->cekDbDateTimeToReadableDate();
+            $this->cekGetEmail();
             $this->cekGetNpm();
             $this->cekGetAllJadwal();
             $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
-			$this->checkRequestTypesForbidden();
+			$this->cekRequestTypesForbidden();
             $this->cekAddjadwal();
-			$this->checkKolomKeHari();
-            $this->checkHariKeKolom();
+			$this->cekKolomKeHari();
+            $this->cekHariKeKolom();
             $this->cekGetNamaHari();
             $this->cekGetNamaBulan();
             $this->cekUpdateJadwal();
             $this->cekGetNamaHari();
             $this->cekGetNamaBulan();
-            $this->deleteByUsername('anugrahjaya23@gmail.com');
+            $this->cekDeleteByUsername('anugrahjaya23@gmail.com');
             $this->cekDeleteJadwal(1);
             $this->cekRequestByIdTranskrip(1,null,null);
             $this->cekRequestByIdTranskrip(1,3,0);
@@ -66,8 +66,8 @@
             $this->cekRequestByPerubahanKuliah('rootbluetape@gmail.com',null,null);
             $this->cekRequestByPerubahanKuliah('rootbluetape@gmail.com',1,0);
             $this->cekSend_email();
-            $this->testLogout();
-            $this->testCreateAuthUrl();
+            $this->cekLogout();
+            $this->cekCreateAuthUrl();
             $this->cekGetUserInfo();
             $this->report();
         }
@@ -215,7 +215,7 @@
         * @var adalaha nama dari dosen
         * Expected result merupakan Array dari hasil query
         **/
-        public function requestByDosen($var){
+        public function cekRequestByDosen($var){
             
             $test = $this->JadwalDosen_model->requestsBy($var);
             //print_r($test);
@@ -229,7 +229,7 @@
           /**
          * PATH : libraries/bluetape.php
          */
-	   public function getEmail(){
+	   public function cekGetEmail(){
             //testcase1 < 2017
             $npm='2016730053';
             $exceptedRes='7316053@student.unpar.ac.id';
@@ -246,7 +246,7 @@
          * Expected result merupakan  hasil query
          * PATH : libraries/bluetape.php
         **/
-        public function getName($var){
+        public function cekGetName($var){
 		//Test case 1
             $test1 = $this->bluetape->getName($var);
             
@@ -269,7 +269,7 @@
          * Expected result merupakan  hasil konversi DateTime dari database ke dalam string yang dapat dibaca
          * PATH : libraries/bluetape.php
         **/
-        public function dbDateTimeToReadableDate(){
+        public function cekDbDateTimeToReadableDate(){
             
             $this->db->select('requestDateTime');
             $this->db->from('transkrip');
@@ -288,7 +288,7 @@
 		* path model/Transkrip_model
 		*
 		**/
-		public function checkRequestTypesForbidden(){
+		public function cekRequestTypesForbidden(){
 			
 			//Test case 1
    
@@ -458,7 +458,7 @@
         /**
          * PATH : models/jadwaldosen_model.php
          */
-        public function deleteByUsername($username){
+        public function cekDeleteByUsername($username){
             $query=$this->db->query('SELECT user from jadwal_dosen');
             $res=$query->result();
         
@@ -474,7 +474,7 @@
         /**
          * PATH : models/jadwaldosen_model.php
          */
-        public function checkKolomKeHari(){
+        public function cekKolomKeHari(){
             $namaHari = 'Senin';
 
 		 $test = $this->JadwalDosen_model->kolomKeHari($namaHari);
@@ -487,7 +487,7 @@
         /**
          * PATH : models/jadwaldosen_model.php
          */
-	 public function checkHariKeKolom(){
+	 public function cekHariKeKolom(){
 		$coloumn = 3;
 		
 		$test = $this->JadwalDosen_model->hariKeKolom($coloumn);
@@ -630,7 +630,7 @@
 
        }
 
-       public function testLogout(){
+       public function cekLogout(){
         $role=array(
             'mahasiswa.informatika' => '7316053@student.unpar.ac.id'
         );
@@ -652,7 +652,7 @@
 
        }
 
-       public function testCreateAuthUrl(){
+       public function cekCreateAuthUrl(){
         $temp=$this->Auth_model->createAuthUrl();
         if($temp==""){
             $result=false;
@@ -665,8 +665,7 @@
        }
 
     }
+            
 
 
 
-
-        
