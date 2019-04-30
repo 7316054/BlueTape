@@ -14,6 +14,6 @@ $config['email-config'] = Array(
     'smtp_user' => 'rootbluetape@gmail.com', //masukan email google 
     'smtp_pass' => 'Rootbluetape123', //password email  // di config bikin 2 AUTH 1 YANG SALAH
     'mailtype' => 'html',
-    'charset' => 'iso-8859-1',
+    'charset' => 'utf-8',
     'smtp_crypto'=> 'tls'
 );
