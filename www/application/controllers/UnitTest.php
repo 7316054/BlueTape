@@ -28,8 +28,6 @@
             $this->load->config('auth');
             $this->load->model('PerubahanKuliah_model');
             $this->load->model('Email_model');
-            $this->load->config('auth-test');
-            $this->load->config('auth-dev');
             $this->load->model('Auth_model');
             $this->Auth_model->__construct();
             $this->load->database();
@@ -584,8 +582,6 @@
         }
 
         public function cekSend_email(){
-
-            rename('\www\application\config\auth-test.php','\www\application\config\auth.php');
 
             $email='gemini2911f665@gmail.com';
             $subject='Mengetes pengiriman pesan';
