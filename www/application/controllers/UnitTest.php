@@ -25,7 +25,7 @@
             $this->load->library('BlueTape');
             $this->load->model('JadwalDosen_model');
             $this->load->model('Transkrip_model');
-            $this->load->config('auth');
+            $this->load->config('auth-test');
             $conf = $this->config->item('email-config');
             $this->load->library('email', $conf);
             $this->load->model('PerubahanKuliah_model');
