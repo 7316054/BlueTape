@@ -1,5 +1,7 @@
 /nbproject/private/
 /www/application/config/database.php
+/www/application/config/auth.php
+
 
 /reports/
 /vendor/
