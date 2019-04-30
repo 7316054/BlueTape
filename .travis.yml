@@ -6,9 +6,6 @@ php:
 services: mysql
 
 cache: bundler
-
-before_install:
-  - mv www/application/config/auth-test.php www/application/config/auth.php
 before_script:
   - mv www/application/config/auth-test.php www/application/config/auth.php
   - cp www/application/config/database-dev.php www/application/config/database.php
