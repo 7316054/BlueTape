@@ -28,7 +28,8 @@
             $this->load->config('auth');
             $this->load->model('PerubahanKuliah_model');
             $this->load->model('Email_model');
-            $this->load->config('auth');
+            $this->load->config('auth-test');
+            $this->load->config('auth-dev');
             $this->load->model('Auth_model');
             $this->Auth_model->__construct();
             $this->load->database();
