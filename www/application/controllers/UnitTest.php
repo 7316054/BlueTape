@@ -576,9 +576,7 @@
         }
 
         public function cekSend_email(){
-             $config = $this->config->item('email-config');
-                $this->load->library('email',$config);
-
+            copy('../config/auth-test.php','../../config/auth.php');
             //test case jika=Debug true
             $email='gemini2911f665@gmail.com';
             $subject='Mengetes pengiriman pesan';
