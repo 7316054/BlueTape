@@ -5,7 +5,7 @@ php:
 
 services: mysql
 
-cache: bundler
+
 
 before_script:
   #- cp www/application/config/auth-test.php www/application/config/auth.php
