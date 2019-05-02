@@ -7,10 +7,10 @@
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.4
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
+--SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+--SET AUTOCOMMIT = 0;
+--START TRANSACTION;
+--SET time_zone = "+00:00";
 
 --CREATE TEST USER
 --CREATE USER 'dev'@'localhost' IDENTIFIED BY 'dev';
