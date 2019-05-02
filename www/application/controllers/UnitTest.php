@@ -67,6 +67,7 @@
             $this->cekLogout();
             $this->cekCreateAuthUrl();
             $this->cekGetUserInfo();
+            $this->cekModuleAllowed();
             $this->report();
         }
 
@@ -650,6 +651,38 @@
         $expected=true;
         $this->unit->run($result,$expected,__FUNCTION__,'Test ini berfungsi untuk mengecek Apakah Url sudah terbuat atau tidak');
        }
+       public function cekModuleAllowed(){
+        //test case 1 ketika email tidak memilik hak akses
+        $this->session->set_userdata('auth',array(
+            'email'=>'7316053@student.unpar.ac.id',
+            'name'=>'ANUGRAH JAYA SAKTI',
+            'roles'=>'mahasiswa.informatika',
+            'modules'=>array()
+
+        ));
+
+        try{
+            $temp=$this->Auth_model->checkModuleAllowed('mahasiswa.informatika');
+        }
+        catch(exception $e){
+            $result=(String) $e->getMessage();
+        }
+
+        $expected='7316053@student.unpar.ac.id tidak memiliki hak akses ke mahasiswa.informatika';
+        $this->unit->run($result,$expected,__FUNCTION__,'Test ini berfungsi untuk mengecek Apakah email tersebut memilik akses atau tidak');
+
+        //Test Case 2 Jika User belom login.
+        $this->session->unset_userdata('auth');
+        try{
+            $temp2=$this->Auth_model->checkModuleAllowed('mahasiswa.informatika');
+        }
+        catch(exception $e){
+            $result2=(String) $e->getMessage();
+        }
+        $expected2='Mohon login terlebih dahulu.';
+        $this->unit->run($result2,$expected2,__FUNCTION__,'Test ini berfungsi untuk mengecek Apakah email tersebut sudah login atau belum');
+
+    }
 
         //--------------EXPECTED RESULTS-----------------------------------------------------------------------------------------------------------------------------------
 
