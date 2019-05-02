@@ -9,8 +9,13 @@ $config['google-redirecturi'] = $config['domain'] . '/auth/oauth2callback';
 
 $config['email-config'] = Array(
     'protocol' => 'smtp',
+<<<<<<< HEAD
     'smtp_host' => 'smtp.googlemail.com',
     'smtp_port' => 587,
+=======
+    'smtp_host' => 'ssl://smtp.googlemail.com',
+    'smtp_port' => 465,
+>>>>>>> 55cbb1b2442e85bc12b2917fefe766da30118ae9
     'smtp_user' => 'rootbluetape@gmail.com', //masukan email google 
     'smtp_pass' => 'Rootbluetape123', //password email  // di config bikin 2 AUTH 1 YANG SALAH
     'mailtype' => 'html',

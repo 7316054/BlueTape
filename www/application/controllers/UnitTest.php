@@ -37,37 +37,37 @@
         */
        public function index(){
     
-            // $this->cekJadwalByUsername('Dipo');
-            // $this->cekYearMonthToSemesterCode();
-            // $this->cekSemesterCodeToString();
-            // $this->cekYearMonthToSemesterCodeSimplified();
-            // $this->getName('anugrahjaya23@gmail.com');
-            // $this->dbDateTimeToReadableDate();
-            // $this->getEmail();
-            // $this->cekGetNpm();
-            // $this->cekGetAllJadwal();
-            // $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
-			// $this->checkRequestTypesForbidden();
-            // $this->cekAddjadwal();
-			// $this->checkKolomKeHari();
-            // $this->checkHariKeKolom();
-            // $this->cekGetNamaHari();
-            // $this->cekGetNamaBulan();
-            // $this->cekUpdateJadwal();
-            // $this->cekGetNamaHari();
-            // $this->cekGetNamaBulan();
-            // $this->deleteByUsername('anugrahjaya23@gmail.com');
-            // $this->cekDeleteJadwal(1);
-            // $this->cekRequestByIdTranskrip(1,null,null);
-            // $this->cekRequestByIdTranskrip(1,3,0);
-            // $this->cekRequestBy('7316053@student.unpar.ac.id',null,null);
-            // $this->cekRequestBy('7316053@student.unpar.ac.id',1,3);
-            // $this->cekRequestByPerubahanKuliah('rootbluetape@gmail.com',null,null);
-            // $this->cekRequestByPerubahanKuliah('rootbluetape@gmail.com',1,0);
+            $this->cekJadwalByUsername('Dipo');
+            $this->cekYearMonthToSemesterCode();
+            $this->cekSemesterCodeToString();
+            $this->cekYearMonthToSemesterCodeSimplified();
+            $this->cekGetName('anugrahjaya23@gmail.com');
+            $this->cekDbDateTimeToReadableDate();
+            $this->cekGetEmail();
+            $this->cekGetNpm();
+            $this->cekGetAllJadwal();
+            $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
+			$this->cekRequestTypesForbidden();
+            $this->cekAddjadwal();
+			$this->cekKolomKeHari();
+            $this->cekHariKeKolom();
+            $this->cekGetNamaHari();
+            $this->cekGetNamaBulan();
+            $this->cekUpdateJadwal();
+            $this->cekGetNamaHari();
+            $this->cekGetNamaBulan();
+            $this->cekDeleteByUsername('anugrahjaya23@gmail.com');
+            $this->cekDeleteJadwal(1);
+            $this->cekRequestByIdTranskrip(1,null,null);
+            $this->cekRequestByIdTranskrip(1,3,0);
+            $this->cekRequestBy('7316053@student.unpar.ac.id',null,null);
+            $this->cekRequestBy('7316053@student.unpar.ac.id',1,3);
+            $this->cekRequestByPerubahanKuliah('rootbluetape@gmail.com',null,null);
+            $this->cekRequestByPerubahanKuliah('rootbluetape@gmail.com',1,0);
             $this->cekSend_email();
-            // $this->testLogout();
-            // $this->testCreateAuthUrl();
-            // $this->cekGetUserInfo();
+            $this->cekLogout();
+            $this->cekCreateAuthUrl();
+            $this->cekGetUserInfo();
             $this->report();
         }
 
@@ -214,7 +214,7 @@
         * @var adalaha nama dari dosen
         * Expected result merupakan Array dari hasil query
         **/
-        public function requestByDosen($var){
+        public function cekRequestByDosen($var){
             
             $test = $this->JadwalDosen_model->requestsBy($var);
             //print_r($test);
@@ -228,7 +228,7 @@
           /**
          * PATH : libraries/bluetape.php
          */
-	   public function getEmail(){
+	   public function cekGetEmail(){
             //testcase1 < 2017
             $npm='2016730053';
             $exceptedRes='7316053@student.unpar.ac.id';
@@ -245,7 +245,7 @@
          * Expected result merupakan  hasil query
          * PATH : libraries/bluetape.php
         **/
-        public function getName($var){
+        public function cekGetName($var){
 		//Test case 1
             $test1 = $this->bluetape->getName($var);
             
@@ -268,7 +268,7 @@
          * Expected result merupakan  hasil konversi DateTime dari database ke dalam string yang dapat dibaca
          * PATH : libraries/bluetape.php
         **/
-        public function dbDateTimeToReadableDate(){
+        public function cekDbDateTimeToReadableDate(){
             
             $this->db->select('requestDateTime');
             $this->db->from('transkrip');
@@ -284,10 +284,10 @@
 
 		/**
 		* Memeriksa method request type forbidden dari Transkrip_model
-		* path model/Transkrip_model
+		* PATH :  models/Transkrip_model.php
 		*
 		**/
-		public function checkRequestTypesForbidden(){
+		public function cekRequestTypesForbidden(){
 			
 			//Test case 1
    
@@ -319,7 +319,7 @@
 
 
         
-        //Model -addJadwal
+        // PATH : Models/Jadwaldosen_model.oho
         public function cekAddjadwal(){
             $data=array("user"=>"gemini2911f665@gmail.com", "hari"=>"0", "jam_mulai"=>"7","durasi"=>"1","jenis_jadwal"=>"konsultasi","label_jadwal"=>"aa");
             $this->JadwalDosen_model->addJadwal($data);
@@ -390,7 +390,7 @@
             //test case 1
             $year=2019;
             $month=12;
-                $result= $this->bluetape->yearMonthToSemesterCodeSimplified($year,$month);
+            $result= $this->bluetape->yearMonthToSemesterCodeSimplified($year,$month);
             $expected='191';
             $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek Konversi tahun dan bulan ke kode semester, disederhanakan menjadi dua semester untuk kasus semester ganjil");
 
@@ -398,9 +398,9 @@
             //test case 2
             $year2=2019;
             $month2=3;
-                $result2= $this->bluetape->yearMonthToSemesterCodeSimplified($year2,$month2);
+            $result2= $this->bluetape->yearMonthToSemesterCodeSimplified($year2,$month2);
             $expected2='192';
-                $this->unit->run($result2,$expected2,__FUNCTION__,"Test ini mengecek Konversi tahun dan bulan ke kode semester, disederhanakan menjadi dua semester untuk kasus semester genap");
+            $this->unit->run($result2,$expected2,__FUNCTION__,"Test ini mengecek Konversi tahun dan bulan ke kode semester, disederhanakan menjadi dua semester untuk kasus semester genap");
 
         }
 
@@ -418,6 +418,7 @@
         
         /**
          * User = email
+         * PATH : models/Jadwaldosen_model.php
          */
         public function getAllJadwal(){
             $query = $this->db->query('SELECT jadwal_dosen.*, bluetape_userinfo.name
@@ -457,7 +458,7 @@
         /**
          * PATH : models/jadwaldosen_model.php
          */
-        public function deleteByUsername($username){
+        public function cekDeleteByUsername($username){
             $query=$this->db->query('SELECT user from jadwal_dosen');
             $res=$query->result();
         
@@ -473,7 +474,7 @@
         /**
          * PATH : models/jadwaldosen_model.php
          */
-        public function checkKolomKeHari(){
+        public function cekKolomKeHari(){
             $namaHari = 'Senin';
 
 		 $test = $this->JadwalDosen_model->kolomKeHari($namaHari);
@@ -486,7 +487,7 @@
         /**
          * PATH : models/jadwaldosen_model.php
          */
-	 public function checkHariKeKolom(){
+	 public function cekHariKeKolom(){
 		$coloumn = 3;
 		
 		$test = $this->JadwalDosen_model->hariKeKolom($coloumn);
@@ -562,27 +563,12 @@
          
         }
 
-        	//--------------EXPECTED RESULTS-----------------------------------------------------------------------------------------------------------------------------------
-
 
         /**
-         * Method untuk mendapatkan expected result dari test getName
-         * @var adalaha nama dari user BlueTape
-         * Expected result merupakan hasil query
-        **/
-        public function expectedResGetName($var){
-            $this->db->where('email',$var);
-            $this->db->from('Bluetape_Userinfo');
-
-            $query = $this->db->get();
-
-            $row = $query->row();
-
-            return $row->name;
-        }
-
+         * PATH : models/Email_model.php
+         */
         public function cekSend_email(){
-
+            //test case jika=Debug true
             $email='gemini2911f665@gmail.com';
             $subject='Mengetes pengiriman pesan';
             $message='Tugas proyek informatika';
@@ -592,16 +578,18 @@
             $this->unit->run($result,$expected,__FUNCTION__,'Test ini berfungsi untuk memeriksa apakah email sudah terkirim atau belum');
 
             //test case jika debug=false dan mail terkirim
-            $debug2=FALSE;
-            $result2=$this->Email_model->send_email($email,$subject,$message,$debug2);
-            $expected2=NULL;
+             $debug2=FALSE;
+             $result2=$this->Email_model->send_email($email,$subject,$message,$debug2);
+             $expected2=NULL;
             $this->unit->run($result2,$expected2,__FUNCTION__,'Test ini berfungsi untuk memeriksa apakah email sudah terkirim atau belum');
             //test case jika debug=false dan mail tidak terkirim
             $result3=$this->Email_model->send_email(NULL,NULL,NULL,$debug2);
             $expected3="Maaf, gagal mengirim email notifikasi.";
             $this->unit->run($result3,$expected3,__FUNCTION__,'Test ini berfungsi untuk memeriksa apakah email sudah terkirim atau belum');
        }
-       //Auth_model
+       /**
+        * PATH : models/Auth_model.php
+        */
        public function cekGetUserInfo(){
         $role=array(
             'mahasiswa.informatika' => '7316053@student.unpar.ac.id'
@@ -624,8 +612,10 @@
             $this->unit->run($result,$expected,__FUNCTION__,'Test ini berfungsi untuk mengecek Apakah userinfo yang ada pada session sudah sesuai /tidak');
 
        }
-
-       public function testLogout(){
+       /**
+        * PATH : models/Auth_model.php
+        */
+       public function cekLogout(){
         $role=array(
             'mahasiswa.informatika' => '7316053@student.unpar.ac.id'
         );
@@ -646,8 +636,10 @@
         $this->unit->run($result,$expected,__FUNCTION__,'Test ini berfungsi untuk mengecek Apakah userinfo sudah berhasil logout atau tidak , jika user berhasil logout maka tidak ada info user yang tersedia');
 
        }
-
-       public function testCreateAuthUrl(){
+        /**
+        * PATH : models/Auth_model.php
+        */
+       public function cekCreateAuthUrl(){
         $temp=$this->Auth_model->createAuthUrl();
         if($temp==""){
             $result=false;
@@ -659,9 +651,27 @@
         $this->unit->run($result,$expected,__FUNCTION__,'Test ini berfungsi untuk mengecek Apakah Url sudah terbuat atau tidak');
        }
 
+        //--------------EXPECTED RESULTS-----------------------------------------------------------------------------------------------------------------------------------
+
+
+        /**
+         * Method untuk mendapatkan expected result dari test getName
+         * @var adalaha nama dari user BlueTape
+         * Expected result merupakan hasil query
+        **/
+        public function expectedResGetName($var){
+            $this->db->where('email',$var);
+            $this->db->from('Bluetape_Userinfo');
+
+            $query = $this->db->get();
+
+            $row = $query->row();
+
+            return $row->name;
+        }
+
     }
+            
 
 
 
-
-        
