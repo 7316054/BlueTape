@@ -285,7 +285,7 @@
 
 		/**
 		* Memeriksa method request type forbidden dari Transkrip_model
-		* path model/Transkrip_model
+		* PATH :  models/Transkrip_model.php
 		*
 		**/
 		public function cekRequestTypesForbidden(){
@@ -320,7 +320,7 @@
 
 
         
-        //Model -addJadwal
+        // PATH : Models/Jadwaldosen_model.oho
         public function cekAddjadwal(){
             $data=array("user"=>"gemini2911f665@gmail.com", "hari"=>"0", "jam_mulai"=>"7","durasi"=>"1","jenis_jadwal"=>"konsultasi","label_jadwal"=>"aa");
             $this->JadwalDosen_model->addJadwal($data);
@@ -391,7 +391,7 @@
             //test case 1
             $year=2019;
             $month=12;
-                $result= $this->bluetape->yearMonthToSemesterCodeSimplified($year,$month);
+            $result= $this->bluetape->yearMonthToSemesterCodeSimplified($year,$month);
             $expected='191';
             $this->unit->run($result,$expected,__FUNCTION__,"Test ini mengecek Konversi tahun dan bulan ke kode semester, disederhanakan menjadi dua semester untuk kasus semester ganjil");
 
@@ -399,9 +399,9 @@
             //test case 2
             $year2=2019;
             $month2=3;
-                $result2= $this->bluetape->yearMonthToSemesterCodeSimplified($year2,$month2);
+            $result2= $this->bluetape->yearMonthToSemesterCodeSimplified($year2,$month2);
             $expected2='192';
-                $this->unit->run($result2,$expected2,__FUNCTION__,"Test ini mengecek Konversi tahun dan bulan ke kode semester, disederhanakan menjadi dua semester untuk kasus semester genap");
+            $this->unit->run($result2,$expected2,__FUNCTION__,"Test ini mengecek Konversi tahun dan bulan ke kode semester, disederhanakan menjadi dua semester untuk kasus semester genap");
 
         }
 
@@ -419,6 +419,7 @@
         
         /**
          * User = email
+         * PATH : models/Jadwaldosen_model.php
          */
         public function getAllJadwal(){
             $query = $this->db->query('SELECT jadwal_dosen.*, bluetape_userinfo.name
@@ -564,11 +565,10 @@
         }
 
 
-
+        /**
+         * PATH : models/Email_model.php
+         */
         public function cekSend_email(){
-
-            
-            // copy('../config/auth-dev.php','../config/auth.php');
             //test case jika=Debug true
             $email='gemini2911f665@gmail.com';
             $subject='Mengetes pengiriman pesan';
@@ -589,7 +589,9 @@
             $expected3="Maaf, gagal mengirim email notifikasi.";
             $this->unit->run($result3,$expected3,__FUNCTION__,'Test ini berfungsi untuk memeriksa apakah email sudah terkirim atau belum');
        }
-       //Auth_model
+       /**
+        * PATH : models/Auth_model.php
+        */
        public function cekGetUserInfo(){
         $role=array(
             'mahasiswa.informatika' => '7316053@student.unpar.ac.id'
@@ -612,7 +614,9 @@
             $this->unit->run($result,$expected,__FUNCTION__,'Test ini berfungsi untuk mengecek Apakah userinfo yang ada pada session sudah sesuai /tidak');
 
        }
-
+       /**
+        * PATH : models/Auth_model.php
+        */
        public function cekLogout(){
         $role=array(
             'mahasiswa.informatika' => '7316053@student.unpar.ac.id'
@@ -634,7 +638,9 @@
         $this->unit->run($result,$expected,__FUNCTION__,'Test ini berfungsi untuk mengecek Apakah userinfo sudah berhasil logout atau tidak , jika user berhasil logout maka tidak ada info user yang tersedia');
 
        }
-
+        /**
+        * PATH : models/Auth_model.php
+        */
        public function cekCreateAuthUrl(){
         $temp=$this->Auth_model->createAuthUrl();
         if($temp==""){

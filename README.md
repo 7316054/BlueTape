@@ -54,3 +54,7 @@ Yang harus dilakukan yaitu :
 6. Mengecek Code Coverage, tahapan untuk melakukan nya yaitu :
 	- Buka folder reports yang terletak di C:\xampp\htdocs\BlueTape\reports\code-coverage
 	- Buka file index.html untuk melihat presentasi class yang di test
+7. Mengecek Test Report, cara untuk melihatnya adalah :
+	- Buka folder C:\xampp\htdocs\BlueTape\reports fix\reports
+	- Buka file test_report.html untuk melihat test report nya.
+8. Status image travis-CI : https://travis-ci.com/7316054/BlueTape.svg?branch=master
