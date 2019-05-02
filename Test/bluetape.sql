@@ -107,7 +107,7 @@ CREATE TABLE `perubahankuliah` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-insert into PerubahanKuliah values 
+insert into perubahankuliah values 
                             (1, 'rootbluetape@gmail.com', '2019-04-02 09:48:23', 'Teknologi ', 'AIF123', 'A', 'G', '2019-04-02 09:47:00', '09021', '[{\"dateTime\":\"2019-04-05 09:48:00\",\"room\":\"09022\"}]', '', 'confirmed', 'rootbluetape@gmail.com', '2019-04-02 09:58:33', 'oke'),
                             (3, 'rootbluetape@gmail.com', '2019-04-02 14:17:40', 'Multi Agen', 'AIF234', 'A', 'X', '2019-04-04 10:00:00', '09020', '[]', 'Kelas diadakan karena dosen sakit', 'confirmed', 'rootbluetape@gmail.com', '2019-04-02 14:20:55', 'Boleh'),
                             (4, 'rootbluetape@gmail.com', '2019-04-02 14:19:47', 'Jaringan Komputer', 'AIF101', 'A', 'G', '2019-04-05 07:00:00', '09021', '[{\"dateTime\":\"2019-04-12 07:00:00\",\"room\":\"10317\"}]', 'Kelas diganti karena jaya sakit perut', 'confirmed', 'rootbluetape@gmail.com', '2019-04-02 14:21:03', 'Dipersilahkan'),
