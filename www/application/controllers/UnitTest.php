@@ -37,37 +37,38 @@
         */
        public function index(){
     
-            $this->cekJadwalByUsername('Dipo');
-            $this->cekYearMonthToSemesterCode();
-            $this->cekSemesterCodeToString();
-            $this->cekYearMonthToSemesterCodeSimplified();
-            $this->cekGetName('anugrahjaya23@gmail.com');
-            $this->cekDbDateTimeToReadableDate();
-            $this->cekGetEmail();
-            $this->cekGetNpm();
-            $this->cekGetAllJadwal();
-            $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
-			$this->cekRequestTypesForbidden();
-            $this->cekAddjadwal();
-			$this->cekKolomKeHari();
-            $this->cekHariKeKolom();
-            $this->cekGetNamaHari();
-            $this->cekGetNamaBulan();
-            $this->cekUpdateJadwal();
-            $this->cekGetNamaHari();
-            $this->cekGetNamaBulan();
-            $this->cekDeleteByUsername('anugrahjaya23@gmail.com');
-            $this->cekDeleteJadwal(1);
-            $this->cekRequestByIdTranskrip(1,null,null);
-            $this->cekRequestByIdTranskrip(1,3,0);
-            $this->cekRequestBy('7316053@student.unpar.ac.id',null,null);
-            $this->cekRequestBy('7316053@student.unpar.ac.id',1,3);
-            $this->cekRequestByPerubahanKuliah('rootbluetape@gmail.com',null,null);
-            $this->cekRequestByPerubahanKuliah('rootbluetape@gmail.com',1,0);
-            $this->cekSend_email();
-            $this->cekLogout();
-            $this->cekCreateAuthUrl();
-            $this->cekGetUserInfo();
+            // $this->cekJadwalByUsername('Dipo');
+            // $this->cekYearMonthToSemesterCode();
+            // $this->cekSemesterCodeToString();
+            // $this->cekYearMonthToSemesterCodeSimplified();
+            // $this->cekGetName('anugrahjaya23@gmail.com');
+            // $this->cekDbDateTimeToReadableDate();
+            // $this->cekGetEmail();
+            // $this->cekGetNpm();
+            // $this->cekGetAllJadwal();
+            // $this->cekJadwalByJamMulai(7,0,'anugrahjaya23@gmail.com');
+			// $this->cekRequestTypesForbidden();
+            // $this->cekAddjadwal();
+			// $this->cekKolomKeHari();
+            // $this->cekHariKeKolom();
+            // $this->cekGetNamaHari();
+            // $this->cekGetNamaBulan();
+            // $this->cekUpdateJadwal();
+            // $this->cekGetNamaHari();
+            // $this->cekGetNamaBulan();
+            // $this->cekDeleteByUsername('anugrahjaya23@gmail.com');
+            // $this->cekDeleteJadwal(1);
+            // $this->cekRequestByIdTranskrip(1,null,null);
+            // $this->cekRequestByIdTranskrip(1,3,0);
+            // $this->cekRequestBy('7316053@student.unpar.ac.id',null,null);
+            // $this->cekRequestBy('7316053@student.unpar.ac.id',1,3);
+            // $this->cekRequestByPerubahanKuliah('rootbluetape@gmail.com',null,null);
+            // $this->cekRequestByPerubahanKuliah('rootbluetape@gmail.com',1,0);
+            // $this->cekSend_email();
+            // $this->cekLogout();
+            // $this->cekCreateAuthUrl();
+            // $this->cekGetUserInfo();
+            $this->cekModuleAllowed();
             $this->report();
         }
 
@@ -668,6 +669,39 @@
             $row = $query->row();
 
             return $row->name;
+        }
+
+        public function cekModuleAllowed(){
+            //test case 1 ketika email tidak memilik hak akses
+            $this->session->set_userdata('auth',array(
+                'email'=>'7316053@student.unpar.ac.id',
+                'name'=>'ANUGRAH JAYA SAKTI',
+                'roles'=>'mahasiswa.informatika',
+                'modules'=>array()
+
+            ));
+
+            try{
+                $temp=$this->Auth_model->checkModuleAllowed('mahasiswa.informatika');
+            }
+            catch(exception $e){
+                $result=(String) $e->getMessage();
+            }
+
+            $expected='7316053@student.unpar.ac.id tidak memiliki hak akses ke mahasiswa.informatika';
+            $this->unit->run($result,$expected,__FUNCTION__,'Test ini berfungsi untuk mengecek Apakah email tersebut memilik akses atau tidak');
+
+            //Test Case 2 Jika User belom login.
+            $this->session->unset_userdata('auth');
+            try{
+                $temp2=$this->Auth_model->checkModuleAllowed('mahasiswa.informatika');
+            }
+            catch(exception $e){
+                $result2=(String) $e->getMessage();
+            }
+            $expected2='Mohon login terlebih dahulu.';
+            $this->unit->run($result2,$expected2,__FUNCTION__,'Test ini berfungsi untuk mengecek Apakah email tersebut sudah login atau belum');
+
         }
 
     }
