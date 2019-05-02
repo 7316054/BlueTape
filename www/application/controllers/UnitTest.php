@@ -563,24 +563,7 @@
          
         }
 
-        	//--------------EXPECTED RESULTS-----------------------------------------------------------------------------------------------------------------------------------
 
-
-        /**
-         * Method untuk mendapatkan expected result dari test getName
-         * @var adalaha nama dari user BlueTape
-         * Expected result merupakan hasil query
-        **/
-        public function expectedResGetName($var){
-            $this->db->where('email',$var);
-            $this->db->from('Bluetape_Userinfo');
-
-            $query = $this->db->get();
-
-            $row = $query->row();
-
-            return $row->name;
-        }
 
         public function cekSend_email(){
 
@@ -663,6 +646,25 @@
         $expected=true;
         $this->unit->run($result,$expected,__FUNCTION__,'Test ini berfungsi untuk mengecek Apakah Url sudah terbuat atau tidak');
        }
+
+        //--------------EXPECTED RESULTS-----------------------------------------------------------------------------------------------------------------------------------
+
+
+        /**
+         * Method untuk mendapatkan expected result dari test getName
+         * @var adalaha nama dari user BlueTape
+         * Expected result merupakan hasil query
+        **/
+        public function expectedResGetName($var){
+            $this->db->where('email',$var);
+            $this->db->from('Bluetape_Userinfo');
+
+            $query = $this->db->get();
+
+            $row = $query->row();
+
+            return $row->name;
+        }
 
     }
             
