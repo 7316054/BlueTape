@@ -44,7 +44,7 @@ CREATE TABLE `bluetape_userinfo` (
 
 
 
- insert into bluetape_Userinfo values 
+ insert into bluetape_userinfo values 
                             ('7316053@student.unpar.ac.id', 'ANUGRAH JAYA SAKTI', '2019-04-02 09:25:44'),
                             ('anugrahjaya23@gmail.com', 'anugrah jaya', '2019-04-02 04:40:28'),
                             ('muhammmaddipo@gmail.com', 'Muhammad Dipo', '2019-04-02 00:00:00'),
