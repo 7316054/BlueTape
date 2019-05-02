@@ -9,7 +9,7 @@ cache: bundler
 before_install:
 # - cp www/application/config/auth-test.php www/application/config/auth.php
 - mv www/application/config/auth-test.php auth.php 
- - mysql -u root --password="" < test/travis.sql
+ - mysql -u root --password="" < Test/bluetape.sql
 
 
 before_script:
