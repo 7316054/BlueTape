@@ -46,11 +46,11 @@ CREATE TABLE `bluetape_userinfo` (
 -- Dumping data for table `bluetape_userinfo`
 --
 
-INSERT INTO `bluetape_userinfo` (`email`, `name`, `lastUpdate`) VALUES
-('7316053@student.unpar.ac.id', 'ANUGRAH JAYA SAKTI', '2019-04-02 09:25:44'),
-('anugrahjaya23@gmail.com', 'anugrah jaya', '2019-04-02 04:40:28'),
-('muhammmaddipo@gmail.com', 'Muhammad Dipo', '2019-04-02 00:00:00'),
-('rootbluetape@gmail.com', 'Root Bluetape', '2019-04-02 09:26:20');
+ insert into bluetape_Userinfo values 
+                            ('7316053@student.unpar.ac.id', 'ANUGRAH JAYA SAKTI', '2019-04-02 09:25:44'),
+                            ('anugrahjaya23@gmail.com', 'anugrah jaya', '2019-04-02 04:40:28'),
+                            ('muhammmaddipo@gmail.com', 'Muhammad Dipo', '2019-04-02 00:00:00'),
+                            ('rootbluetape@gmail.com', 'Root Bluetape', '2019-04-02 09:26:20');
 
 -- --------------------------------------------------------
 
@@ -73,18 +73,18 @@ CREATE TABLE `jadwal_dosen` (
 -- Dumping data for table `jadwal_dosen`
 --
 
-INSERT INTO `jadwal_dosen` (`id`, `user`, `hari`, `jam_mulai`, `durasi`, `jenis`, `label`, `lastUpdate`) VALUES
-(2, 'gemini2911f665@gmail.com', 0, 7, 1, 'konsultasi', 'aa', '2019-03-28 08:30:32'),
-(3, 'gemini2911f665@gmail.com', 0, 7, 1, 'konsultasi', 'aa', '2019-03-28 08:31:58'),
-(4, 'Dipo1', 4, 13, 5, 'Kelas', 'Update', '2019-03-28 08:32:56'),
-(5, 'gemini2911f665@gmail.com', 0, 7, 1, 'konsultasi', 'aa', '2019-03-28 08:33:22'),
-(6, 'anugrahjaya23@gmail.com', 0, 7, 3, 'kelas', 'kelas TBD', '2019-04-02 04:41:56'),
-(7, 'anugrahjaya23@gmail.com', 0, 11, 4, 'konsultasi', 'kelas TBD', '2019-04-02 04:41:40'),
-(8, 'rootbluetape@gmail.com', 0, 7, 1, 'konsultasi', 'kelas TBD', '2019-04-02 05:14:49'),
-(9, 'rootbluetape@gmail.com', 2, 12, 2, 'kelas', 'Kelas pengganti', '2019-04-02 09:11:07'),
-(10, 'rootbluetape@gmail.com', 0, 13, 3, 'kelas', 'Kelas Proyek Informatika', '2019-04-02 09:13:27'),
-(11, 'rootbluetape@gmail.com', 4, 7, 3, 'kelas', 'Kelas Jaringan Komputer', '2019-04-02 09:13:43'),
-(12, 'rootbluetape@gmail.com', 3, 10, 2, 'kelas', 'Kelas Multi Agen', '2019-04-02 09:14:23');
+insert into jadwal_dosen values
+                            (2, 'gemini2911f665@gmail.com', 0, 7, 1, 'konsultasi', 'aa', '2019-03-28 08:30:32'),
+                            (3, 'gemini2911f665@gmail.com', 0, 7, 1, 'konsultasi', 'aa', '2019-03-28 08:31:58'),
+                            (4, 'Dipo1', 4, 13, 5, 'Kelas', 'Update', '2019-03-28 08:32:56'),
+                            (5, 'gemini2911f665@gmail.com', 0, 7, 1, 'konsultasi', 'aa', '2019-03-28 08:33:22'),
+                            (6, 'anugrahjaya23@gmail.com', 0, 7, 3, 'kelas', 'kelas TBD', '2019-04-02 04:41:56'),
+                            (7, 'anugrahjaya23@gmail.com', 0, 11, 4, 'konsultasi', 'kelas TBD', '2019-04-02 04:41:40'),
+                            (8, 'rootbluetape@gmail.com', 0, 7, 1, 'konsultasi', 'kelas TBD', '2019-04-02 05:14:49'),
+                            (9, 'rootbluetape@gmail.com', 2, 12, 2, 'kelas', 'Kelas pengganti', '2019-04-02 09:11:07'),
+                            (10, 'rootbluetape@gmail.com', 0, 13, 3, 'kelas', 'Kelas Proyek Informatika', '2019-04-02 09:13:27'),
+                            (11, 'rootbluetape@gmail.com', 4, 7, 3, 'kelas', 'Kelas Jaringan Komputer', '2019-04-02 09:13:43'),
+                            (12, 'rootbluetape@gmail.com', 3, 10, 2, 'kelas', 'Kelas Multi Agen', '2019-04-02 09:14:23');
 
 -- --------------------------------------------------------
 
@@ -131,12 +131,11 @@ CREATE TABLE `perubahankuliah` (
 -- Dumping data for table `perubahankuliah`
 --
 
-INSERT INTO `perubahankuliah` (`id`, `requestByEmail`, `requestDateTime`, `mataKuliahName`, `mataKuliahCode`, `class`, `changeType`, `fromDateTime`, `fromRoom`, `to`, `remarks`, `answer`, `answeredByEmail`, `answeredDateTime`, `answeredMessage`) VALUES
-(1, 'rootbluetape@gmail.com', '2019-04-02 09:48:23', 'Teknologi ', 'AIF123', 'A', 'G', '2019-04-02 09:47:00', '09021', '[{\"dateTime\":\"2019-04-05 09:48:00\",\"room\":\"09022\"}]', '', 'confirmed', 'rootbluetape@gmail.com', '2019-04-02 09:58:33', 'oke'),
-(2, 'rootbluetape@gmail.com', '2019-04-02 09:52:21', 'Teknologi ', 'AIF123', 'A', 'T', NULL, '', '[{\"dateTime\":\"2019-04-05 09:52:00\",\"room\":\"09022\"}]', '', 'rejected', 'rootbluetape@gmail.com', '2019-04-02 10:00:00', 'alasan tidak valid'),
-(3, 'rootbluetape@gmail.com', '2019-04-02 14:17:40', 'Multi Agen', 'AIF234', 'A', 'X', '2019-04-04 10:00:00', '09020', '[]', 'Kelas diadakan karena dosen sakit', 'confirmed', 'rootbluetape@gmail.com', '2019-04-02 14:20:55', 'Boleh'),
-(4, 'rootbluetape@gmail.com', '2019-04-02 14:19:47', 'Jaringan Komputer', 'AIF101', 'A', 'G', '2019-04-05 07:00:00', '09021', '[{\"dateTime\":\"2019-04-12 07:00:00\",\"room\":\"10317\"}]', 'Kelas diganti karena jaya sakit perut', 'confirmed', 'rootbluetape@gmail.com', '2019-04-02 14:21:03', 'Dipersilahkan'),
-(5, 'rootbluetape@gmail.com', '2019-04-02 14:24:10', 'Proyek Informatika', 'AIF142', 'B', 'X', '2019-04-01 07:00:00', '09016', '[]', 'Kelas ditiadakan karena dosen ada urusan', 'confirmed', 'rootbluetape@gmail.com', '2019-04-02 14:24:20', '');
+insert into PerubahanKuliah values 
+                            (1, 'rootbluetape@gmail.com', '2019-04-02 09:48:23', 'Teknologi ', 'AIF123', 'A', 'G', '2019-04-02 09:47:00', '09021', '[{\"dateTime\":\"2019-04-05 09:48:00\",\"room\":\"09022\"}]', '', 'confirmed', 'rootbluetape@gmail.com', '2019-04-02 09:58:33', 'oke'),
+                            (3, 'rootbluetape@gmail.com', '2019-04-02 14:17:40', 'Multi Agen', 'AIF234', 'A', 'X', '2019-04-04 10:00:00', '09020', '[]', 'Kelas diadakan karena dosen sakit', 'confirmed', 'rootbluetape@gmail.com', '2019-04-02 14:20:55', 'Boleh'),
+                            (4, 'rootbluetape@gmail.com', '2019-04-02 14:19:47', 'Jaringan Komputer', 'AIF101', 'A', 'G', '2019-04-05 07:00:00', '09021', '[{\"dateTime\":\"2019-04-12 07:00:00\",\"room\":\"10317\"}]', 'Kelas diganti karena jaya sakit perut', 'confirmed', 'rootbluetape@gmail.com', '2019-04-02 14:21:03', 'Dipersilahkan'),
+                            (5, 'rootbluetape@gmail.com', '2019-04-02 14:24:10', 'Proyek Informatika', 'AIF142', 'B', 'X', '2019-04-01 07:00:00', '09016', '[]', 'Kelas ditiadakan karena dosen ada urusan', 'confirmed', 'rootbluetape@gmail.com', '2019-04-02 14:24:20', '');
 
 -- --------------------------------------------------------
 
@@ -160,10 +159,10 @@ CREATE TABLE `transkrip` (
 -- Dumping data for table `transkrip`
 --
 
-INSERT INTO `transkrip` (`id`, `requestByEmail`, `requestDateTime`, `requestType`, `requestUsage`, `answer`, `answeredByEmail`, `answeredDateTime`, `answeredMessage`) VALUES
-(1, '7316053@student.unpar.ac.id', '2019-03-26 15:28:58', 'DPS_ID', 'kuliah', 'printed', 'rootbluetape@gmail.com', '2019-04-02 10:06:09', 'oke'),
-(3, '7316053@student.unpar.ac.id', '2019-04-02 10:21:03', 'LHS', 'kuliah', 'rejected', 'rootbluetape@gmail.com', '2019-04-02 14:25:33', 'Belum lunas pembayaran'),
-(4, '7316053@student.unpar.ac.id', '2019-04-02 14:25:58', 'LHS', 'Untuk beasiswa', 'printed', 'rootbluetape@gmail.com', '2019-04-02 14:26:32', 'Ambil di TU');
+ insert into transkrip values
+                        (1, '7316053@student.unpar.ac.id', '2019-03-26 15:28:58', 'DPS_ID', 'kuliah', 'printed', 'rootbluetape@gmail.com', '2019-04-02 10:06:09', 'oke'),
+                        (3, '7316053@student.unpar.ac.id', '2019-04-02 10:21:03', 'LHS', 'kuliah', 'rejected', 'rootbluetape@gmail.com', '2019-04-02 14:25:33', 'Belum lunas pembayaran'),
+                        (4, '7316053@student.unpar.ac.id', '2019-04-02 14:25:58', 'LHS', 'Untuk beasiswa', 'printed', 'rootbluetape@gmail.com', '2019-04-02 14:26:32', 'Ambil di TU');
 
 --
 -- Indexes for dumped tables
