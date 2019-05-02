@@ -702,6 +702,8 @@
             $expected2='Mohon login terlebih dahulu.';
             $this->unit->run($result2,$expected2,__FUNCTION__,'Test ini berfungsi untuk mengecek Apakah email tersebut sudah login atau belum');
 
+            
+
         }
 
     }
