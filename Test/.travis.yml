@@ -7,6 +7,6 @@ cache: bundler
 before_script:
   - cp www/application/config/auth-dev.php www/application/config/auth.php
   - cp www/application/config/database-dev.php www/application/config/database.php
-   - mysql -u root --password="" < test/travis.sql
+   - mysql -u root --password='' < test/travis.sql
 script:
 - php www/index.php UnitTest
