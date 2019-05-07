@@ -57,4 +57,4 @@ Yang harus dilakukan yaitu :
 7. Mengecek Test Report, cara untuk melihatnya adalah :
 	- Buka folder C:\xampp\htdocs\BlueTape\reports fix\reports
 	- Buka file test_report.html untuk melihat test report nya.
-8. Status image travis-CI : https://travis-ci.com/7316054/BlueTape.svg?branch=master
+8. Status image travis-CI : [![Build Status](https://travis-ci.com/7316054/BlueTape.svg?branch=master)](https://travis-ci.com/7316054/BlueTape)
