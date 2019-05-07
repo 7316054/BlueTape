@@ -575,18 +575,18 @@
             $debug=TRUE;
             $result=$this->Email_model->send_email($email,$subject,$message,$debug);
             $expected='Tugas proyek informatika';
-            $this->unit->run($result,$expected,__FUNCTION__,'Test ini berfungsi untuk memeriksa apakah email sudah terkirim atau belum');
+            $this->unit->run($result,$expected,__FUNCTION__,'Test ini berfungsi untuk memeriksa apakah email sudah terkirim atau belum ketika debug=true');
 
             //test case jika debug=false dan mail terkirim
              $debug2=FALSE;
              $result2=$this->Email_model->send_email($email,$subject,$message,$debug2);
              $expected2=NULL;
-            $this->unit->run($result2,$expected2,__FUNCTION__,'Test ini berfungsi untuk memeriksa apakah email sudah terkirim atau belum');
+            $this->unit->run($result2,$expected2,__FUNCTION__,'Test ini berfungsi untuk memeriksa apakah email sudah terkirim atau belum ketika debuf=false dan pesan terkirim');
 
             //test case jika debug=false dan mail tidak terkirim
             $result3=$this->Email_model->send_email(NULL,NULL,NULL,$debug2);
             $expected3="Maaf, gagal mengirim email notifikasi.";
-            $this->unit->run($result3,$expected3,__FUNCTION__,'Test ini berfungsi untuk memeriksa apakah email sudah terkirim atau belum');
+            $this->unit->run($result3,$expected3,__FUNCTION__,'Test ini berfungsi untuk memeriksa apakah email sudah terkirim atau belum ketika debug=false dan mail tidak terkirim');
        }
        /**
         * PATH : models/Auth_model.php
