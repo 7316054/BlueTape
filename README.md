@@ -47,14 +47,22 @@ Yang harus dilakukan yaitu :
 	- Buka php.ini di direktori C:\xampp\php\php.ini
 	- Tambahkan code "zend_extension=php_xdegub.dll". (tanpa tanda "").
 	- Restart xampp
-5. Menjalankan Unit Test dengan cara :
+5. Setup local database:
+	- Dummy database disediakan pada file travis.yml
+	- Buka file travis.yml
+	- Copy dummy database(pilih salah satu untuk tabel yang sama pada database local).
+	- Buka localhost/phpmyadmin
+	- Pilih database (bluetape)
+	- Pilih tabel yang akan ditambahkan database.
+	- Pilih menu sql , lalu masuk query dan tekan go.
+6. Menjalankan Unit Test dengan cara :
 	- Jalankan command prompt, pindahkan direktori ke C:\xampp\htdocs\BlueTape\www
 	- Ketik command "php www/index.php UnitTest" (tanpa tanda "").
 	- Hasil akan muncul di command prompt.
-6. Mengecek Code Coverage, tahapan untuk melakukan nya yaitu :
+7. Mengecek Code Coverage, tahapan untuk melakukan nya yaitu :
 	- Buka folder reports yang terletak di C:\xampp\htdocs\BlueTape\reports\code-coverage
 	- Buka file index.html untuk melihat presentasi class yang di test
-7. Mengecek Test Report, cara untuk melihatnya adalah :
+8. Mengecek Test Report, cara untuk melihatnya adalah :
 	- Buka folder C:\xampp\htdocs\BlueTape\reports fix\reports
 	- Buka file test_report.html untuk melihat test report nya.
-8. Status image travis-CI : [![Build Status](https://travis-ci.com/7316054/BlueTape.svg?branch=master)](https://travis-ci.com/7316054/BlueTape)
+9. Status image travis-CI : [![Build Status](https://travis-ci.com/7316054/BlueTape.svg?branch=master)](https://travis-ci.com/7316054/BlueTape)
